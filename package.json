@@ -1,0 +1,21 @@
+{
+	"name": "rayity-docs",
+	"version": "1.0.0",
+	"license": "MIT",
+	"scripts": {
+		"build": "webpack",
+		"start": "webpack-dev-server --content-base ./docs"
+	},
+	"devDependencies": {
+		"source-map-loader": "^0.2.1",
+		"ts-loader": "^2.3.3",
+		"typedoc-webpack-plugin": "^1.1.4",
+		"webpack": "^2.6.1",
+		"webpack-dev-server": "^2.4.5"
+	},
+	"dependencies": {
+		"rayity": "git+https://github.com/gribbet/rayity.git",
+		"typedoc": "^0.8.0",
+		"typescript": "^2.4.2"
+	}
+}
