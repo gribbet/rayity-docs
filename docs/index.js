@@ -74,10 +74,6 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var context = [];
-/**
- * Expression
- * @param body
- */
 function expression(body) {
     var id = generateId(body);
     var self = {
@@ -209,7 +205,8 @@ function options(values) {
         bounces: 8,
         iterations: 1,
         memory: 1.0,
-        cheapNormals: false
+        cheapNormals: false,
+        stepFactor: 0.9
     }, values || {});
 }
 exports.options = options;
@@ -228,6 +225,7 @@ function shape(call) {
         call: call
     };
 }
+exports.shape = shape;
 function zero() {
     return shape(function (p) {
         return expression_1.expression("MAX_VALUE");
@@ -336,6 +334,10 @@ function scale(x, a) {
     });
 }
 exports.scale = scale;
+function spheroid(x) {
+    return shape(function (p) { return expression_1.expression("length(" + p + ") - " + x(p)); });
+}
+exports.spheroid = spheroid;
 function max(a) {
     return shape(function (p) {
         return a.call(expression_1.expression("max(" + p + ", 0.0)"));
@@ -378,15 +380,32 @@ function difference(a, b) {
     });
 }
 exports.difference = difference;
-function blend(k, a, b) {
+function smoothMin(k, a, b) {
+    var h = expression_1.expression("clamp(0.5 + 0.5 * (" + b + " - " + a + ") / " + k + ", 0.0, 1.0)");
+    return expression_1.expression("mix(" + b + ", " + a + ", " + h + ") - " + k + " * " + h + " * (1.0 - " + h + ")");
+}
+function smoothMax(k, a, b) {
+    var h = expression_1.expression("clamp(0.5 - 0.5 * (" + b + " - " + a + ") / " + k + ", 0.0, 1.0)");
+    return expression_1.expression("mix(" + b + ", " + a + ", " + h + ") + " + k + " * " + h + " * (1.0 - " + h + ")");
+}
+function smoothUnion(k, a, b) {
     return shape(function (p) {
-        var da = a.call(p);
-        var db = b.call(p);
-        var h = expression_1.expression("clamp(0.5 + 0.5 * (" + db + " - " + da + ") / " + k + ", 0.0, 1.0)");
-        return expression_1.expression("mix(" + db + ", " + da + ", " + h + ") - " + k + " * " + h + " * (1.0 - " + h + ")");
+        return smoothMin(k, a.call(p), b.call(p));
     });
 }
-exports.blend = blend;
+exports.smoothUnion = smoothUnion;
+function smoothIntersection(k, a, b) {
+    return shape(function (p) {
+        return smoothMax(k, a.call(p), b.call(p));
+    });
+}
+exports.smoothIntersection = smoothIntersection;
+function smoothDifference(k, a, b) {
+    return shape(function (p) {
+        return smoothMax(k, a.call(p), expression_1.expression(b.call(p) + " * -1.0"));
+    });
+}
+exports.smoothDifference = smoothDifference;
 function expand(k, a) {
     return shape(function (p) {
         var da = a.call(p);
@@ -443,8 +462,10 @@ function rotate(axis, x, a) {
 exports.rotate = rotate;
 function wrapX(a) {
     return shape(function (p) {
-        var c = expression_1.expression("length(p.yz)");
-        return a.call(expression_1.expression(p + ".x, " + c + ".x, asin(" + p + ".z / " + c + ".x)"));
+        var c = expression_1.expression("length(" + p + ".yz)");
+        var q = expression_1.expression("1, 1, max(0.01, abs(" + p + ".z))");
+        //let q = value(1);
+        return expression_1.expression(a.call(expression_1.expression(p + ".x, asin(" + p + ".y / " + c + ".x), " + c + ".x")) + " * " + expression_1.minNorm(q));
     });
 }
 exports.wrapX = wrapX;
@@ -454,10 +475,21 @@ function mirror(n, a) {
     });
 }
 exports.mirror = mirror;
+function offset(x, a) {
+    return shape(function (p) { return a.call(expression_1.expression(p + " - " + x(p))); });
+}
+exports.offset = offset;
 function smoothBox(dimensions, radius) {
     return mirror(expression_1.value(1, 0, 0), mirror(expression_1.value(0, 1, 0), mirror(expression_1.value(0, 0, 1), translate(expression_1.expression("0.5 * (" + dimensions + " - " + radius + ")"), max(scale(radius, sphere()))))));
 }
 exports.smoothBox = smoothBox;
+function box(dimensions) {
+    return shape(function (p) {
+        var d = expression_1.expression("abs(" + p + ") - " + dimensions);
+        return expression_1.expression("max(min(" + d + ".x, min(" + d + ".y, " + d + ".z)), 0.0) + length(max(" + d + ", 0.0))");
+    });
+}
+exports.box = box;
 function sierpinski(iterations, a) {
     if (iterations === void 0) { iterations = 5; }
     if (a === void 0) { a = tetrahedron(); }
@@ -478,7 +510,7 @@ function tree(iterations) {
     return Array(iterations)
         .fill(0)
         .reduce(function (shape, _, i) {
-        return blend(expression_1.value(0.15 * Math.pow(factor, i)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle / 180 * Math.PI), length / 2 * (1 + factor / 2 * Math.cos(angle / 180 * Math.PI)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle / 180 * Math.PI), shape)))))));
+        return smoothUnion(expression_1.value(0.15 * Math.pow(factor, i)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle / 180 * Math.PI), length / 2 * (1 + factor / 2 * Math.cos(angle / 180 * Math.PI)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle / 180 * Math.PI), shape)))))));
     }, smoothBox(expression_1.value(width, length, width), expression_1.value(width / 2)));
 }
 exports.tree = tree;
@@ -520,6 +552,83 @@ function truchet() {
     });
 }
 exports.truchet = truchet;
+function skull() {
+    var skull = translate(expression_1.value(0, 0.05, 0), spheroid(function (p) { return expression_1.expression("0.333 * cos(cos(" + p + ".y * 11.0 + 0.55) * " + p + ".z * 2.3)"); }));
+    var globeFront = translate(expression_1.value(0.1, 0.23, 0), scale(expression_1.value(0.574), sphere()));
+    skull = smoothUnion(expression_1.value(0.09), skull, globeFront);
+    var globeBack = translate(expression_1.value(-0.1, 0.24, 0), scale(expression_1.value(0.574), sphere()));
+    skull = smoothUnion(expression_1.value(0.09), skull, globeBack);
+    var eyeBrow = translate(expression_1.value(0.24, 0.07, 0.1), spheroid(function (p) { return expression_1.expression("0.126 * cos(" + p + ".y * 7.0 + 0.49)"); }));
+    skull = smoothUnion(expression_1.value(0.02), skull, eyeBrow);
+    var lateralHole = translate(expression_1.value(0.15, -0.01, 0.31), spheroid(function (p) { return expression_1.expression("0.098 * cos(" + p + ".x * 0.59 + 0.089)"); }));
+    skull = smoothDifference(expression_1.value(0.02), skull, lateralHole);
+    var cheekBone = translate(expression_1.value(0.22, -0.13, 0.18), scale(expression_1.value(0.077), sphere()));
+    skull = smoothUnion(expression_1.value(0.04), skull, cheekBone);
+    var inside = translate(expression_1.value(0, 0.05, 0), spheroid(function (p) { return expression_1.expression("0.315 * cos(cos(" + p + ".y * 11.0 + 0.55) * " + p + ".z * 2.3)"); }));
+    inside = smoothUnion(expression_1.value(0.02), inside, translate(expression_1.value(0.10, 0.23, 0), scale(expression_1.value(0.511), sphere())));
+    inside = smoothUnion(expression_1.value(0.02), inside, translate(expression_1.value(-0.1, 0.24, 0), scale(expression_1.value(0.511), sphere())));
+    inside = smoothUnion(expression_1.value(0.02), inside, translate(expression_1.value(0, 0.24, 0), scale(expression_1.value(0.511), sphere())));
+    skull = smoothDifference(expression_1.value(0.02), skull, inside);
+    var eyeBall = translate(expression_1.value(0.32, -0.04, 0.140), spheroid(function (p) { return expression_1.expression("0.098 * cos(" + p + ".y * 10.0 - 0.04)"); }));
+    skull = smoothDifference(expression_1.value(0.03), skull, eyeBall);
+    var nose = translate(expression_1.value(0.22, -0.05, 0), spheroid(function (p) { return expression_1.expression("0.123 * cos(sin(" + p + ".y * 22.0 - 1.1) * " + p + ".z * 24.0)"); }));
+    nose = smoothDifference(expression_1.value(0.02), nose, translate(expression_1.value(0.32, -0.04, 0.140), spheroid(function (p) { return expression_1.expression("0.123 * cos(" + p + ".y * 10.0 - 0.4)"); })));
+    nose = smoothDifference(expression_1.value(0.02), nose, translate(expression_1.value(0, 0.05, 0), spheroid(function (p) { return expression_1.expression("0.32 * cos(cos(" + p + ".y * 11.0 + 0.5) * " + p + ".z * 2.3)"); })));
+    skull = smoothUnion(expression_1.value(0.015), skull, nose);
+    var noseInside = translate(expression_1.value(0.238, -0.09, 0), spheroid(function (p) { return expression_1.expression("0.11 * cos(sin(" + p + ".y * 18.0 - 1.62) * " + p + ".z * 29.0)"); }));
+    skull = smoothDifference(expression_1.value(0.002), skull, noseInside);
+    var cut = translate(expression_1.value(-0.15, -0.97, 0), scale(expression_1.value(1.75), sphere()));
+    skull = smoothDifference(expression_1.value(0.01), skull, cut);
+    var upperJaw = translate(expression_1.value(0.13, -0.26, 0), scale(expression_1.value(0.315), sphere()));
+    upperJaw = smoothDifference(expression_1.value(0.01), upperJaw, translate(expression_1.value(0.125, -0.3, 0), scale(expression_1.value(0.28), sphere())));
+    upperJaw = smoothDifference(expression_1.value(0.03), upperJaw, translate(expression_1.value(-0.2, -0.1, 0), scale(expression_1.value(0.63), sphere())));
+    upperJaw = smoothDifference(expression_1.value(0.03), upperJaw, translate(expression_1.value(0.13, -0.543, 0), scale(expression_1.value(0.63), sphere())));
+    upperJaw = difference(upperJaw, translate(expression_1.value(0, 0.02, 0), spheroid(function (p) { return expression_1.expression("0.315 * cos(cos(" + p + ".y * 11.0 + 0.22) * " + p + ".z * 2.3)"); })));
+    skull = smoothUnion(expression_1.value(0.04), skull, upperJaw);
+    var lowerJaw = translate(expression_1.value(0.1, -0.32, 0), scale(expression_1.value(0.301), sphere()));
+    lowerJaw = smoothDifference(expression_1.value(0.02), lowerJaw, translate(expression_1.value(0.1, -0.32, 0), scale(expression_1.value(0.259), sphere())));
+    lowerJaw = smoothDifference(expression_1.value(0.02), lowerJaw, translate(expression_1.value(0.1, -0.034, 0), scale(expression_1.value(0.721), sphere())));
+    lowerJaw = smoothDifference(expression_1.value(0.02), lowerJaw, translate(expression_1.value(0, -0.4, 0), scale(expression_1.value(0.245), sphere())));
+    lowerJaw = smoothUnion(expression_1.value(0.13), lowerJaw, offset(function (p) { return expression_1.expression("0.04 - 0.03 * cos(" + p + ".y * 20.2), -0.23, 0.27 + sin(" + p + ".y) * 0.27"); }, box(expression_1.value(0.03, 0.12, 0.014))));
+    lowerJaw = difference(lowerJaw, translate(expression_1.value(0, 0.153, 0.2), scale(expression_1.value(0.595), sphere())));
+    lowerJaw = smoothUnion(expression_1.value(0.08), lowerJaw, translate(expression_1.value(0.19, -0.44, 0.05), scale(expression_1.value(0.035), sphere())));
+    skull = smoothUnion(expression_1.value(0.02), skull, lowerJaw);
+    var teeth = translate(expression_1.value(0.26, -0.29, 0.018), scale(expression_1.value(0.0371), sphere()));
+    teeth = union(teeth, translate(expression_1.value(0.25, -0.288, 0.05), scale(expression_1.value(0.035), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.235, -0.29, 0.08), scale(expression_1.value(0.035), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.215, -0.285, 0.1), scale(expression_1.value(0.035), sphere())));
+    ;
+    teeth = difference(teeth, translate(expression_1.value(0.16, -0.35, 0), scale(expression_1.value(0.231), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.18, -0.28, 0.115), scale(expression_1.value(0.035), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.14, -0.28, 0.115), scale(expression_1.value(0.042), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.11, -0.28, 0.115), scale(expression_1.value(0.042), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.08, -0.28, 0.115), scale(expression_1.value(0.042), sphere())));
+    ;
+    skull = smoothUnion(expression_1.value(0.03), skull, teeth);
+    teeth = translate(expression_1.value(0.23, -0.34, 0.018), scale(expression_1.value(0.0371), sphere()));
+    teeth = union(teeth, translate(expression_1.value(0.22, -0.34, 0.048), scale(expression_1.value(0.0353), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.20, -0.345, 0.078), scale(expression_1.value(0.0353), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.17, -0.35, 0.098), scale(expression_1.value(0.0353), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.14, -0.35, 0.11), scale(expression_1.value(0.0353), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.11, -0.35, 0.11), scale(expression_1.value(0.0353), sphere())));
+    ;
+    teeth = union(teeth, translate(expression_1.value(0.08, -0.35, 0.11), scale(expression_1.value(0.0353), sphere())));
+    ;
+    skull = smoothUnion(expression_1.value(0.025), skull, teeth);
+    skull = mirror(expression_1.value(0, 0, 1), skull);
+    return skull;
+}
+exports.skull = skull;
 
 
 /***/ }),
@@ -554,23 +663,29 @@ function buildExpression(expression) {
     return buildExpressions([expression]);
 }
 function buildExpressions(expressions) {
-    return dependencieses(expressions)
+    return dependencyTree(expressions)
         .map(function (expression) { return "\tvec3 " + expression + " = vec3(" + expression.body + ");"; })
         .reduce(function (a, b) { return a + "\n" + b; }, "");
 }
-function dependencies(expression) {
-    return uniqueExpressions(dependencieses(expression.dependencies)
-        .concat(expression));
-}
-function dependencieses(expressions) {
-    return uniqueExpressions(expressions
-        .map(function (_) { return dependencies(_); })
-        .reduce(function (a, b) { return a.concat(b); }, []));
-}
-function uniqueExpressions(expressions) {
-    return expressions.filter(function (x, i) {
-        return expressions.findIndex(function (_) { return _.id === x.id; }) === i;
-    });
+function dependencyTree(expressions) {
+    var cache = {};
+    function dependencies(expression) {
+        if (cache[expression.id])
+            return cache[expression.id];
+        return cache[expression.id] = uniqueExpressions(dependencieses(expression.dependencies)
+            .concat(expression));
+    }
+    function dependencieses(expressions) {
+        return uniqueExpressions(expressions
+            .map(function (_) { return dependencies(_); })
+            .reduce(function (a, b) { return a.concat(b); }, []));
+    }
+    function uniqueExpressions(expressions) {
+        return expressions.filter(function (x, i) {
+            return expressions.findIndex(function (_) { return _.id === x.id; }) === i;
+        });
+    }
+    return dependencieses(expressions);
 }
 function buildModel(model, options) {
     var distance = model.shape.call(expression_1.variable("p"));
@@ -603,7 +718,7 @@ function buildScene(scene, options) {
             .reduce(function (a, b) { return a + b; }, "") + "\n\t\n\tMaterial material;\n\treturn material;\n}";
 }
 function build(scene, options) {
-    var code = "\nprecision highp float;\n\nuniform sampler2D texture;\nuniform vec2 resolution;\nuniform vec2 mouse;\nuniform bool clicked;\nuniform float time;\nvarying vec2 uv;\n\nconst float PI = 3.14159;\nconst float MAX_VALUE = 1e5;\n\nconst float epsilon = " + options.epsilon + ";\nconst int steps = " + options.steps + ";\nconst int bounces = " + options.bounces + ";\nconst int iterations = " + options.iterations + ";\n\nstruct Closest {\n\tint object;\n\tfloat distance;\n};\n\nstruct Material {\n\tfloat transmittance;\n\tfloat smoothness;\n\tfloat refraction;\n\tfloat scatter;\n\tvec3 color;\n\tvec3 emissivity;\n};\n\nClosest calculateClosest(vec3 position);\nvec3 calculateNormal(int object, vec3 position);\nMaterial calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);\n\nvec2 random(int seed) {\n\tvec2 s = (uv + vec2(1, 1)) * (1.0 + time + float(seed));\n\treturn vec2(\n\t\tfract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),\n\t\tfract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));\n}\n\nvec3 ortho(vec3 v) {\n\treturn abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0) : vec3(0.0, -v.z, v.y);\n}\n\nvec3 calculateSample(vec3 normal, float smoothness, vec2 noise) {\n\tvec3 o1 = normalize(ortho(normal));\n\tvec3 o2 = normalize(cross(normal, o1));\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = sqrt(smoothness + (1.0 - smoothness) * noise.y);\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn q * (cos(noise.x) * o1  + sin(noise.x) * o2) + noise.y * normal;\n}\n\nvec3 sampleSphere(vec2 noise) {\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = noise.y * 2.0 - 1.0;\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn vec3(q * cos(noise.x), q * sin(noise.x), noise.y);\n}\n\nvec3 spherical(vec2 angle) {\n\treturn vec3(sin(angle.y) * cos(angle.x), cos(angle.y), sin(angle.y) * sin(angle.x));\n}\n\nvoid main() {\n\t" + buildExpressions([
+    var code = "\nprecision highp float;\n\nuniform sampler2D texture;\nuniform vec2 resolution;\nuniform vec2 mouse;\nuniform bool clicked;\nuniform float time;\nvarying vec2 uv;\n\nconst float PI = 3.14159;\nconst float MAX_VALUE = 1e10;\n\nconst float epsilon = " + options.epsilon + ";\nconst int steps = " + options.steps + ";\nconst int bounces = " + options.bounces + ";\nconst int iterations = " + options.iterations + ";\n\nstruct Closest {\n\tint object;\n\tfloat distance;\n};\n\nstruct Material {\n\tfloat transmittance;\n\tfloat smoothness;\n\tfloat refraction;\n\tfloat scatter;\n\tvec3 color;\n\tvec3 emissivity;\n};\n\nClosest calculateClosest(vec3 position);\nvec3 calculateNormal(int object, vec3 position);\nMaterial calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);\n\nvec2 random(int seed) {\n\tvec2 s = (uv + vec2(1, 1)) * (1.0 + time + float(seed));\n\treturn vec2(\n\t\tfract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),\n\t\tfract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));\n}\n\nvec3 ortho(vec3 v) {\n\treturn abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0) : vec3(0.0, -v.z, v.y);\n}\n\nvec3 calculateSample(vec3 normal, float smoothness, vec2 noise) {\n\tvec3 o1 = normalize(ortho(normal));\n\tvec3 o2 = normalize(cross(normal, o1));\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = sqrt(smoothness + (1.0 - smoothness) * noise.y);\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn q * (cos(noise.x) * o1  + sin(noise.x) * o2) + noise.y * normal;\n}\n\nvec3 sampleSphere(vec2 noise) {\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = noise.y * 2.0 - 1.0;\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn vec3(q * cos(noise.x), q * sin(noise.x), noise.y);\n}\n\nvec3 spherical(vec2 angle) {\n\treturn vec3(sin(angle.y) * cos(angle.x), cos(angle.y), sin(angle.y) * sin(angle.x));\n}\n\nvoid main() {\n\t" + buildExpressions([
         scene.camera.eye,
         scene.camera.target,
         scene.camera.up,
@@ -614,7 +729,7 @@ function build(scene, options) {
         scene.air.scatter,
         scene.air.emissivity,
         scene.air.color
-    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * 0.9;\n\t\t\t\tdistance = min(distance, scatter);\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (distance == scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0)\n\t\t\t\tbreak;\n\n\t\t\tif (distance == scatter) {\n\t\t\t\tfrom = position;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
+    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tdistance = min(distance, scatter);\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (distance == scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0)\n\t\t\t\tbreak;\n\n\t\t\tif (distance == scatter) {\n\t\t\t\tfrom = position;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
     console.log(code);
     return code;
 }
@@ -762,7 +877,7 @@ function createViewer(element, scene, options) {
     canvas.height = options.height;
     element.appendChild(canvas);
     var gl = canvas.getContext("webgl", {
-        preserveDrawingBuffer: false
+        preserveDrawingBuffer: true
     });
     if (gl === null)
         return null;
@@ -772,6 +887,14 @@ function createViewer(element, scene, options) {
         mouse: { x: 0.0, y: 0.0 }
     };
     var renderer = renderer_1.createRenderer(gl, scene, options, variables);
+    canvas.addEventListener("click", function (event) {
+        if (!event.altKey)
+            return;
+        var link = document.createElement("a");
+        link.setAttribute("download", "render.png");
+        link.setAttribute("href", canvas.toDataURL());
+        link.click();
+    });
     canvas.addEventListener("mousedown", function () { return variables.clicked = true; });
     document.addEventListener("mouseup", function () { return variables.clicked = false; });
     canvas.addEventListener("mousemove", function (event) {

@@ -27,7 +27,8 @@ module.exports = {
 			mode: "modules",
 			includes: "includes",
 			excludeNotExported: true,
-			hideGenerator: true
+			hideGenerator: true,
+			theme: "markdown"
 		}, "node_modules/rayity/src")
 	]
 };
