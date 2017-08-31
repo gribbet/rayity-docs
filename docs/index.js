@@ -278,7 +278,7 @@ function cube() {
     ]);
 }
 exports.cube = cube;
-function Octohedron() {
+function octohedron() {
     var l = Math.sqrt(3);
     return unitShape([
         expression_1.value(1 / l, 1 / l, 1 / l),
@@ -291,7 +291,7 @@ function Octohedron() {
         expression_1.value(-1 / l, -1 / l, -1 / l),
     ]);
 }
-exports.Octohedron = Octohedron;
+exports.octohedron = octohedron;
 function dodecahedron() {
     var phi = 0.5 * (1 + Math.sqrt(5));
     var l = Math.sqrt(phi * phi + 1);
