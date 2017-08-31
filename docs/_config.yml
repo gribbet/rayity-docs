@@ -1,2 +1,6 @@
-include: [./docs/modules/_camera_.md]
+title: Rayity
+description: blah
+show_downloads: true
+include: 
+  - _camera_
 theme: jekyll-theme-minimal
