@@ -1,2 +1,2 @@
 include: [./docs/modules/_camera_.md]
-theme: minimal
+theme: jekyll-theme-minimal
