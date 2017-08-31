@@ -1,4 +1,4 @@
-[rayity](../README.md) > [Model](../interfaces/model.md)
+[rayity](../README.md) > ["model"](../modules/_model_.md) > [Model](../interfaces/_model_.model.md)
 
 
 
@@ -24,7 +24,7 @@ ___
 
 ###  material
 
-**●  material**:  *[Material](material.md)* 
+**●  material**:  *[Material](_material_.material.md)* 
 
 *Defined in model.ts:7*
 
@@ -38,7 +38,7 @@ ___
 
 ###  shape
 
-**●  shape**:  *[Shape](shape.md)* 
+**●  shape**:  *[Shape](_shape_.shape.md)* 
 
 *Defined in model.ts:6*
 
