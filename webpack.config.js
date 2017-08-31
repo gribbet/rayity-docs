@@ -25,7 +25,6 @@ module.exports = {
 			tsconfig: "node_modules/rayity/tsconfig.json",
 			exclude: "rayity/**/node_modules/**/*.*",
 			mode: "modules",
-			includes: "includes",
 			excludeNotExported: true,
 			hideGenerator: true,
 			theme: "markdown"

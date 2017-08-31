@@ -15,7 +15,7 @@
 		"webpack-dev-server": "^2.4.5"
 	},
 	"dependencies": {
-		"rayity": "git+https://github.com/gribbet/rayity.git",
+		"rayity": "https://github.com/gribbet/rayity",
 		"typedoc": "^0.8.0",
 		"typescript": "^2.4.2"
 	}
