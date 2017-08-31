@@ -1,1 +1,2 @@
-include: [/docs/modules/_camera_.md]
+include: [./docs/modules/_camera_.md]
+theme: cayman
