@@ -1,6 +1,15 @@
 title: Rayity
-description: blah
+description: 
 show_downloads: true
 include: 
+  - _build_
   - _camera_
+  - _expression_
+  - _material_
+  - _model_
+  - _options_
+  - _renderer_
+  - _scene_
+  - _shape_
+  - _viewer_
 theme: jekyll-theme-minimal
