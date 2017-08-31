@@ -29,7 +29,7 @@
 
 
 
-*Defined in camera.ts:12*
+*Defined in [camera.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L12)*
 
 
 
@@ -60,7 +60,7 @@ ___
 
 
 
-*Defined in camera.ts:32*
+*Defined in [camera.ts:32](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L32)*
 
 
 

@@ -12,7 +12,7 @@
 
 **●  bounces**:  *`number`* 
 
-*Defined in options.ts:6*
+*Defined in [options.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L6)*
 
 
 
@@ -26,7 +26,7 @@ ___
 
 **●  cheapNormals**:  *`boolean`* 
 
-*Defined in options.ts:9*
+*Defined in [options.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L9)*
 
 
 
@@ -40,7 +40,7 @@ ___
 
 **●  epsilon**:  *`number`* 
 
-*Defined in options.ts:4*
+*Defined in [options.ts:4](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L4)*
 
 
 
@@ -54,7 +54,7 @@ ___
 
 **●  height**:  *`number`* 
 
-*Defined in options.ts:3*
+*Defined in [options.ts:3](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L3)*
 
 
 
@@ -68,7 +68,7 @@ ___
 
 **●  iterations**:  *`number`* 
 
-*Defined in options.ts:7*
+*Defined in [options.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L7)*
 
 
 
@@ -82,7 +82,7 @@ ___
 
 **●  memory**:  *`number`* 
 
-*Defined in options.ts:8*
+*Defined in [options.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L8)*
 
 
 
@@ -96,7 +96,7 @@ ___
 
 **●  stepFactor**:  *`number`* 
 
-*Defined in options.ts:10*
+*Defined in [options.ts:10](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L10)*
 
 
 
@@ -110,7 +110,7 @@ ___
 
 **●  steps**:  *`number`* 
 
-*Defined in options.ts:5*
+*Defined in [options.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L5)*
 
 
 
@@ -124,7 +124,7 @@ ___
 
 **●  width**:  *`number`* 
 
-*Defined in options.ts:2*
+*Defined in [options.ts:2](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L2)*
 
 
 

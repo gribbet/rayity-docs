@@ -23,11 +23,10 @@ module.exports = {
 		new TypedocWebpackPlugin({
 			out: "docs/docs",
 			tsconfig: "node_modules/rayity/tsconfig.json",
-			exclude: "rayity/**/node_modules/**/*.*",
 			mode: "modules",
 			excludeNotExported: true,
 			hideGenerator: true,
 			theme: "markdown"
-		}, "node_modules/rayity/src")
+		}, "/Users/Graham/Projects/rayity")
 	]
 };

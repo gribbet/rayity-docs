@@ -28,7 +28,7 @@
 
 
 
-*Defined in scene.ts:12*
+*Defined in [scene.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/scene.ts#L12)*
 
 
 

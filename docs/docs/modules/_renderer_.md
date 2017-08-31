@@ -28,7 +28,7 @@
 
 
 
-*Defined in renderer.ts:9*
+*Defined in [renderer.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/renderer.ts#L9)*
 
 
 

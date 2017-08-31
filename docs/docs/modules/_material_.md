@@ -29,7 +29,7 @@
 
 
 
-*Defined in material.ts:12*
+*Defined in [material.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/material.ts#L12)*
 
 
 
@@ -60,7 +60,7 @@ ___
 
 
 
-*Defined in material.ts:30*
+*Defined in [material.ts:30](https://github.com/gribbet/rayity/blob/4838bef/src/material.ts#L30)*
 
 
 

@@ -12,7 +12,7 @@
 
 **●  body**:  *[Code](../modules/_expression_.md#code)* 
 
-*Defined in expression.ts:7*
+*Defined in [expression.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L7)*
 
 
 
@@ -26,7 +26,7 @@ ___
 
 **●  dependencies**:  *[Expression](_expression_.expression.md)[]* 
 
-*Defined in expression.ts:8*
+*Defined in [expression.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L8)*
 
 
 
@@ -40,7 +40,7 @@ ___
 
 **●  id**:  *`string`* 
 
-*Defined in expression.ts:6*
+*Defined in [expression.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L6)*
 
 
 
@@ -54,14 +54,14 @@ ___
 
 **●  toString**:  *function* 
 
-*Defined in expression.ts:9*
+*Defined in [expression.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L9)*
 
 
 #### Type declaration
 (): `string`
 
 
-*Defined in expression.ts:9*
+*Defined in [expression.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L9)*
 
 
 

@@ -34,7 +34,7 @@
 
 **Τ Code**:  *`string`* 
 
-*Defined in expression.ts:4*
+*Defined in [expression.ts:4](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L4)*
 
 
 
@@ -56,7 +56,7 @@ ___
 
 
 
-*Defined in expression.ts:14*
+*Defined in [expression.ts:14](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L14)*
 
 
 
@@ -87,7 +87,7 @@ ___
 
 
 
-*Defined in expression.ts:58*
+*Defined in [expression.ts:58](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L58)*
 
 
 
@@ -118,7 +118,7 @@ ___
 
 
 
-*Defined in expression.ts:54*
+*Defined in [expression.ts:54](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L54)*
 
 
 
@@ -149,7 +149,7 @@ ___
 
 
 
-*Defined in expression.ts:43*
+*Defined in [expression.ts:43](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L43)*
 
 
 
@@ -182,7 +182,7 @@ ___
 
 
 
-*Defined in expression.ts:50*
+*Defined in [expression.ts:50](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L50)*
 
 
 

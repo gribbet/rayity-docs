@@ -12,7 +12,7 @@
 
 **●  air**:  *[Material](_material_.material.md)* 
 
-*Defined in scene.ts:9*
+*Defined in [scene.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/scene.ts#L9)*
 
 
 
@@ -26,7 +26,7 @@ ___
 
 **●  camera**:  *[Camera](_camera_.camera.md)* 
 
-*Defined in scene.ts:8*
+*Defined in [scene.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/scene.ts#L8)*
 
 
 
@@ -40,7 +40,7 @@ ___
 
 **●  models**:  *[Model](_model_.model.md)[]* 
 
-*Defined in scene.ts:7*
+*Defined in [scene.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/scene.ts#L7)*
 
 
 

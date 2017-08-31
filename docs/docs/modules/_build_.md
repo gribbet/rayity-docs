@@ -23,7 +23,7 @@
 
 
 
-*Defined in build.ts:160*
+*Defined in [build.ts:160](https://github.com/gribbet/rayity/blob/4838bef/src/build.ts#L160)*
 
 
 

@@ -12,7 +12,7 @@
 
 **●  id**:  *`number`* 
 
-*Defined in model.ts:5*
+*Defined in [model.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L5)*
 
 
 
@@ -26,7 +26,7 @@ ___
 
 **●  material**:  *[Material](_material_.material.md)* 
 
-*Defined in model.ts:7*
+*Defined in [model.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L7)*
 
 
 
@@ -40,7 +40,7 @@ ___
 
 **●  shape**:  *[Shape](_shape_.shape.md)* 
 
-*Defined in model.ts:6*
+*Defined in [model.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L6)*
 
 
 

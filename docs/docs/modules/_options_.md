@@ -28,7 +28,7 @@
 
 
 
-*Defined in options.ts:13*
+*Defined in [options.ts:13](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L13)*
 
 
 

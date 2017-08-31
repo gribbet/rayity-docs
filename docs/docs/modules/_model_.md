@@ -28,7 +28,7 @@
 
 
 
-*Defined in model.ts:12*
+*Defined in [model.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L12)*
 
 
 
