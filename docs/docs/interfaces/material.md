@@ -1,4 +1,4 @@
-[rayity](../README.md) > ["material"](../modules/_material_.md) > [Material](../interfaces/_material_.material.md)
+[rayity](../README.md) > [Material](../interfaces/material.md)
 
 
 
@@ -10,7 +10,7 @@
 
 ###  color
 
-**●  color**:  *[Expression](_expression_.expression.md)* 
+**●  color**:  *[Expression](expression.md)* 
 
 *Defined in material.ts:8*
 
@@ -24,7 +24,7 @@ ___
 
 ###  emissivity
 
-**●  emissivity**:  *[Expression](_expression_.expression.md)* 
+**●  emissivity**:  *[Expression](expression.md)* 
 
 *Defined in material.ts:9*
 
@@ -38,7 +38,7 @@ ___
 
 ###  refraction
 
-**●  refraction**:  *[Expression](_expression_.expression.md)* 
+**●  refraction**:  *[Expression](expression.md)* 
 
 *Defined in material.ts:6*
 
@@ -52,7 +52,7 @@ ___
 
 ###  scatter
 
-**●  scatter**:  *[Expression](_expression_.expression.md)* 
+**●  scatter**:  *[Expression](expression.md)* 
 
 *Defined in material.ts:7*
 
@@ -66,7 +66,7 @@ ___
 
 ###  smoothness
 
-**●  smoothness**:  *[Expression](_expression_.expression.md)* 
+**●  smoothness**:  *[Expression](expression.md)* 
 
 *Defined in material.ts:5*
 
@@ -80,7 +80,7 @@ ___
 
 ###  transmittance
 
-**●  transmittance**:  *[Expression](_expression_.expression.md)* 
+**●  transmittance**:  *[Expression](expression.md)* 
 
 *Defined in material.ts:4*
 

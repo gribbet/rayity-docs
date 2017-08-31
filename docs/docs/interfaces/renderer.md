@@ -1,4 +1,4 @@
-[rayity](../README.md) > ["renderer"](../modules/_renderer_.md) > [Renderer](../interfaces/_renderer_.renderer.md)
+[rayity](../README.md) > [Renderer](../interfaces/renderer.md)
 
 
 

@@ -1,4 +1,4 @@
-[rayity](../README.md) > ["expression"](../modules/_expression_.md) > [Expression](../interfaces/_expression_.expression.md)
+[rayity](../README.md) > [Expression](../interfaces/expression.md)
 
 
 
@@ -10,7 +10,7 @@
 
 ###  body
 
-**●  body**:  *[Code](../modules/_expression_.md#code)* 
+**●  body**:  *[Code](../#code)* 
 
 *Defined in expression.ts:7*
 
@@ -24,7 +24,7 @@ ___
 
 ###  dependencies
 
-**●  dependencies**:  *[Expression](_expression_.expression.md)[]* 
+**●  dependencies**:  *[Expression](expression.md)[]* 
 
 *Defined in expression.ts:8*
 

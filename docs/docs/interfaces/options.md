@@ -1,4 +1,4 @@
-[rayity](../README.md) > ["options"](../modules/_options_.md) > [Options](../interfaces/_options_.options.md)
+[rayity](../README.md) > [Options](../interfaces/options.md)
 
 
 

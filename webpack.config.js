@@ -24,7 +24,7 @@ module.exports = {
 			out: "docs/docs",
 			tsconfig: "node_modules/rayity/tsconfig.json",
 			exclude: "rayity/**/node_modules/**/*.*",
-			mode: "modules",
+			mode: "file",
 			includes: "includes",
 			excludeNotExported: true,
 			hideGenerator: true,

@@ -168,7 +168,8 @@ function camera(values) {
         target: values.target || expression_1.value(0, 0, 0),
         up: values.up || expression_1.value(0, 1, 0),
         fieldOfView: values.fieldOfView || expression_1.value(90 / 180.0 * Math.PI),
-        aperture: values.aperture || expression_1.value(0.0)
+        aperture: values.aperture || expression_1.value(0.0),
+        focalFactor: values.focalFactor || expression_1.value(1.0)
     };
 }
 exports.camera = camera;
@@ -182,7 +183,8 @@ function orbit(values) {
         eye: expression_1.expression(values.target + " + " + values.distance + ".x * spherical((mouse + " + values.offset + ".xy) * vec2(PI, 0.5 * PI) + vec2(0.5 * PI))"),
         up: values.up,
         fieldOfView: values.fieldOfView,
-        aperture: values.aperture
+        aperture: values.aperture,
+        focalFactor: values.focalFactor
     });
 }
 exports.orbit = orbit;
@@ -562,7 +564,7 @@ function skull() {
     skull = smoothUnion(expression_1.value(0.02), skull, eyeBrow);
     var lateralHole = translate(expression_1.value(0.15, -0.01, 0.31), spheroid(function (p) { return expression_1.expression("0.098 * cos(" + p + ".x * 0.59 + 0.089)"); }));
     skull = smoothDifference(expression_1.value(0.02), skull, lateralHole);
-    var cheekBone = translate(expression_1.value(0.22, -0.13, 0.18), scale(expression_1.value(0.077), sphere()));
+    var cheekBone = translate(expression_1.value(0.21, -0.13, 0.18), scale(expression_1.value(0.077), sphere()));
     skull = smoothUnion(expression_1.value(0.04), skull, cheekBone);
     var inside = translate(expression_1.value(0, 0.05, 0), spheroid(function (p) { return expression_1.expression("0.315 * cos(cos(" + p + ".y * 11.0 + 0.55) * " + p + ".z * 2.3)"); }));
     inside = smoothUnion(expression_1.value(0.02), inside, translate(expression_1.value(0.10, 0.23, 0), scale(expression_1.value(0.511), sphere())));
@@ -575,8 +577,8 @@ function skull() {
     nose = smoothDifference(expression_1.value(0.02), nose, translate(expression_1.value(0.32, -0.04, 0.140), spheroid(function (p) { return expression_1.expression("0.123 * cos(" + p + ".y * 10.0 - 0.4)"); })));
     nose = smoothDifference(expression_1.value(0.02), nose, translate(expression_1.value(0, 0.05, 0), spheroid(function (p) { return expression_1.expression("0.32 * cos(cos(" + p + ".y * 11.0 + 0.5) * " + p + ".z * 2.3)"); })));
     skull = smoothUnion(expression_1.value(0.015), skull, nose);
-    var noseInside = translate(expression_1.value(0.238, -0.09, 0), spheroid(function (p) { return expression_1.expression("0.11 * cos(sin(" + p + ".y * 18.0 - 1.62) * " + p + ".z * 29.0)"); }));
-    skull = smoothDifference(expression_1.value(0.002), skull, noseInside);
+    var noseInside = translate(expression_1.value(0.228, -0.09, 0), spheroid(function (p) { return expression_1.expression("0.11 * cos(sin(" + p + ".y * 18.0 - 1.62) * " + p + ".z * 29.0)"); }));
+    skull = smoothDifference(expression_1.value(0.005), skull, noseInside);
     var cut = translate(expression_1.value(-0.15, -0.97, 0), scale(expression_1.value(1.75), sphere()));
     skull = smoothDifference(expression_1.value(0.01), skull, cut);
     var upperJaw = translate(expression_1.value(0.13, -0.26, 0), scale(expression_1.value(0.315), sphere()));
@@ -718,13 +720,14 @@ function buildScene(scene, options) {
             .reduce(function (a, b) { return a + b; }, "") + "\n\t\n\tMaterial material;\n\treturn material;\n}";
 }
 function build(scene, options) {
-    var code = "\nprecision highp float;\n\nuniform sampler2D texture;\nuniform vec2 resolution;\nuniform vec2 mouse;\nuniform bool clicked;\nuniform float time;\nvarying vec2 uv;\n\nconst float PI = 3.14159;\nconst float MAX_VALUE = 1e10;\n\nconst float epsilon = " + options.epsilon + ";\nconst int steps = " + options.steps + ";\nconst int bounces = " + options.bounces + ";\nconst int iterations = " + options.iterations + ";\n\nstruct Closest {\n\tint object;\n\tfloat distance;\n};\n\nstruct Material {\n\tfloat transmittance;\n\tfloat smoothness;\n\tfloat refraction;\n\tfloat scatter;\n\tvec3 color;\n\tvec3 emissivity;\n};\n\nClosest calculateClosest(vec3 position);\nvec3 calculateNormal(int object, vec3 position);\nMaterial calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);\n\nvec2 random(int seed) {\n\tvec2 s = (uv + vec2(1, 1)) * (1.0 + time + float(seed));\n\treturn vec2(\n\t\tfract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),\n\t\tfract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));\n}\n\nvec3 ortho(vec3 v) {\n\treturn abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0) : vec3(0.0, -v.z, v.y);\n}\n\nvec3 calculateSample(vec3 normal, float smoothness, vec2 noise) {\n\tvec3 o1 = normalize(ortho(normal));\n\tvec3 o2 = normalize(cross(normal, o1));\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = sqrt(smoothness + (1.0 - smoothness) * noise.y);\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn q * (cos(noise.x) * o1  + sin(noise.x) * o2) + noise.y * normal;\n}\n\nvec3 sampleSphere(vec2 noise) {\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = noise.y * 2.0 - 1.0;\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn vec3(q * cos(noise.x), q * sin(noise.x), noise.y);\n}\n\nvec3 spherical(vec2 angle) {\n\treturn vec3(sin(angle.y) * cos(angle.x), cos(angle.y), sin(angle.y) * sin(angle.x));\n}\n\nvoid main() {\n\t" + buildExpressions([
+    var code = "\nprecision highp float;\n\nuniform sampler2D texture;\nuniform vec2 resolution;\nuniform vec2 mouse;\nuniform bool clicked;\nuniform float time;\nvarying vec2 uv;\n\nconst float PI = 3.14159;\nconst float MAX_VALUE = 1e10;\n\nconst float epsilon = " + options.epsilon + ";\nconst int steps = " + options.steps + ";\nconst int bounces = " + options.bounces + ";\nconst int iterations = " + options.iterations + ";\n\nstruct Closest {\n\tint object;\n\tfloat distance;\n};\n\nstruct Material {\n\tfloat transmittance;\n\tfloat smoothness;\n\tfloat refraction;\n\tfloat scatter;\n\tvec3 color;\n\tvec3 emissivity;\n};\n\nClosest calculateClosest(vec3 position);\nvec3 calculateNormal(int object, vec3 position);\nMaterial calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);\n\nvec2 random(int seed) {\n\tvec2 s = (vec2(1) + uv) * float(seed) + time;\n\treturn vec2(\n\t\tfract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),\n\t\tfract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));\n}\n\nvec3 ortho(vec3 v) {\n\treturn abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0) : vec3(0.0, -v.z, v.y);\n}\n\nvec3 calculateSample(vec3 normal, float smoothness, vec2 noise) {\n\tvec3 o1 = normalize(ortho(normal));\n\tvec3 o2 = normalize(cross(normal, o1));\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = sqrt(smoothness + (1.0 - smoothness) * noise.y);\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn q * (cos(noise.x) * o1  + sin(noise.x) * o2) + noise.y * normal;\n}\n\nvec3 sampleSphere(vec2 noise) {\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = noise.y * 2.0 - 1.0;\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn vec3(q * cos(noise.x), q * sin(noise.x), noise.y);\n}\n\nvec3 spherical(vec2 angle) {\n\treturn vec3(sin(angle.y) * cos(angle.x), cos(angle.y), sin(angle.y) * sin(angle.x));\n}\n\nvoid main() {\n\t" + buildExpressions([
         scene.camera.eye,
         scene.camera.target,
         scene.camera.up,
         scene.camera.fieldOfView,
-        scene.camera.aperture
-    ]) + "\n\tvec3 eye = " + scene.camera.eye + ";\n\tvec3 target = " + scene.camera.target + ";\n\tvec3 up = " + scene.camera.up + ";\n\tfloat fieldOfView = " + scene.camera.fieldOfView + ".x;\n\tfloat aperture = " + scene.camera.aperture + ".x;\n\n\tvec3 look = normalize(target - eye);\n\tup = normalize(up - dot(look, up) * look);\n\tvec3 right = cross(look, up);\n\t\n\tvec3 total;\n\n\tfor(int iteration = 1; iteration <= iterations; iteration++) {\n\t\tvec2 noise = random(iteration);\n\n\t\tvec2 offset = noise.x * aperture * vec2(cos(noise.y * 2.0 * PI), sin(noise.y * 2.0 * PI));\n\t\tvec3 from = eye + offset.x * right + offset.y * up;\n\n\t\tvec2 angle = (uv * 0.5 + (noise - 0.5) / resolution) * fieldOfView;\n\t\tvec3 screen = vec3(cos(angle.y) * sin(angle.x), sin(angle.y), cos(angle.y) * cos(angle.x));\n\t\tvec3 to = eye + length(target - eye) * (right * screen.x + up * screen.y + look * screen.z);\n\n\t\tvec3 direction = normalize(to - from);\n\n\t\tvec3 luminance = vec3(1);\n\n\t\tMaterial air;\n\t\t" + buildExpressions([
+        scene.camera.aperture,
+        scene.camera.focalFactor
+    ]) + "\n\tvec3 eye = " + scene.camera.eye + ";\n\tvec3 target = " + scene.camera.target + ";\n\tvec3 up = " + scene.camera.up + ";\n\tfloat fieldOfView = " + scene.camera.fieldOfView + ".x;\n\tfloat aperture = " + scene.camera.aperture + ".x;\n\tfloat focalFactor = " + scene.camera.focalFactor + ".x;\n\n\tvec3 look = normalize(target - eye);\n\tup = normalize(up - dot(look, up) * look);\n\tvec3 right = cross(look, up);\n\t\n\tvec3 total;\n\n\tfor(int iteration = 1; iteration <= iterations; iteration++) {\n\t\tvec2 noise = random(iteration);\n\n\t\tvec2 offset = noise.x * aperture * vec2(cos(noise.y * 2.0 * PI), sin(noise.y * 2.0 * PI));\n\t\tvec3 from = eye + offset.x * right + offset.y * up;\n\n\t\tvec2 angle = (uv * 0.5 + (noise - 0.5) / resolution) * fieldOfView;\n\t\tvec3 screen = vec3(cos(angle.y) * sin(angle.x), sin(angle.y), cos(angle.y) * cos(angle.x));\n\t\tvec3 to = eye + focalFactor * length(target - eye) * (right * screen.x + up * screen.y + look * screen.z);\n\n\t\tvec3 direction = normalize(to - from);\n\n\t\tvec3 luminance = vec3(1);\n\n\t\tMaterial air;\n\t\t" + buildExpressions([
         scene.air.refraction,
         scene.air.scatter,
         scene.air.emissivity,
