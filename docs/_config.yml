@@ -1,2 +1,2 @@
 include: [./docs/modules/_camera_.md]
-theme: cayman
+theme: minimal
