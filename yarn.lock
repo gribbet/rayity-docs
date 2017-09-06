@@ -2094,7 +2094,7 @@ range-parser@^1.0.3, range-parser@~1.2.0:
 
 "rayity@https://github.com/gribbet/rayity":
   version "0.3.0"
-  resolved "https://github.com/gribbet/rayity#4838bef0d253bfbcfe3b93a94ed11a190fa4dde9"
+  resolved "https://github.com/gribbet/rayity#7a9144e3c3c0ef9aa050080b95d9611f1252feaa"
 
 rc@^1.1.7:
   version "1.2.1"

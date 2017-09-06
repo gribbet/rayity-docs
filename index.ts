@@ -1,6 +1,6 @@
 import {
 	camera,
-	createViewer,
+	viewer,
 	dodecahedron,
 	material,
 	model,
@@ -15,18 +15,18 @@ import {
 } from 'rayity';
 
 
-createViewer(
+viewer(
 	document.body,
 	scene({
 		air: material({
 			scatter: value(1000),
 		}),
 		camera: orbit({
-			fieldOfView: value(60 / 180 * Math.PI),
-			distance: value(2),
+			radius: value(2),
 			aperture: value(0.1),
 			target: value(0),
-			offset: value(0.25, -0.5)
+			offset: value(0.25, -0.5),
+			fieldOfView: value(60 / 180 * Math.PI)
 		}),
 		models: [
 			model({

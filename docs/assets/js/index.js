@@ -72,8 +72,12 @@
 
 "use strict";
 
+/**
+ * Functionality related to managing GLSL expressions
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 var context = [];
+/** Create an [[Expression]] */
 function expression(body) {
     var id = generateId(body);
     var self = {
@@ -99,6 +103,7 @@ function hash(x) {
         hash = (hash * 33) ^ x.charCodeAt(i);
     return hash >>> 0;
 }
+/** A constant-valued [[Expression]] */
 function value(x, y, z) {
     if (x === void 0) { x = 0; }
     if (y === void 0) { y = x; }
@@ -106,16 +111,19 @@ function value(x, y, z) {
     return expression("vec3(" + x.toPrecision(10) + ", " + y.toPrecision(10) + ", " + z.toPrecision(10) + ")");
 }
 exports.value = value;
+/** An expression which is equal to a named variable */
 function variable(name) {
     return expression(name);
 }
 exports.variable = variable;
-function random(x) {
-    return expression("fract(sin(dot(" + x + " + 1000.0, vec3(12.9898, 78.233, 26.724))) * 43758.5453)");
+/** A random value */
+function random(seed) {
+    return expression("fract(sin(dot(" + seed + " + 1000.0, vec3(12.9898, 78.233, 26.724))) * 43758.5453)");
 }
 exports.random = random;
-function minNorm(x) {
-    return expression("min(min(" + x + ".x, " + x + ".y), " + x + ".z)");
+/** Minimum of x, y, and z components */
+function minNorm(v) {
+    return expression("min(min(" + v + ".x, " + v + ".y), " + v + ".z)");
 }
 exports.minNorm = minNorm;
 
@@ -126,24 +134,30 @@ exports.minNorm = minNorm;
 
 "use strict";
 
+/**
+ * Module for creating a [[Material]]
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
 var expression_1 = __webpack_require__(0);
+/** Create a [[Material]] */
 function material(values) {
     return Object.assign({
         transmittance: expression_1.value(0),
         smoothness: expression_1.value(0),
         refraction: expression_1.value(1),
-        scatter: expression_1.value(1e20),
+        scatter: expression_1.value(1e10),
         color: expression_1.value(1, 1, 1),
         emissivity: expression_1.value(0, 0, 0)
     }, values || {});
 }
 exports.material = material;
+/** Create a spotlight [[Material]] */
 function spotlight(options) {
     options = options || {};
     var direction = options.direction || expression_1.value(0, 1, 0);
     var color = options.color || expression_1.value(1, 1, 1);
-    var spread = options.spread || expression_1.value(1);
+    var spread = options.spread || expression_1.value(0.5);
     var ambient = options.ambient || expression_1.value(0);
     return material({
         color: expression_1.value(0),
@@ -159,8 +173,13 @@ exports.spotlight = spotlight;
 
 "use strict";
 
+/**
+ * Module for creating a [[Camera]]
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
 var expression_1 = __webpack_require__(0);
+/** Create a [[Camera]] */
 function camera(values) {
     values = values || {};
     return {
@@ -173,14 +192,15 @@ function camera(values) {
     };
 }
 exports.camera = camera;
+/** Create an orbiting [[Camera]] controlled by the mouse */
 function orbit(values) {
     values = values || {};
     values.target = values.target || expression_1.value(0, 0, 0);
     values.offset = values.offset || expression_1.value(0, 0);
-    values.distance = values.distance || expression_1.value(1);
+    values.radius = values.radius || expression_1.value(1);
     return camera({
         target: values.target,
-        eye: expression_1.expression(values.target + " + " + values.distance + ".x * spherical((mouse + " + values.offset + ".xy) * vec2(PI, 0.5 * PI) + vec2(0.5 * PI))"),
+        eye: expression_1.expression(values.target + " + " + values.radius + ".x * spherical((mouse + " + values.offset + ".xy) * vec2(PI, 0.5 * PI) + vec2(0.5 * PI))"),
         up: values.up,
         fieldOfView: values.fieldOfView,
         aperture: values.aperture,
@@ -196,7 +216,11 @@ exports.orbit = orbit;
 
 "use strict";
 
+/**
+ * Module for rendering options
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Create an [[Options]] */
 function options(values) {
     values = values || {};
     return Object.assign({
@@ -208,7 +232,8 @@ function options(values) {
         iterations: 1,
         memory: 1.0,
         cheapNormals: false,
-        stepFactor: 0.9
+        stepFactor: 0.9,
+        gamma: 2.2
     }, values || {});
 }
 exports.options = options;
@@ -220,32 +245,41 @@ exports.options = options;
 
 "use strict";
 
+/**
+ * Module for creating shape distance functions
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
 var expression_1 = __webpack_require__(0);
+/** Create a [[Shape]] */
 function shape(call) {
     return {
         call: call
     };
 }
 exports.shape = shape;
+/** Null distance function */
 function zero() {
     return shape(function (p) {
         return expression_1.expression("MAX_VALUE");
     });
 }
 exports.zero = zero;
+/** Unit distance function */
 function unit() {
     return shape(function (p) {
         return expression_1.expression("-MAX_VALUE");
     });
 }
 exports.unit = unit;
+/** Sphere of diameter 1 */
 function sphere() {
     return shape(function (p) {
         return expression_1.expression("length(" + p + ") - 0.5");
     });
 }
 exports.sphere = sphere;
+/** Plane given a `normal` and `offset` */
 function plane(normal, offset) {
     return shape(function (p) {
         return expression_1.expression("dot(" + p + ", " + normal + ") + " + offset + ".x");
@@ -257,6 +291,7 @@ function unitShape(normals) {
         return intersection(s, plane(n, expression_1.value(-0.5)));
     }, unit());
 }
+/** Tetrahedron with circumscribed diameter of 1 */
 function tetrahedron() {
     var l = Math.sqrt(3);
     return unitShape([
@@ -267,6 +302,7 @@ function tetrahedron() {
     ]);
 }
 exports.tetrahedron = tetrahedron;
+/** Cube of width 1 */
 function cube() {
     return unitShape([
         expression_1.value(1, 0, 0),
@@ -278,6 +314,7 @@ function cube() {
     ]);
 }
 exports.cube = cube;
+/** Octohedron with circumscribed diameter of 1 */
 function octohedron() {
     var l = Math.sqrt(3);
     return unitShape([
@@ -292,6 +329,7 @@ function octohedron() {
     ]);
 }
 exports.octohedron = octohedron;
+/** Dodecahedron with circumscribed diameter of 1 */
 function dodecahedron() {
     var phi = 0.5 * (1 + Math.sqrt(5));
     var l = Math.sqrt(phi * phi + 1);
@@ -311,24 +349,28 @@ function dodecahedron() {
     ]);
 }
 exports.dodecahedron = dodecahedron;
+/** Cylinder of diameter 1 along the (0, 1, 0) axis */
 function cylinder() {
     return shape(function (p) {
         return expression_1.expression("length(" + p + ".xz) - 0.5");
     });
 }
 exports.cylinder = cylinder;
+/** Torus with outer diameter of 1, inner radius of 0.1 */
 function torus() {
     return shape(function (p) {
         return expression_1.expression("length(vec2(length(" + p + ".xz) - 0.5, " + p + ".y)) - 0.1");
     });
 }
 exports.torus = torus;
+/** Move a [[Shape]] by `x` */
 function translate(x, a) {
     return shape(function (p) {
         return a.call(expression_1.expression(p + " - " + x));
     });
 }
 exports.translate = translate;
+/** Scale a [[Shape]] by `x` */
 function scale(x, a) {
     return shape(function (p) {
         var q = a.call(expression_1.expression(p + " / " + x + ".x"));
@@ -336,6 +378,7 @@ function scale(x, a) {
     });
 }
 exports.scale = scale;
+/** Variable radius sphere with radius calculcated using `x` */
 function spheroid(x) {
     return shape(function (p) { return expression_1.expression("length(" + p + ") - " + x(p)); });
 }
@@ -346,18 +389,21 @@ function max(a) {
     });
 }
 exports.max = max;
+/** Stretch a [[Shape]] */
 function stretch(x, a) {
     return shape(function (p) {
         return expression_1.expression(a.call(expression_1.expression(p + " / " + x)) + " * " + expression_1.minNorm(x));
     });
 }
 exports.stretch = stretch;
+/** Repeat a [[Shape]] with repetition factor `x`  */
 function repeat(x, a) {
     return shape(function (p) {
         return a.call(expression_1.expression("mod(" + p + " - " + x + " * 0.5, " + x + ") - " + x + " * 0.5"));
     });
 }
 exports.repeat = repeat;
+/** The union of two [[Shape]]s */
 function union(a, b) {
     return shape(function (p) {
         var da = a.call(p);
@@ -366,6 +412,7 @@ function union(a, b) {
     });
 }
 exports.union = union;
+/** The intersection of two [[Shape]]s */
 function intersection(a, b) {
     return shape(function (p) {
         var da = a.call(p);
@@ -374,6 +421,7 @@ function intersection(a, b) {
     });
 }
 exports.intersection = intersection;
+/** The difference of two [[Shape]]s */
 function difference(a, b) {
     return shape(function (p) {
         var da = a.call(p);
@@ -390,24 +438,28 @@ function smoothMax(k, a, b) {
     var h = expression_1.expression("clamp(0.5 - 0.5 * (" + b + " - " + a + ") / " + k + ", 0.0, 1.0)");
     return expression_1.expression("mix(" + b + ", " + a + ", " + h + ") + " + k + " * " + h + " * (1.0 - " + h + ")");
 }
+/** Smooth union */
 function smoothUnion(k, a, b) {
     return shape(function (p) {
         return smoothMin(k, a.call(p), b.call(p));
     });
 }
 exports.smoothUnion = smoothUnion;
+/** Smooth intersection */
 function smoothIntersection(k, a, b) {
     return shape(function (p) {
         return smoothMax(k, a.call(p), b.call(p));
     });
 }
 exports.smoothIntersection = smoothIntersection;
+/** Smooth difference */
 function smoothDifference(k, a, b) {
     return shape(function (p) {
         return smoothMax(k, a.call(p), expression_1.expression(b.call(p) + " * -1.0"));
     });
 }
 exports.smoothDifference = smoothDifference;
+/** Expand a [[Shape]] by distance `k` */
 function expand(k, a) {
     return shape(function (p) {
         var da = a.call(p);
@@ -415,24 +467,28 @@ function expand(k, a) {
     });
 }
 exports.expand = expand;
+/** Twist a [[Shape]] along the x axis */
 function twistX(x, a) {
     return shape(function (p) {
         return rotateX(expression_1.expression("vec3(" + p + ".x * " + x + ".x)"), a).call(p);
     });
 }
 exports.twistX = twistX;
+/** Twist a [[Shape]] along the y axis */
 function twistY(x, a) {
     return shape(function (p) {
         return rotateY(expression_1.expression("vec3(" + p + ".y * " + x + ".x)"), a).call(p);
     });
 }
 exports.twistY = twistY;
+/** Twist a [[Shape]] along the z axis */
 function twistZ(x, a) {
     return shape(function (p) {
         return rotateZ(expression_1.expression("vec3(" + p + ".z * " + x + ".x)"), a).call(p);
     });
 }
 exports.twistZ = twistZ;
+/** Rotate a [[Shape]] about the x axis */
 function rotateX(x, a) {
     return shape(function (p) {
         var c = expression_1.expression("cos(" + x + ".x), sin(" + x + ".x), 0");
@@ -440,6 +496,7 @@ function rotateX(x, a) {
     });
 }
 exports.rotateX = rotateX;
+/** Rotate a [[Shape]] about the y axis */
 function rotateY(x, a) {
     return shape(function (p) {
         var c = expression_1.expression("cos(" + x + ".x), sin(" + x + ".x), 0");
@@ -447,6 +504,7 @@ function rotateY(x, a) {
     });
 }
 exports.rotateY = rotateY;
+/** Rotate a [[Shape]] about the z axis */
 function rotateZ(x, a) {
     return shape(function (p) {
         var c = expression_1.expression("cos(" + x + ".x), sin(" + x + ".x), 0");
@@ -454,6 +512,7 @@ function rotateZ(x, a) {
     });
 }
 exports.rotateZ = rotateZ;
+/** Rotate a [[Shape]] about an arbitrary axis */
 function rotate(axis, x, a) {
     return shape(function (p) {
         var u = expression_1.expression("normalize(" + axis + ")");
@@ -462,29 +521,33 @@ function rotate(axis, x, a) {
     });
 }
 exports.rotate = rotate;
+/** Wrap a [[Shape]] about the x axis */
 function wrapX(a) {
     return shape(function (p) {
         var c = expression_1.expression("length(" + p + ".yz)");
         var q = expression_1.expression("1, 1, max(0.01, abs(" + p + ".z))");
-        //let q = value(1);
         return expression_1.expression(a.call(expression_1.expression(p + ".x, asin(" + p + ".y / " + c + ".x), " + c + ".x")) + " * " + expression_1.minNorm(q));
     });
 }
 exports.wrapX = wrapX;
-function mirror(n, a) {
+/** Mirror a [[Shape]] */
+function mirror(normal, a) {
     return shape(function (p) {
-        return a.call(expression_1.expression(p + " - 2.0 * min(0.0, dot(" + p + ", " + n + ")) * " + n));
+        return a.call(expression_1.expression(p + " - 2.0 * min(0.0, dot(" + p + ", " + normal + ")) * " + normal));
     });
 }
 exports.mirror = mirror;
+/** Offset a [[Shape]] */
 function offset(x, a) {
     return shape(function (p) { return a.call(expression_1.expression(p + " - " + x(p))); });
 }
 exports.offset = offset;
+/** A box with rounded corners */
 function smoothBox(dimensions, radius) {
     return mirror(expression_1.value(1, 0, 0), mirror(expression_1.value(0, 1, 0), mirror(expression_1.value(0, 0, 1), translate(expression_1.expression("0.5 * (" + dimensions + " - " + radius + ")"), max(scale(radius, sphere()))))));
 }
 exports.smoothBox = smoothBox;
+/** A box with aritrary dimensions */
 function box(dimensions) {
     return shape(function (p) {
         var d = expression_1.expression("abs(" + p + ") - " + dimensions);
@@ -492,6 +555,7 @@ function box(dimensions) {
     });
 }
 exports.box = box;
+/** A sierpinksi fractal */
 function sierpinski(iterations, a) {
     if (iterations === void 0) { iterations = 5; }
     if (a === void 0) { a = tetrahedron(); }
@@ -503,6 +567,7 @@ function sierpinski(iterations, a) {
     }, a);
 }
 exports.sierpinski = sierpinski;
+/** A recursive tree [[Shape]] */
 function tree(iterations) {
     if (iterations === void 0) { iterations = 8; }
     var factor = 0.58;
@@ -516,6 +581,7 @@ function tree(iterations) {
     }, smoothBox(expression_1.value(width, length, width), expression_1.value(width / 2)));
 }
 exports.tree = tree;
+/** [[repeat]] where the repetition index can be used to generate the [[Shape]] */
 function modulate(x, a, buffer) {
     if (buffer === void 0) { buffer = expression_1.value(0.01); }
     return shape(function (p) {
@@ -532,6 +598,7 @@ function modulate(x, a, buffer) {
     });
 }
 exports.modulate = modulate;
+/** Choose a shape randomly */
 function choose(x, shapes) {
     return shape(function (p) {
         return expression_1.expression(shapes
@@ -542,6 +609,7 @@ function choose(x, shapes) {
     });
 }
 exports.choose = choose;
+/** Truchet */
 function truchet() {
     var base = intersection(cube(), union(union(translate(expression_1.value(0.5, 0, 0.5), torus()), translate(expression_1.value(-0.5, 0.5, 0), rotateX(expression_1.value(Math.PI / 2), torus()))), translate(expression_1.value(0, -0.5, -0.5), rotateZ(expression_1.value(Math.PI / 2), torus()))));
     return modulate(expression_1.value(1, 1, 1), function (index) {
@@ -554,6 +622,7 @@ function truchet() {
     });
 }
 exports.truchet = truchet;
+/** Skull */
 function skull() {
     var skull = translate(expression_1.value(0, 0.05, 0), spheroid(function (p) { return expression_1.expression("0.333 * cos(cos(" + p + ".y * 11.0 + 0.55) * " + p + ".z * 2.3)"); }));
     var globeFront = translate(expression_1.value(0.1, 0.23, 0), scale(expression_1.value(0.574), sphere()));
@@ -639,10 +708,14 @@ exports.skull = skull;
 
 "use strict";
 
+/**
+ * Rayity index
+ */
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Exports */
 __export(__webpack_require__(0));
 __export(__webpack_require__(7));
 __export(__webpack_require__(1));
@@ -659,7 +732,11 @@ __export(__webpack_require__(3));
 
 "use strict";
 
+/**
+ * Functionality for converting a [[Scene]] into GLSL [[Code]]
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
 var expression_1 = __webpack_require__(0);
 function buildExpression(expression) {
     return buildExpressions([expression]);
@@ -719,6 +796,7 @@ function buildScene(scene, options) {
             .map(function (model, i) { return "\n\t\n\tif (object == " + model.id + ")\n\t\treturn material" + model.id + "(position, normal, direction);"; })
             .reduce(function (a, b) { return a + b; }, "") + "\n\t\n\tMaterial material;\n\treturn material;\n}";
 }
+/** Generate the GLSL shader for this [[Scene]] */
 function build(scene, options) {
     var code = "\nprecision highp float;\n\nuniform sampler2D texture;\nuniform vec2 resolution;\nuniform vec2 mouse;\nuniform bool clicked;\nuniform float time;\nvarying vec2 uv;\n\nconst float PI = 3.14159;\nconst float MAX_VALUE = 1e10;\n\nconst float epsilon = " + options.epsilon + ";\nconst int steps = " + options.steps + ";\nconst int bounces = " + options.bounces + ";\nconst int iterations = " + options.iterations + ";\n\nstruct Closest {\n\tint object;\n\tfloat distance;\n};\n\nstruct Material {\n\tfloat transmittance;\n\tfloat smoothness;\n\tfloat refraction;\n\tfloat scatter;\n\tvec3 color;\n\tvec3 emissivity;\n};\n\nClosest calculateClosest(vec3 position);\nvec3 calculateNormal(int object, vec3 position);\nMaterial calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);\n\nvec2 random(int seed) {\n\tvec2 s = (vec2(1) + uv) * float(seed) + time;\n\treturn vec2(\n\t\tfract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),\n\t\tfract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));\n}\n\nvec3 ortho(vec3 v) {\n\treturn abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0) : vec3(0.0, -v.z, v.y);\n}\n\nvec3 calculateSample(vec3 normal, float smoothness, vec2 noise) {\n\tvec3 o1 = normalize(ortho(normal));\n\tvec3 o2 = normalize(cross(normal, o1));\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = sqrt(smoothness + (1.0 - smoothness) * noise.y);\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn q * (cos(noise.x) * o1  + sin(noise.x) * o2) + noise.y * normal;\n}\n\nvec3 sampleSphere(vec2 noise) {\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = noise.y * 2.0 - 1.0;\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn vec3(q * cos(noise.x), q * sin(noise.x), noise.y);\n}\n\nvec3 spherical(vec2 angle) {\n\treturn vec3(sin(angle.y) * cos(angle.x), cos(angle.y), sin(angle.y) * sin(angle.x));\n}\n\nvoid main() {\n\t" + buildExpressions([
         scene.camera.eye,
@@ -745,10 +823,15 @@ exports.build = build;
 
 "use strict";
 
+/**
+ * Module for creating a [[Model]]
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
 var material_1 = __webpack_require__(1);
 var shape_1 = __webpack_require__(4);
 var id = 1;
+/** Create a [[Model]] */
 function model(values) {
     return Object.assign({
         id: id++,
@@ -765,9 +848,14 @@ exports.model = model;
 
 "use strict";
 
+/**
+ * Functionality related to rendering a [[Scene]] in a WebbGL context
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
 var build_1 = __webpack_require__(6);
-function createRenderer(gl, scene, options, variables) {
+/** Create a [[Renderer]] */
+function renderer(gl, scene, options, variables) {
     if (!gl.getExtension("OES_texture_float"))
         throw "No float texture support";
     var textures = [0, 1].map(function (_) {
@@ -780,7 +868,7 @@ function createRenderer(gl, scene, options, variables) {
     });
     var framebuffer = gl.createFramebuffer();
     var renderShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(renderShader, "\n\t\tprecision highp float;\n\n\t\tvarying vec2 uv;\n\t\tuniform sampler2D texture;\n\t\t\n\t\tvoid main() {\n\t\t\tvec4 result = texture2D(texture, uv * 0.5 - 0.5);\n\t\t\tgl_FragColor = vec4(pow(result.xyz / result.w, vec3(1.0 / 2.2)), 1.0);\n\t\t}");
+    gl.shaderSource(renderShader, "\n\t\tprecision highp float;\n\n\t\tvarying vec2 uv;\n\t\tuniform sampler2D texture;\n\t\t\n\t\tvoid main() {\n\t\t\tvec4 result = texture2D(texture, uv * 0.5 - 0.5);\n\t\t\tgl_FragColor = vec4(pow(result.xyz / result.w, vec3(1.0 / " + options.gamma.toFixed(10) + ")), 1.0);\n\t\t}");
     gl.compileShader(renderShader);
     var vertexShader = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertexShader, "\n\t\tattribute vec2 position;\n\t\tvarying vec2 uv;\n\t\t\n\t\tvoid main() {\n\t\t\tgl_Position = vec4(position, 0, 1);\n\t\t\tuv = position.xy;\n\t\t}");
@@ -839,7 +927,7 @@ function createRenderer(gl, scene, options, variables) {
         }
     };
 }
-exports.createRenderer = createRenderer;
+exports.renderer = renderer;
 
 
 /***/ }),
@@ -848,10 +936,15 @@ exports.createRenderer = createRenderer;
 
 "use strict";
 
+/**
+ * Module for creating a [[Scene]]
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Imports */
 var camera_1 = __webpack_require__(2);
 var expression_1 = __webpack_require__(0);
 var material_1 = __webpack_require__(1);
+/** Create a [[Scene]] */
 function scene(values) {
     return Object.assign({
         models: [],
@@ -870,10 +963,14 @@ exports.scene = scene;
 
 "use strict";
 
+/**
+ * Module for creating a Rayity viewer
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 var options_1 = __webpack_require__(3);
 var renderer_1 = __webpack_require__(8);
-function createViewer(element, scene, options) {
+/** Create a [[Viewer]] */
+function viewer(element, scene, options) {
     options = options || options_1.options();
     var canvas = document.createElement("canvas");
     canvas.width = options.width;
@@ -883,13 +980,13 @@ function createViewer(element, scene, options) {
         preserveDrawingBuffer: true
     });
     if (gl === null)
-        return null;
+        throw "Could not create WebGL context";
     var variables = {
         time: 0,
         clicked: false,
         mouse: { x: 0.0, y: 0.0 }
     };
-    var renderer = renderer_1.createRenderer(gl, scene, options, variables);
+    var renderer_ = renderer_1.renderer(gl, scene, options, variables);
     canvas.addEventListener("click", function (event) {
         if (!event.altKey)
             return;
@@ -911,12 +1008,13 @@ function createViewer(element, scene, options) {
         if (!start)
             start = time;
         variables.time = (time - start) / 1000.0;
-        renderer.render();
+        renderer_.render();
         requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
+    return {};
 }
-exports.createViewer = createViewer;
+exports.viewer = viewer;
 
 
 /***/ }),
@@ -927,16 +1025,16 @@ exports.createViewer = createViewer;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var rayity_1 = __webpack_require__(5);
-rayity_1.createViewer(document.body, rayity_1.scene({
+rayity_1.viewer(document.body, rayity_1.scene({
     air: rayity_1.material({
         scatter: rayity_1.value(1000),
     }),
     camera: rayity_1.orbit({
-        fieldOfView: rayity_1.value(60 / 180 * Math.PI),
-        distance: rayity_1.value(2),
+        radius: rayity_1.value(2),
         aperture: rayity_1.value(0.1),
         target: rayity_1.value(0),
-        offset: rayity_1.value(0.25, -0.5)
+        offset: rayity_1.value(0.25, -0.5),
+        fieldOfView: rayity_1.value(60 / 180 * Math.PI)
     }),
     models: [
         rayity_1.model({
