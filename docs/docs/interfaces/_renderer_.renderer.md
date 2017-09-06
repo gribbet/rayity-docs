@@ -12,14 +12,14 @@
 
 **●  render**:  *function* 
 
-*Defined in [renderer.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/renderer.ts#L6)*
+*Defined in [renderer.ts:6](https://github.com/gribbet/rayity/blob/340dc71/src/renderer.ts#L6)*
 
 
 #### Type declaration
 (): `void`
 
 
-*Defined in [renderer.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/renderer.ts#L6)*
+*Defined in [renderer.ts:6](https://github.com/gribbet/rayity/blob/340dc71/src/renderer.ts#L6)*
 
 
 

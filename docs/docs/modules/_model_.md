@@ -9,6 +9,7 @@
 ### Interfaces
 
 * [Model](../interfaces/_model_.model.md)
+* [ModelOptions](../interfaces/_model_.modeloptions.md)
 
 
 ### Functions
@@ -23,20 +24,23 @@
 
 ###  model
 
-► **model**(values?: *`undefined`⎮object*): [Model](../interfaces/_model_.model.md)
+► **model**(values?: *[ModelOptions](../interfaces/_model_.modeloptions.md)*): [Model](../interfaces/_model_.model.md)
 
 
 
 
-*Defined in [model.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L12)*
+*Defined in [model.ts:24](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L24)*
 
+
+
+Create a [Model](../interfaces/_model_.model.md)
 
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| values | `undefined`⎮object   |  - |
+| values | [ModelOptions](../interfaces/_model_.modeloptions.md)   |  - |
 
 
 

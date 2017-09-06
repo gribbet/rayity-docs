@@ -5,6 +5,9 @@
 # Interface: Options
 
 
+Rendering configuration
+
+
 ## Properties
 <a id="bounces"></a>
 
@@ -12,8 +15,11 @@
 
 **●  bounces**:  *`number`* 
 
-*Defined in [options.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L8)*
+*Defined in [options.ts:12](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L12)*
 
+
+
+Total light bounces
 
 
 
@@ -26,8 +32,11 @@ ___
 
 **●  cheapNormals**:  *`boolean`* 
 
-*Defined in [options.ts:11](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L11)*
+*Defined in [options.ts:20](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L20)*
 
+
+
+Use cheaper normal calculation
 
 
 
@@ -40,8 +49,11 @@ ___
 
 **●  epsilon**:  *`number`* 
 
-*Defined in [options.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L6)*
+*Defined in [options.ts:8](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L8)*
 
+
+
+A value close to 0
 
 
 
@@ -54,8 +66,11 @@ ___
 
 **●  gamma**:  *`number`* 
 
-*Defined in [options.ts:13](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L13)*
+*Defined in [options.ts:26](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L26)*
 
+
+
+Scene gamma for exposure adjustment
 
 
 
@@ -68,7 +83,7 @@ ___
 
 **●  height**:  *`number`* 
 
-*Defined in [options.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L5)*
+*Defined in [options.ts:6](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L6)*
 
 
 
@@ -85,8 +100,11 @@ ___
 
 **●  iterations**:  *`number`* 
 
-*Defined in [options.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L9)*
+*Defined in [options.ts:14](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L14)*
 
+
+
+Iterations per frame
 
 
 
@@ -99,8 +117,11 @@ ___
 
 **●  memory**:  *`number`* 
 
-*Defined in [options.ts:10](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L10)*
+*Defined in [options.ts:18](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L18)*
 
+
+
+Percentage of scene that remains after each iteration. Use a value less than 1 for an animated scene
 
 
 
@@ -113,8 +134,11 @@ ___
 
 **●  stepFactor**:  *`number`* 
 
-*Defined in [options.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L12)*
+*Defined in [options.ts:24](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L24)*
 
+
+
+Step factor used to determine rate or raymarching advancement. 0 to 1\. Smaller numbers can reduce artifacts.
 
 
 
@@ -127,8 +151,11 @@ ___
 
 **●  steps**:  *`number`* 
 
-*Defined in [options.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L7)*
+*Defined in [options.ts:10](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L10)*
 
+
+
+Raymarching iteration count
 
 
 
@@ -141,7 +168,7 @@ ___
 
 **●  width**:  *`number`* 
 
-*Defined in [options.ts:3](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L3)*
+*Defined in [options.ts:4](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L4)*
 
 
 

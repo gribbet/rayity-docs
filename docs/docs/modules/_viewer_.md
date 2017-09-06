@@ -23,7 +23,7 @@
 
 
 
-*Defined in [viewer.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/viewer.ts#L5)*
+*Defined in [viewer.ts:5](https://github.com/gribbet/rayity/blob/340dc71/src/viewer.ts#L5)*
 
 
 

@@ -9,6 +9,8 @@
 ### Interfaces
 
 * [Material](../interfaces/_material_.material.md)
+* [MaterialOptions](../interfaces/_material_.materialoptions.md)
+* [SpotlightOptions](../interfaces/_material_.spotlightoptions.md)
 
 
 ### Functions
@@ -24,20 +26,23 @@
 
 ###  material
 
-► **material**(values?: *`undefined`⎮object*): [Material](../interfaces/_material_.material.md)
+► **material**(values?: *[MaterialOptions](../interfaces/_material_.materialoptions.md)*): [Material](../interfaces/_material_.material.md)
 
 
 
 
-*Defined in [material.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/material.ts#L12)*
+*Defined in [material.ts:58](https://github.com/gribbet/rayity/blob/340dc71/src/material.ts#L58)*
 
+
+
+Create a [Material](../interfaces/_material_.material.md)
 
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| values | `undefined`⎮object   |  - |
+| values | [MaterialOptions](../interfaces/_material_.materialoptions.md)   |  - |
 
 
 
@@ -60,8 +65,11 @@ ___
 
 
 
-*Defined in [material.ts:30](https://github.com/gribbet/rayity/blob/4838bef/src/material.ts#L30)*
+*Defined in [material.ts:97](https://github.com/gribbet/rayity/blob/340dc71/src/material.ts#L97)*
 
+
+
+Create a spotlight [Material](../interfaces/_material_.material.md)
 
 
 **Parameters:**

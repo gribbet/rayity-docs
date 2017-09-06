@@ -34,11 +34,11 @@
 
 **Τ Code**:  *`string`* 
 
-*Defined in [expression.ts:4](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L4)*
+*Defined in [expression.ts:2](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L2)*
 
 
 
-GLSL Code
+GLSL code
 
 
 
@@ -56,8 +56,11 @@ ___
 
 
 
-*Defined in [expression.ts:14](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L14)*
+*Defined in [expression.ts:19](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L19)*
 
+
+
+Create an [Expression](../interfaces/_expression_.expression.md)
 
 
 **Parameters:**
@@ -82,20 +85,23 @@ ___
 
 ###  minNorm
 
-► **minNorm**(x: *[Expression](../interfaces/_expression_.expression.md)*): [Expression](../interfaces/_expression_.expression.md)
+► **minNorm**(v: *[Expression](../interfaces/_expression_.expression.md)*): [Expression](../interfaces/_expression_.expression.md)
 
 
 
 
-*Defined in [expression.ts:58](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L58)*
+*Defined in [expression.ts:67](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L67)*
 
+
+
+Minimum of x, y, and z components
 
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| x | [Expression](../interfaces/_expression_.expression.md)   |  - |
+| v | [Expression](../interfaces/_expression_.expression.md)   |  - |
 
 
 
@@ -113,20 +119,23 @@ ___
 
 ###  random
 
-► **random**(x: *[Expression](../interfaces/_expression_.expression.md)*): [Expression](../interfaces/_expression_.expression.md)
+► **random**(seed: *[Expression](../interfaces/_expression_.expression.md)*): [Expression](../interfaces/_expression_.expression.md)
 
 
 
 
-*Defined in [expression.ts:54](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L54)*
+*Defined in [expression.ts:62](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L62)*
 
+
+
+A random value
 
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| x | [Expression](../interfaces/_expression_.expression.md)   |  - |
+| seed | [Expression](../interfaces/_expression_.expression.md)   |  - |
 
 
 
@@ -149,8 +158,11 @@ ___
 
 
 
-*Defined in [expression.ts:43](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L43)*
+*Defined in [expression.ts:49](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L49)*
 
+
+
+A constant-valued [Expression](../interfaces/_expression_.expression.md)
 
 
 **Parameters:**
@@ -182,8 +194,11 @@ ___
 
 
 
-*Defined in [expression.ts:50](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L50)*
+*Defined in [expression.ts:57](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L57)*
 
+
+
+An expression which is equal to a named variable
 
 
 **Parameters:**

@@ -9,6 +9,7 @@
 ### Interfaces
 
 * [Options](../interfaces/_options_.options.md)
+* [OptionsOptions](../interfaces/_options_.optionsoptions.md)
 
 
 ### Functions
@@ -23,20 +24,23 @@
 
 ###  options
 
-► **options**(values?: *`undefined`⎮object*): [Options](../interfaces/_options_.options.md)
+► **options**(values?: *[OptionsOptions](../interfaces/_options_.optionsoptions.md)*): [Options](../interfaces/_options_.options.md)
 
 
 
 
-*Defined in [options.ts:16](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L16)*
+*Defined in [options.ts:96](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L96)*
 
+
+
+Create an [Options](../interfaces/_options_.options.md)
 
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| values | `undefined`⎮object   |  - |
+| values | [OptionsOptions](../interfaces/_options_.optionsoptions.md)   |  - |
 
 
 

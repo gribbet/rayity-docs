@@ -31,7 +31,7 @@
 
 
 
-*Defined in [camera.ts:58](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L58)*
+*Defined in [camera.ts:58](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L58)*
 
 
 
@@ -65,7 +65,7 @@ ___
 
 
 
-*Defined in [camera.ts:116](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L116)*
+*Defined in [camera.ts:116](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L116)*
 
 
 

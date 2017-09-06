@@ -5,6 +5,9 @@
 # Interface: Expression
 
 
+GLSL expression. May depend on other expression
+
+
 ## Properties
 <a id="body"></a>
 
@@ -12,8 +15,11 @@
 
 **●  body**:  *[Code](../modules/_expression_.md#code)* 
 
-*Defined in [expression.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L7)*
+*Defined in [expression.ts:9](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L9)*
 
+
+
+GLSL code for the expression
 
 
 
@@ -26,8 +32,11 @@ ___
 
 **●  dependencies**:  *[Expression](_expression_.expression.md)[]* 
 
-*Defined in [expression.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L8)*
+*Defined in [expression.ts:11](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L11)*
 
+
+
+Dependent expressions
 
 
 
@@ -40,8 +49,11 @@ ___
 
 **●  id**:  *`string`* 
 
-*Defined in [expression.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L6)*
+*Defined in [expression.ts:7](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L7)*
 
+
+
+Unique hash for the expression
 
 
 
@@ -54,14 +66,17 @@ ___
 
 **●  toString**:  *function* 
 
-*Defined in [expression.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L9)*
+*Defined in [expression.ts:13](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L13)*
 
+
+
+toString to support generation through string templates
 
 #### Type declaration
 (): `string`
 
 
-*Defined in [expression.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/expression.ts#L9)*
+*Defined in [expression.ts:13](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L13)*
 
 
 

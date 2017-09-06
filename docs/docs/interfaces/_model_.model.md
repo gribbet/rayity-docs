@@ -5,6 +5,9 @@
 # Interface: Model
 
 
+An object in a [Scene](_scene_.scene.md)
+
+
 ## Properties
 <a id="id"></a>
 
@@ -12,8 +15,11 @@
 
 **●  id**:  *`number`* 
 
-*Defined in [model.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L5)*
+*Defined in [model.ts:7](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L7)*
 
+
+
+Unique model identified
 
 
 
@@ -26,8 +32,11 @@ ___
 
 **●  material**:  *[Material](_material_.material.md)* 
 
-*Defined in [model.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L7)*
+*Defined in [model.ts:11](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L11)*
 
+
+
+Object's [Material](_material_.material.md)
 
 
 
@@ -40,8 +49,11 @@ ___
 
 **●  shape**:  *[Shape](_shape_.shape.md)* 
 
-*Defined in [model.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/model.ts#L6)*
+*Defined in [model.ts:9](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L9)*
 
+
+
+Object's [Shape](_shape_.shape.md)
 
 
 
