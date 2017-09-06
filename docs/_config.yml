@@ -1,6 +1,5 @@
 title: Rayity
-description: A simple library for generative, photorealistic graphics
-show_downloads: true
+description: A simple library for photorealistic generative graphics
 include: 
   - _build_
   - _camera_
