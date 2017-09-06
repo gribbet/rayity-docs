@@ -4,6 +4,9 @@
 
 # External module: "expression"
 
+
+Functionality related to managing GLSL expressions
+
 ## Index
 
 ### Interfaces
@@ -34,7 +37,7 @@
 
 **Τ Code**:  *`string`* 
 
-*Defined in [expression.ts:2](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L2)*
+*Defined in [expression.ts:6](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L6)*
 
 
 
@@ -56,7 +59,7 @@ ___
 
 
 
-*Defined in [expression.ts:19](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L19)*
+*Defined in [expression.ts:23](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L23)*
 
 
 
@@ -90,7 +93,7 @@ ___
 
 
 
-*Defined in [expression.ts:67](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L67)*
+*Defined in [expression.ts:71](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L71)*
 
 
 
@@ -124,7 +127,7 @@ ___
 
 
 
-*Defined in [expression.ts:62](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L62)*
+*Defined in [expression.ts:66](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L66)*
 
 
 
@@ -158,7 +161,7 @@ ___
 
 
 
-*Defined in [expression.ts:49](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L49)*
+*Defined in [expression.ts:53](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L53)*
 
 
 
@@ -194,7 +197,7 @@ ___
 
 
 
-*Defined in [expression.ts:57](https://github.com/gribbet/rayity/blob/340dc71/src/expression.ts#L57)*
+*Defined in [expression.ts:61](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L61)*
 
 
 

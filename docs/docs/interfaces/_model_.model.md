@@ -15,11 +15,11 @@ An object in a [Scene](_scene_.scene.md)
 
 **●  id**:  *`number`* 
 
-*Defined in [model.ts:7](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L7)*
+*Defined in [model.ts:12](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L12)*
 
 
 
-Unique model identified
+Unique model identifier
 
 
 
@@ -32,11 +32,11 @@ ___
 
 **●  material**:  *[Material](_material_.material.md)* 
 
-*Defined in [model.ts:11](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L11)*
+*Defined in [model.ts:16](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L16)*
 
 
 
-Object's [Material](_material_.material.md)
+Model's [Material](_material_.material.md)
 
 
 
@@ -49,11 +49,11 @@ ___
 
 **●  shape**:  *[Shape](_shape_.shape.md)* 
 
-*Defined in [model.ts:9](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L9)*
+*Defined in [model.ts:14](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L14)*
 
 
 
-Object's [Shape](_shape_.shape.md)
+Model's [Shape](_shape_.shape.md)
 
 
 

@@ -4,6 +4,9 @@
 
 # External module: "model"
 
+
+Module for creating a [Model](../interfaces/_model_.model.md)
+
 ## Index
 
 ### Interfaces
@@ -29,7 +32,7 @@
 
 
 
-*Defined in [model.ts:24](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L24)*
+*Defined in [model.ts:29](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L29)*
 
 
 

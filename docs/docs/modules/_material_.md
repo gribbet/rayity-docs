@@ -4,6 +4,9 @@
 
 # External module: "material"
 
+
+Module for creating a [Material](../interfaces/_material_.material.md)
+
 ## Index
 
 ### Interfaces
@@ -31,7 +34,7 @@
 
 
 
-*Defined in [material.ts:58](https://github.com/gribbet/rayity/blob/340dc71/src/material.ts#L58)*
+*Defined in [material.ts:63](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L63)*
 
 
 
@@ -65,7 +68,7 @@ ___
 
 
 
-*Defined in [material.ts:97](https://github.com/gribbet/rayity/blob/340dc71/src/material.ts#L97)*
+*Defined in [material.ts:102](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L102)*
 
 
 

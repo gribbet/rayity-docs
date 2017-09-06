@@ -4,6 +4,9 @@
 
 # External module: "camera"
 
+
+Module for creating a [Camera](../interfaces/_camera_.camera.md)
+
 ## Index
 
 ### Interfaces
@@ -31,7 +34,7 @@
 
 
 
-*Defined in [camera.ts:58](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L58)*
+*Defined in [camera.ts:63](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L63)*
 
 
 
@@ -65,7 +68,7 @@ ___
 
 
 
-*Defined in [camera.ts:116](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L116)*
+*Defined in [camera.ts:121](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L121)*
 
 
 

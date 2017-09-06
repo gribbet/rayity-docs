@@ -12,11 +12,11 @@
 
 **●  material**:  *[Material](_material_.material.md)* 
 
-*Defined in [model.ts:18](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L18)*
+*Defined in [model.ts:23](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L23)*
 
 
 
-Object's [Material](_material_.material.md)
+Model's [Material](_material_.material.md)
 
 
 
@@ -29,11 +29,11 @@ ___
 
 **●  shape**:  *[Shape](_shape_.shape.md)* 
 
-*Defined in [model.ts:16](https://github.com/gribbet/rayity/blob/340dc71/src/model.ts#L16)*
+*Defined in [model.ts:21](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L21)*
 
 
 
-Object's [Shape](_shape_.shape.md)
+Model's [Shape](_shape_.shape.md)
 
 
 

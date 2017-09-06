@@ -12,7 +12,7 @@
 
 **●  aperture**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:48](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L48)*
+*Defined in [camera.ts:53](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L53)*
 
 
 
@@ -31,7 +31,7 @@ ___
 
 **●  eye**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:24](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L24)*
+*Defined in [camera.ts:29](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L29)*
 
 
 
@@ -50,7 +50,7 @@ ___
 
 **●  fieldOfView**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:42](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L42)*
+*Defined in [camera.ts:47](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L47)*
 
 
 
@@ -69,7 +69,7 @@ ___
 
 **●  focalFactor**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:54](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L54)*
+*Defined in [camera.ts:59](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L59)*
 
 
 
@@ -88,7 +88,7 @@ ___
 
 **●  target**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:30](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L30)*
+*Defined in [camera.ts:35](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L35)*
 
 
 
@@ -107,7 +107,7 @@ ___
 
 **●  up**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:36](https://github.com/gribbet/rayity/blob/340dc71/src/camera.ts#L36)*
+*Defined in [camera.ts:41](https://github.com/gribbet/rayity/blob/b9938d8/src/camera.ts#L41)*
 
 
 

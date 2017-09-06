@@ -4,6 +4,9 @@
 
 # External module: "options"
 
+
+Module for rendering options
+
 ## Index
 
 ### Interfaces
@@ -29,7 +32,7 @@
 
 
 
-*Defined in [options.ts:96](https://github.com/gribbet/rayity/blob/340dc71/src/options.ts#L96)*
+*Defined in [options.ts:100](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L100)*
 
 
 
