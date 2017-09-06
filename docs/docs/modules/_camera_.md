@@ -31,8 +31,11 @@
 
 
 
-*Defined in [camera.ts:45](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L45)*
+*Defined in [camera.ts:58](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L58)*
 
+
+
+Create a [Camera](../interfaces/_camera_.camera.md)
 
 
 **Parameters:**
@@ -62,8 +65,11 @@ ___
 
 
 
-*Defined in [camera.ts:88](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L88)*
+*Defined in [camera.ts:116](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L116)*
 
+
+
+Create an orbiting [Camera](../interfaces/_camera_.camera.md) controlled by the mouse
 
 
 **Parameters:**

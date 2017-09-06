@@ -12,11 +12,13 @@
 
 **●  aperture**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:81](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L81)*
+*Defined in [camera.ts:106](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L106)*
 
 
 
-Aperture size for depth of field Default: 0
+Aperture size for depth of field
+
+Default: 0
 
 
 
@@ -29,11 +31,13 @@ ___
 
 **●  fieldOfView**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:77](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L77)*
+*Defined in [camera.ts:100](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L100)*
 
 
 
-Field of view angle in radians Default: 90 degrees
+Field of view angle in radians
+
+Default: 90 degrees
 
 
 
@@ -46,11 +50,13 @@ ___
 
 **●  focalFactor**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:85](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L85)*
+*Defined in [camera.ts:112](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L112)*
 
 
 
-Focal distance relative to target distance Default: 1
+Focal distance relative to target distance
+
+Default: 1
 
 
 
@@ -63,11 +69,13 @@ ___
 
 **●  offset**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:73](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L73)*
+*Defined in [camera.ts:94](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L94)*
 
 
 
-Offset in spherical coordinates Default: (0, 0)
+Offset in spherical coordinates
+
+Default: (0, 0)
 
 
 
@@ -80,11 +88,13 @@ ___
 
 **●  radius**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:65](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L65)*
+*Defined in [camera.ts:82](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L82)*
 
 
 
-Orbit radius Default: 1
+Orbit radius
+
+Default: 1
 
 
 
@@ -97,11 +107,13 @@ ___
 
 **●  target**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:61](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L61)*
+*Defined in [camera.ts:76](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L76)*
 
 
 
-Location of the target Default: (0, 0, 0)
+Location of the target
+
+Default: (0, 0, 0)
 
 
 
@@ -114,11 +126,13 @@ ___
 
 **●  up**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:69](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L69)*
+*Defined in [camera.ts:88](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L88)*
 
 
 
-Up direction vector Default: (0, 1, 0)
+Up direction vector
+
+Default: (0, 1, 0)
 
 
 
