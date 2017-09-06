@@ -12,3 +12,4 @@ include:
   - _scene_
   - _shape_
   - _viewer_
+theme: jekyll-theme-minimal
