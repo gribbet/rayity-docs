@@ -15,6 +15,12 @@ header {
 
     .project {
         flex: 1;
+        text-transform: uppercase;
+        letter-spacing: 2px;  
+        font-weight: bold;
+        line-height: 40px;
+        font-size: 20px;
+        color: black;
     }
 
     ul.links {
@@ -23,12 +29,13 @@ header {
 
         a {
             display: inline-block;
-            border: 1px solid #ccc;
-            padding: 10px;
+            margin-left: 20px;     
+            padding: 0 10px;            
             text-transform: uppercase;
+            line-height: 40px;
             font-size: 12px;
-            margin-left: 20px;
             text-decoration: none;
+            border: 1px solid #ccc;            
 
             &:hover {
                 background-color: #eee;
