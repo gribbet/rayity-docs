@@ -11,10 +11,7 @@
 
 <body>
   <header>
-    <div class="project">
-      <h1>{{ site.title | default: site.github.repository_name }}</h1>
-      <p>{{ site.description | default: site.github.project_tagline }}</p>
-    </div>
+    <a class="project" href="{{ '/#examples' | relative_url }}">{{ site.title }}</a>
     <ul class="links">
       <li><a href="{{ '/#examples' | relative_url }}">Examples</a></li>
       <li><a href="{{ '/docs/'  | relative_url }}">API</a></li>
