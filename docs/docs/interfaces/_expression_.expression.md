@@ -15,7 +15,7 @@ GLSL expression. May depend on other expression
 
 **●  body**:  *[Code](../modules/_expression_.md#code)* 
 
-*Defined in [expression.ts:13](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L13)*
+*Defined in [expression.ts:13](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L13)*
 
 
 
@@ -32,7 +32,7 @@ ___
 
 **●  dependencies**:  *[Expression](_expression_.expression.md)[]* 
 
-*Defined in [expression.ts:15](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L15)*
+*Defined in [expression.ts:15](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L15)*
 
 
 
@@ -49,7 +49,7 @@ ___
 
 **●  id**:  *`string`* 
 
-*Defined in [expression.ts:11](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L11)*
+*Defined in [expression.ts:11](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L11)*
 
 
 
@@ -66,7 +66,7 @@ ___
 
 **●  toString**:  *function* 
 
-*Defined in [expression.ts:17](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L17)*
+*Defined in [expression.ts:17](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L17)*
 
 
 
@@ -76,7 +76,7 @@ toString to support generation through string templates
 (): `string`
 
 
-*Defined in [expression.ts:17](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L17)*
+*Defined in [expression.ts:17](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L17)*
 
 
 

@@ -37,7 +37,7 @@ Functionality related to managing GLSL expressions
 
 **Τ Code**:  *`string`* 
 
-*Defined in [expression.ts:6](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L6)*
+*Defined in [expression.ts:6](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L6)*
 
 
 
@@ -59,7 +59,7 @@ ___
 
 
 
-*Defined in [expression.ts:23](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L23)*
+*Defined in [expression.ts:23](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L23)*
 
 
 
@@ -93,7 +93,7 @@ ___
 
 
 
-*Defined in [expression.ts:71](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L71)*
+*Defined in [expression.ts:71](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L71)*
 
 
 
@@ -127,7 +127,7 @@ ___
 
 
 
-*Defined in [expression.ts:66](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L66)*
+*Defined in [expression.ts:66](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L66)*
 
 
 
@@ -161,7 +161,7 @@ ___
 
 
 
-*Defined in [expression.ts:53](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L53)*
+*Defined in [expression.ts:53](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L53)*
 
 
 
@@ -197,7 +197,7 @@ ___
 
 
 
-*Defined in [expression.ts:61](https://github.com/gribbet/rayity/blob/b9938d8/src/expression.ts#L61)*
+*Defined in [expression.ts:61](https://github.com/gribbet/rayity/blob/afedd20/src/expression.ts#L61)*
 
 
 

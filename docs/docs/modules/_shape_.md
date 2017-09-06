@@ -69,7 +69,7 @@
 
 
 
-*Defined in [shape.ts:274](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L274)*
+*Defined in [shape.ts:274](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L274)*
 
 
 
@@ -100,7 +100,7 @@ ___
 
 
 
-*Defined in [shape.ts:338](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L338)*
+*Defined in [shape.ts:338](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L338)*
 
 
 
@@ -132,7 +132,7 @@ ___
 
 
 
-*Defined in [shape.ts:50](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L50)*
+*Defined in [shape.ts:50](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L50)*
 
 
 
@@ -155,7 +155,7 @@ ___
 
 
 
-*Defined in [shape.ts:96](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L96)*
+*Defined in [shape.ts:96](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L96)*
 
 
 
@@ -178,7 +178,7 @@ ___
 
 
 
-*Defined in [shape.ts:153](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L153)*
+*Defined in [shape.ts:153](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L153)*
 
 
 
@@ -210,7 +210,7 @@ ___
 
 
 
-*Defined in [shape.ts:75](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L75)*
+*Defined in [shape.ts:75](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L75)*
 
 
 
@@ -233,7 +233,7 @@ ___
 
 
 
-*Defined in [shape.ts:186](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L186)*
+*Defined in [shape.ts:186](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L186)*
 
 
 
@@ -265,7 +265,7 @@ ___
 
 
 
-*Defined in [shape.ts:145](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L145)*
+*Defined in [shape.ts:145](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L145)*
 
 
 
@@ -297,7 +297,7 @@ ___
 
 
 
-*Defined in [shape.ts:122](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L122)*
+*Defined in [shape.ts:122](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L122)*
 
 
 
@@ -328,7 +328,7 @@ ___
 
 
 
-*Defined in [shape.ts:255](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L255)*
+*Defined in [shape.ts:255](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L255)*
 
 
 
@@ -360,7 +360,7 @@ ___
 
 
 
-*Defined in [shape.ts:320](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L320)*
+*Defined in [shape.ts:320](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L320)*
 
 
 
@@ -393,7 +393,7 @@ ___
 
 
 
-*Defined in [shape.ts:61](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L61)*
+*Defined in [shape.ts:61](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L61)*
 
 
 
@@ -416,7 +416,7 @@ ___
 
 
 
-*Defined in [shape.ts:260](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L260)*
+*Defined in [shape.ts:260](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L260)*
 
 
 
@@ -448,7 +448,7 @@ ___
 
 
 
-*Defined in [shape.ts:28](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L28)*
+*Defined in [shape.ts:28](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L28)*
 
 
 
@@ -480,7 +480,7 @@ ___
 
 
 
-*Defined in [shape.ts:132](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L132)*
+*Defined in [shape.ts:132](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L132)*
 
 
 
@@ -512,7 +512,7 @@ ___
 
 
 
-*Defined in [shape.ts:229](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L229)*
+*Defined in [shape.ts:229](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L229)*
 
 
 
@@ -545,7 +545,7 @@ ___
 
 
 
-*Defined in [shape.ts:208](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L208)*
+*Defined in [shape.ts:208](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L208)*
 
 
 
@@ -577,7 +577,7 @@ ___
 
 
 
-*Defined in [shape.ts:215](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L215)*
+*Defined in [shape.ts:215](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L215)*
 
 
 
@@ -609,7 +609,7 @@ ___
 
 
 
-*Defined in [shape.ts:222](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L222)*
+*Defined in [shape.ts:222](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L222)*
 
 
 
@@ -641,7 +641,7 @@ ___
 
 
 
-*Defined in [shape.ts:111](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L111)*
+*Defined in [shape.ts:111](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L111)*
 
 
 
@@ -673,7 +673,7 @@ ___
 
 
 
-*Defined in [shape.ts:7](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L7)*
+*Defined in [shape.ts:7](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L7)*
 
 
 
@@ -704,7 +704,7 @@ ___
 
 
 
-*Defined in [shape.ts:281](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L281)*
+*Defined in [shape.ts:281](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L281)*
 
 
 
@@ -736,7 +736,7 @@ ___
 
 
 
-*Defined in [shape.ts:365](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L365)*
+*Defined in [shape.ts:365](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L365)*
 
 
 
@@ -759,7 +759,7 @@ ___
 
 
 
-*Defined in [shape.ts:264](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L264)*
+*Defined in [shape.ts:264](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L264)*
 
 
 
@@ -791,7 +791,7 @@ ___
 
 
 
-*Defined in [shape.ts:181](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L181)*
+*Defined in [shape.ts:181](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L181)*
 
 
 
@@ -824,7 +824,7 @@ ___
 
 
 
-*Defined in [shape.ts:176](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L176)*
+*Defined in [shape.ts:176](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L176)*
 
 
 
@@ -857,7 +857,7 @@ ___
 
 
 
-*Defined in [shape.ts:171](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L171)*
+*Defined in [shape.ts:171](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L171)*
 
 
 
@@ -890,7 +890,7 @@ ___
 
 
 
-*Defined in [shape.ts:23](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L23)*
+*Defined in [shape.ts:23](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L23)*
 
 
 
@@ -913,7 +913,7 @@ ___
 
 
 
-*Defined in [shape.ts:118](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L118)*
+*Defined in [shape.ts:118](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L118)*
 
 
 
@@ -944,7 +944,7 @@ ___
 
 
 
-*Defined in [shape.ts:127](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L127)*
+*Defined in [shape.ts:127](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L127)*
 
 
 
@@ -976,7 +976,7 @@ ___
 
 
 
-*Defined in [shape.ts:40](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L40)*
+*Defined in [shape.ts:40](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L40)*
 
 
 
@@ -999,7 +999,7 @@ ___
 
 
 
-*Defined in [shape.ts:101](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L101)*
+*Defined in [shape.ts:101](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L101)*
 
 
 
@@ -1022,7 +1022,7 @@ ___
 
 
 
-*Defined in [shape.ts:106](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L106)*
+*Defined in [shape.ts:106](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L106)*
 
 
 
@@ -1054,7 +1054,7 @@ ___
 
 
 
-*Defined in [shape.ts:294](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L294)*
+*Defined in [shape.ts:294](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L294)*
 
 
 
@@ -1085,7 +1085,7 @@ ___
 
 
 
-*Defined in [shape.ts:347](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L347)*
+*Defined in [shape.ts:347](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L347)*
 
 
 
@@ -1108,7 +1108,7 @@ ___
 
 
 
-*Defined in [shape.ts:193](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L193)*
+*Defined in [shape.ts:193](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L193)*
 
 
 
@@ -1140,7 +1140,7 @@ ___
 
 
 
-*Defined in [shape.ts:198](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L198)*
+*Defined in [shape.ts:198](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L198)*
 
 
 
@@ -1172,7 +1172,7 @@ ___
 
 
 
-*Defined in [shape.ts:203](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L203)*
+*Defined in [shape.ts:203](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L203)*
 
 
 
@@ -1204,7 +1204,7 @@ ___
 
 
 
-*Defined in [shape.ts:137](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L137)*
+*Defined in [shape.ts:137](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L137)*
 
 
 
@@ -1236,7 +1236,7 @@ ___
 
 
 
-*Defined in [shape.ts:18](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L18)*
+*Defined in [shape.ts:18](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L18)*
 
 
 
@@ -1259,7 +1259,7 @@ ___
 
 
 
-*Defined in [shape.ts:246](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L246)*
+*Defined in [shape.ts:246](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L246)*
 
 
 
@@ -1290,7 +1290,7 @@ ___
 
 
 
-*Defined in [shape.ts:13](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L13)*
+*Defined in [shape.ts:13](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L13)*
 
 
 

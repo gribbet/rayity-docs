@@ -12,7 +12,7 @@
 
 **●  material**:  *[Material](_material_.material.md)* 
 
-*Defined in [model.ts:23](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L23)*
+*Defined in [model.ts:23](https://github.com/gribbet/rayity/blob/afedd20/src/model.ts#L23)*
 
 
 
@@ -29,7 +29,7 @@ ___
 
 **●  shape**:  *[Shape](_shape_.shape.md)* 
 
-*Defined in [model.ts:21](https://github.com/gribbet/rayity/blob/b9938d8/src/model.ts#L21)*
+*Defined in [model.ts:21](https://github.com/gribbet/rayity/blob/afedd20/src/model.ts#L21)*
 
 
 

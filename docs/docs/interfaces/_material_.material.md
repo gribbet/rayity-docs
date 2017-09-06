@@ -12,7 +12,7 @@
 
 **●  color**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:18](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L18)*
+*Defined in [material.ts:18](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L18)*
 
 
 
@@ -29,7 +29,7 @@ ___
 
 **●  emissivity**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:20](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L20)*
+*Defined in [material.ts:20](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L20)*
 
 
 
@@ -46,7 +46,7 @@ ___
 
 **●  refraction**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:14](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L14)*
+*Defined in [material.ts:14](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L14)*
 
 
 
@@ -63,7 +63,7 @@ ___
 
 **●  scatter**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:16](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L16)*
+*Defined in [material.ts:16](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L16)*
 
 
 
@@ -80,7 +80,7 @@ ___
 
 **●  smoothness**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:12](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L12)*
+*Defined in [material.ts:12](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L12)*
 
 
 
@@ -97,7 +97,7 @@ ___
 
 **●  transmittance**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:10](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L10)*
+*Defined in [material.ts:10](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L10)*
 
 
 

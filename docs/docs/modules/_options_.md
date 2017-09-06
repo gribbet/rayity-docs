@@ -32,7 +32,7 @@ Module for rendering options
 
 
 
-*Defined in [options.ts:100](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L100)*
+*Defined in [options.ts:100](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L100)*
 
 
 

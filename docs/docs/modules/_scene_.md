@@ -4,11 +4,15 @@
 
 # External module: "scene"
 
+
+Module for creating a [Scene](../interfaces/_scene_.scene.md)
+
 ## Index
 
 ### Interfaces
 
 * [Scene](../interfaces/_scene_.scene.md)
+* [SceneOptions](../interfaces/_scene_.sceneoptions.md)
 
 
 ### Functions
@@ -23,20 +27,23 @@
 
 ###  scene
 
-► **scene**(values?: *`undefined`⎮object*): [Scene](../interfaces/_scene_.scene.md)
+► **scene**(values?: *[SceneOptions](../interfaces/_scene_.sceneoptions.md)*): [Scene](../interfaces/_scene_.scene.md)
 
 
 
 
-*Defined in [scene.ts:12](https://github.com/gribbet/rayity/blob/b9938d8/src/scene.ts#L12)*
+*Defined in [scene.ts:42](https://github.com/gribbet/rayity/blob/afedd20/src/scene.ts#L42)*
 
+
+
+Create a [Scene](../interfaces/_scene_.scene.md)
 
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| values | `undefined`⎮object   |  - |
+| values | [SceneOptions](../interfaces/_scene_.sceneoptions.md)   |  - |
 
 
 

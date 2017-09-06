@@ -15,7 +15,7 @@ Rendering configuration
 
 **●  bounces**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:64](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L64)*
+*Defined in [options.ts:64](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L64)*
 
 
 
@@ -34,7 +34,7 @@ ___
 
 **●  cheapNormals**:  *`undefined`⎮`true`⎮`false`* 
 
-*Defined in [options.ts:83](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L83)*
+*Defined in [options.ts:83](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L83)*
 
 
 
@@ -53,7 +53,7 @@ ___
 
 **●  epsilon**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:52](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L52)*
+*Defined in [options.ts:52](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L52)*
 
 
 
@@ -72,7 +72,7 @@ ___
 
 **●  gamma**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:96](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L96)*
+*Defined in [options.ts:96](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L96)*
 
 
 
@@ -91,7 +91,7 @@ ___
 
 **●  height**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:46](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L46)*
+*Defined in [options.ts:46](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L46)*
 
 
 
@@ -110,7 +110,7 @@ ___
 
 **●  iterations**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:70](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L70)*
+*Defined in [options.ts:70](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L70)*
 
 
 
@@ -129,7 +129,7 @@ ___
 
 **●  memory**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:77](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L77)*
+*Defined in [options.ts:77](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L77)*
 
 
 
@@ -148,7 +148,7 @@ ___
 
 **●  stepFactor**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:90](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L90)*
+*Defined in [options.ts:90](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L90)*
 
 
 
@@ -167,7 +167,7 @@ ___
 
 **●  steps**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:58](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L58)*
+*Defined in [options.ts:58](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L58)*
 
 
 
@@ -186,7 +186,7 @@ ___
 
 **●  width**:  *`undefined`⎮`number`* 
 
-*Defined in [options.ts:40](https://github.com/gribbet/rayity/blob/b9938d8/src/options.ts#L40)*
+*Defined in [options.ts:40](https://github.com/gribbet/rayity/blob/afedd20/src/options.ts#L40)*
 
 
 

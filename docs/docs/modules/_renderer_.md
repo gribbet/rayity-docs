@@ -4,32 +4,40 @@
 
 # External module: "renderer"
 
+
+Functionality related to rendering a [Scene](../interfaces/_scene_.scene.md) in a WebbGL context
+
 ## Index
 
 ### Interfaces
 
+* [Point](../interfaces/_renderer_.point.md)
 * [Renderer](../interfaces/_renderer_.renderer.md)
+* [Variables](../interfaces/_renderer_.variables.md)
 
 
 ### Functions
 
-* [createRenderer](_renderer_.md#createrenderer)
+* [renderer](_renderer_.md#renderer-1)
 
 
 
 ---
 ## Functions
-<a id="createrenderer"></a>
+<a id="renderer-1"></a>
 
-###  createRenderer
+###  renderer
 
-► **createRenderer**(gl: *`WebGLRenderingContext`*, scene: *[Scene](../interfaces/_scene_.scene.md)*, options: *[Options](../interfaces/_options_.options.md)*, variables?: *`undefined`⎮object*): object
-
-
+► **renderer**(gl: *`WebGLRenderingContext`*, scene: *[Scene](../interfaces/_scene_.scene.md)*, options: *[Options](../interfaces/_options_.options.md)*, variables?: *[Variables](../interfaces/_renderer_.variables.md)*): [Renderer](../interfaces/_renderer_.renderer.md)
 
 
-*Defined in [renderer.ts:9](https://github.com/gribbet/rayity/blob/b9938d8/src/renderer.ts#L9)*
 
+
+*Defined in [renderer.ts:35](https://github.com/gribbet/rayity/blob/afedd20/src/renderer.ts#L35)*
+
+
+
+Create a [Renderer](../interfaces/_renderer_.renderer.md)
 
 
 **Parameters:**
@@ -39,13 +47,13 @@
 | gl | `WebGLRenderingContext`   |  - |
 | scene | [Scene](../interfaces/_scene_.scene.md)   |  - |
 | options | [Options](../interfaces/_options_.options.md)   |  - |
-| variables | `undefined`⎮object   |  - |
+| variables | [Variables](../interfaces/_renderer_.variables.md)   |  - |
 
 
 
 
 
-**Returns:** object
+**Returns:** [Renderer](../interfaces/_renderer_.renderer.md)
 
 
 

@@ -34,7 +34,7 @@ Module for creating a [Material](../interfaces/_material_.material.md)
 
 
 
-*Defined in [material.ts:63](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L63)*
+*Defined in [material.ts:63](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L63)*
 
 
 
@@ -63,12 +63,12 @@ ___
 
 ###  spotlight
 
-► **spotlight**(options: *object*): [Material](../interfaces/_material_.material.md)
+► **spotlight**(options: *[SpotlightOptions](../interfaces/_material_.spotlightoptions.md)*): [Material](../interfaces/_material_.material.md)
 
 
 
 
-*Defined in [material.ts:102](https://github.com/gribbet/rayity/blob/b9938d8/src/material.ts#L102)*
+*Defined in [material.ts:102](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L102)*
 
 
 
@@ -79,7 +79,7 @@ Create a spotlight [Material](../interfaces/_material_.material.md)
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| options | object   |  - |
+| options | [SpotlightOptions](../interfaces/_material_.spotlightoptions.md)   |  - |
 
 
 

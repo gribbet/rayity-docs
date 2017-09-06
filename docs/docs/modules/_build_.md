@@ -26,7 +26,7 @@ Functionality for converting a [Scene](../interfaces/_scene_.scene.md) into GLSL
 
 
 
-*Defined in [build.ts:166](https://github.com/gribbet/rayity/blob/b9938d8/src/build.ts#L166)*
+*Defined in [build.ts:166](https://github.com/gribbet/rayity/blob/afedd20/src/build.ts#L166)*
 
 
 

@@ -5,6 +5,9 @@
 # Interface: Renderer
 
 
+Interface to render a scene to a WebGL context
+
+
 ## Properties
 <a id="render"></a>
 
@@ -12,14 +15,17 @@
 
 **●  render**:  *function* 
 
-*Defined in [renderer.ts:6](https://github.com/gribbet/rayity/blob/b9938d8/src/renderer.ts#L6)*
+*Defined in [renderer.ts:13](https://github.com/gribbet/rayity/blob/afedd20/src/renderer.ts#L13)*
 
+
+
+Render function
 
 #### Type declaration
 (): `void`
 
 
-*Defined in [renderer.ts:6](https://github.com/gribbet/rayity/blob/b9938d8/src/renderer.ts#L6)*
+*Defined in [renderer.ts:13](https://github.com/gribbet/rayity/blob/afedd20/src/renderer.ts#L13)*
 
 
 

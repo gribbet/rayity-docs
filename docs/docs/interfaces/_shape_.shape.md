@@ -12,14 +12,14 @@
 
 **●  call**:  *function* 
 
-*Defined in [shape.ts:4](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L4)*
+*Defined in [shape.ts:4](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L4)*
 
 
 #### Type declaration
 (position: *[Expression](_expression_.expression.md)*): [Expression](_expression_.expression.md)
 
 
-*Defined in [shape.ts:4](https://github.com/gribbet/rayity/blob/b9938d8/src/shape.ts#L4)*
+*Defined in [shape.ts:4](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L4)*
 
 
 
