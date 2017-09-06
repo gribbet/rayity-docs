@@ -4,7 +4,7 @@ module.exports = {
 	devtool: "source-map",
 	entry: "./index.ts",
 	output: {
-		filename: "docs/index.js"
+		filename: "docs/assets/js/index.js"
 	},
 	resolve: {
 		extensions: [".js", ".ts"]
