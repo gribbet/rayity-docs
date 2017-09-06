@@ -48,6 +48,20 @@ ___
 
 ___
 
+<a id="gamma"></a>
+
+###  gamma
+
+**●  gamma**:  *`number`* 
+
+*Defined in [options.ts:11](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L11)*
+
+
+
+
+
+___
+
 <a id="height"></a>
 
 ###  height
