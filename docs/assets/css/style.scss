@@ -8,9 +8,18 @@ body {
     margin: auto;
 }
 
+h1, h2, h3 {
+    margin-bottom: 20px;
+}
+
+ul {
+    margin-bottom: 20px;
+}
+
 header {
     display: flex;
-    padding: 20px 0;
+    padding: 10px 0;
+    margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
 
     .project {
@@ -23,7 +32,7 @@ header {
         color: black;
     }
 
-    ul.links {
+    .links {
         display: flex;
         list-style-type: none;
 
