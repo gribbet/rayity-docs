@@ -6,25 +6,33 @@
 
 ## Index
 
+### Interfaces
+
+* [Viewer](../interfaces/_viewer_.viewer.md)
+
+
 ### Functions
 
-* [createViewer](_viewer_.md#createviewer)
+* [viewer](_viewer_.md#viewer-1)
 
 
 
 ---
 ## Functions
-<a id="createviewer"></a>
+<a id="viewer-1"></a>
 
-###  createViewer
+###  viewer
 
-► **createViewer**(element: *`HTMLElement`*, scene: *[Scene](../interfaces/_scene_.scene.md)*, options?: *[Options](../interfaces/_options_.options.md)*): `undefined`⎮`null`
-
-
+► **viewer**(element: *`HTMLElement`*, scene: *[Scene](../interfaces/_scene_.scene.md)*, options?: *[Options](../interfaces/_options_.options.md)*): [Viewer](../interfaces/_viewer_.viewer.md)
 
 
-*Defined in [viewer.ts:5](https://github.com/gribbet/rayity/blob/afedd20/src/viewer.ts#L5)*
 
+
+*Defined in [viewer.ts:14](https://github.com/gribbet/rayity/blob/7a9144e/src/viewer.ts#L14)*
+
+
+
+Create a [Viewer](../interfaces/_viewer_.viewer.md)
 
 
 **Parameters:**
@@ -39,7 +47,7 @@
 
 
 
-**Returns:** `undefined`⎮`null`
+**Returns:** [Viewer](../interfaces/_viewer_.viewer.md)
 
 
 

@@ -5,6 +5,9 @@
 # Interface: Shape
 
 
+A distance function
+
+
 ## Properties
 <a id="call"></a>
 
@@ -12,14 +15,17 @@
 
 **●  call**:  *function* 
 
-*Defined in [shape.ts:4](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L4)*
+*Defined in [shape.ts:11](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L11)*
 
+
+
+Calculate the distance from `position`
 
 #### Type declaration
 (position: *[Expression](_expression_.expression.md)*): [Expression](_expression_.expression.md)
 
 
-*Defined in [shape.ts:4](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L4)*
+*Defined in [shape.ts:11](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L11)*
 
 
 

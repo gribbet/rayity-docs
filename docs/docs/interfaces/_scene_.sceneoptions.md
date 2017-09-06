@@ -12,7 +12,7 @@
 
 **●  air**:  *[Material](_material_.material.md)* 
 
-*Defined in [scene.ts:38](https://github.com/gribbet/rayity/blob/afedd20/src/scene.ts#L38)*
+*Defined in [scene.ts:38](https://github.com/gribbet/rayity/blob/7a9144e/src/scene.ts#L38)*
 
 
 
@@ -31,7 +31,7 @@ ___
 
 **●  camera**:  *[Camera](_camera_.camera.md)* 
 
-*Defined in [scene.ts:32](https://github.com/gribbet/rayity/blob/afedd20/src/scene.ts#L32)*
+*Defined in [scene.ts:32](https://github.com/gribbet/rayity/blob/7a9144e/src/scene.ts#L32)*
 
 
 
@@ -50,7 +50,7 @@ ___
 
 **●  models**:  *[Model](_model_.model.md)[]* 
 
-*Defined in [scene.ts:26](https://github.com/gribbet/rayity/blob/afedd20/src/scene.ts#L26)*
+*Defined in [scene.ts:26](https://github.com/gribbet/rayity/blob/7a9144e/src/scene.ts#L26)*
 
 
 

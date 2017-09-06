@@ -34,7 +34,7 @@ Module for creating a [Material](../interfaces/_material_.material.md)
 
 
 
-*Defined in [material.ts:63](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L63)*
+*Defined in [material.ts:63](https://github.com/gribbet/rayity/blob/7a9144e/src/material.ts#L63)*
 
 
 
@@ -68,7 +68,7 @@ ___
 
 
 
-*Defined in [material.ts:102](https://github.com/gribbet/rayity/blob/afedd20/src/material.ts#L102)*
+*Defined in [material.ts:102](https://github.com/gribbet/rayity/blob/7a9144e/src/material.ts#L102)*
 
 
 

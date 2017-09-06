@@ -15,7 +15,7 @@ Interface to render a scene to a WebGL context
 
 **●  render**:  *function* 
 
-*Defined in [renderer.ts:13](https://github.com/gribbet/rayity/blob/afedd20/src/renderer.ts#L13)*
+*Defined in [renderer.ts:13](https://github.com/gribbet/rayity/blob/7a9144e/src/renderer.ts#L13)*
 
 
 
@@ -25,7 +25,7 @@ Render function
 (): `void`
 
 
-*Defined in [renderer.ts:13](https://github.com/gribbet/rayity/blob/afedd20/src/renderer.ts#L13)*
+*Defined in [renderer.ts:13](https://github.com/gribbet/rayity/blob/7a9144e/src/renderer.ts#L13)*
 
 
 

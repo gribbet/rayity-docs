@@ -4,6 +4,9 @@
 
 # External module: "shape"
 
+
+Module for creating shape distance functions
+
 ## Index
 
 ### Interfaces
@@ -69,8 +72,11 @@
 
 
 
-*Defined in [shape.ts:274](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L274)*
+*Defined in [shape.ts:314](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L314)*
 
+
+
+A box with aritrary dimensions
 
 
 **Parameters:**
@@ -100,8 +106,11 @@ ___
 
 
 
-*Defined in [shape.ts:338](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L338)*
+*Defined in [shape.ts:382](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L382)*
 
+
+
+Choose a shape randomly
 
 
 **Parameters:**
@@ -132,8 +141,11 @@ ___
 
 
 
-*Defined in [shape.ts:50](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L50)*
+*Defined in [shape.ts:64](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L64)*
 
+
+
+Cube of width 1
 
 
 
@@ -155,8 +167,11 @@ ___
 
 
 
-*Defined in [shape.ts:96](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L96)*
+*Defined in [shape.ts:112](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L112)*
 
+
+
+Cylinder of diameter 1 along the (0, 1, 0) axis
 
 
 
@@ -178,8 +193,11 @@ ___
 
 
 
-*Defined in [shape.ts:153](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L153)*
+*Defined in [shape.ts:178](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L178)*
 
+
+
+The difference of two [Shape](../interfaces/_shape_.shape.md)s
 
 
 **Parameters:**
@@ -210,8 +228,11 @@ ___
 
 
 
-*Defined in [shape.ts:75](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L75)*
+*Defined in [shape.ts:91](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L91)*
 
+
+
+Dodecahedron with circumscribed diameter of 1
 
 
 
@@ -233,8 +254,11 @@ ___
 
 
 
-*Defined in [shape.ts:186](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L186)*
+*Defined in [shape.ts:215](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L215)*
 
+
+
+Expand a [Shape](../interfaces/_shape_.shape.md) by distance `k`
 
 
 **Parameters:**
@@ -265,8 +289,11 @@ ___
 
 
 
-*Defined in [shape.ts:145](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L145)*
+*Defined in [shape.ts:169](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L169)*
 
+
+
+The intersection of two [Shape](../interfaces/_shape_.shape.md)s
 
 
 **Parameters:**
@@ -297,7 +324,7 @@ ___
 
 
 
-*Defined in [shape.ts:122](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L122)*
+*Defined in [shape.ts:142](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L142)*
 
 
 
@@ -323,20 +350,23 @@ ___
 
 ###  mirror
 
-► **mirror**(n: *[Expression](../interfaces/_expression_.expression.md)*, a: *[Shape](../interfaces/_shape_.shape.md)*): [Shape](../interfaces/_shape_.shape.md)
+► **mirror**(normal: *[Expression](../interfaces/_expression_.expression.md)*, a: *[Shape](../interfaces/_shape_.shape.md)*): [Shape](../interfaces/_shape_.shape.md)
 
 
 
 
-*Defined in [shape.ts:255](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L255)*
+*Defined in [shape.ts:292](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L292)*
 
+
+
+Mirror a [Shape](../interfaces/_shape_.shape.md)
 
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| n | [Expression](../interfaces/_expression_.expression.md)   |  - |
+| normal | [Expression](../interfaces/_expression_.expression.md)   |  - |
 | a | [Shape](../interfaces/_shape_.shape.md)   |  - |
 
 
@@ -360,8 +390,11 @@ ___
 
 
 
-*Defined in [shape.ts:320](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L320)*
+*Defined in [shape.ts:363](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L363)*
 
+
+
+[repeat](_shape_.md#repeat) where the repetition index can be used to generate the [Shape](../interfaces/_shape_.shape.md)
 
 
 **Parameters:**
@@ -393,8 +426,11 @@ ___
 
 
 
-*Defined in [shape.ts:61](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L61)*
+*Defined in [shape.ts:76](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L76)*
 
+
+
+Octohedron with circumscribed diameter of 1
 
 
 
@@ -416,8 +452,11 @@ ___
 
 
 
-*Defined in [shape.ts:260](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L260)*
+*Defined in [shape.ts:298](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L298)*
 
+
+
+Offset a [Shape](../interfaces/_shape_.shape.md)
 
 
 **Parameters:**
@@ -448,8 +487,11 @@ ___
 
 
 
-*Defined in [shape.ts:28](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L28)*
+*Defined in [shape.ts:40](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L40)*
 
+
+
+Plane given a `normal` and `offset`
 
 
 **Parameters:**
@@ -480,8 +522,11 @@ ___
 
 
 
-*Defined in [shape.ts:132](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L132)*
+*Defined in [shape.ts:154](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L154)*
 
+
+
+Repeat a [Shape](../interfaces/_shape_.shape.md) with repetition factor `x`
 
 
 **Parameters:**
@@ -512,8 +557,11 @@ ___
 
 
 
-*Defined in [shape.ts:229](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L229)*
+*Defined in [shape.ts:265](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L265)*
 
+
+
+Rotate a [Shape](../interfaces/_shape_.shape.md) about an arbitrary axis
 
 
 **Parameters:**
@@ -545,8 +593,11 @@ ___
 
 
 
-*Defined in [shape.ts:208](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L208)*
+*Defined in [shape.ts:241](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L241)*
 
+
+
+Rotate a [Shape](../interfaces/_shape_.shape.md) about the x axis
 
 
 **Parameters:**
@@ -577,8 +628,11 @@ ___
 
 
 
-*Defined in [shape.ts:215](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L215)*
+*Defined in [shape.ts:249](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L249)*
 
+
+
+Rotate a [Shape](../interfaces/_shape_.shape.md) about the y axis
 
 
 **Parameters:**
@@ -609,8 +663,11 @@ ___
 
 
 
-*Defined in [shape.ts:222](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L222)*
+*Defined in [shape.ts:257](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L257)*
 
+
+
+Rotate a [Shape](../interfaces/_shape_.shape.md) about the z axis
 
 
 **Parameters:**
@@ -641,8 +698,11 @@ ___
 
 
 
-*Defined in [shape.ts:111](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L111)*
+*Defined in [shape.ts:130](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L130)*
 
+
+
+Scale a [Shape](../interfaces/_shape_.shape.md) by `x`
 
 
 **Parameters:**
@@ -673,8 +733,11 @@ ___
 
 
 
-*Defined in [shape.ts:7](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L7)*
+*Defined in [shape.ts:15](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L15)*
 
+
+
+Create a [Shape](../interfaces/_shape_.shape.md)
 
 
 **Parameters:**
@@ -704,8 +767,11 @@ ___
 
 
 
-*Defined in [shape.ts:281](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L281)*
+*Defined in [shape.ts:322](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L322)*
 
+
+
+A sierpinksi fractal
 
 
 **Parameters:**
@@ -736,8 +802,11 @@ ___
 
 
 
-*Defined in [shape.ts:365](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L365)*
+*Defined in [shape.ts:411](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L411)*
 
+
+
+Skull
 
 
 
@@ -759,8 +828,11 @@ ___
 
 
 
-*Defined in [shape.ts:264](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L264)*
+*Defined in [shape.ts:303](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L303)*
 
+
+
+A box with rounded corners
 
 
 **Parameters:**
@@ -791,8 +863,11 @@ ___
 
 
 
-*Defined in [shape.ts:181](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L181)*
+*Defined in [shape.ts:209](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L209)*
 
+
+
+Smooth difference
 
 
 **Parameters:**
@@ -824,8 +899,11 @@ ___
 
 
 
-*Defined in [shape.ts:176](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L176)*
+*Defined in [shape.ts:203](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L203)*
 
+
+
+Smooth intersection
 
 
 **Parameters:**
@@ -857,8 +935,11 @@ ___
 
 
 
-*Defined in [shape.ts:171](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L171)*
+*Defined in [shape.ts:197](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L197)*
 
+
+
+Smooth union
 
 
 **Parameters:**
@@ -890,8 +971,11 @@ ___
 
 
 
-*Defined in [shape.ts:23](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L23)*
+*Defined in [shape.ts:34](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L34)*
 
+
+
+Sphere of diameter 1
 
 
 
@@ -913,8 +997,11 @@ ___
 
 
 
-*Defined in [shape.ts:118](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L118)*
+*Defined in [shape.ts:138](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L138)*
 
+
+
+Variable radius sphere with radius calculcated using `x`
 
 
 **Parameters:**
@@ -944,8 +1031,11 @@ ___
 
 
 
-*Defined in [shape.ts:127](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L127)*
+*Defined in [shape.ts:148](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L148)*
 
+
+
+Stretch a [Shape](../interfaces/_shape_.shape.md)
 
 
 **Parameters:**
@@ -976,8 +1066,11 @@ ___
 
 
 
-*Defined in [shape.ts:40](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L40)*
+*Defined in [shape.ts:53](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L53)*
 
+
+
+Tetrahedron with circumscribed diameter of 1
 
 
 
@@ -999,8 +1092,11 @@ ___
 
 
 
-*Defined in [shape.ts:101](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L101)*
+*Defined in [shape.ts:118](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L118)*
 
+
+
+Torus with outer diameter of 1, inner radius of 0.1
 
 
 
@@ -1022,8 +1118,11 @@ ___
 
 
 
-*Defined in [shape.ts:106](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L106)*
+*Defined in [shape.ts:124](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L124)*
 
+
+
+Move a [Shape](../interfaces/_shape_.shape.md) by `x`
 
 
 **Parameters:**
@@ -1054,8 +1153,11 @@ ___
 
 
 
-*Defined in [shape.ts:294](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L294)*
+*Defined in [shape.ts:336](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L336)*
 
+
+
+A recursive tree [Shape](../interfaces/_shape_.shape.md)
 
 
 **Parameters:**
@@ -1085,8 +1187,11 @@ ___
 
 
 
-*Defined in [shape.ts:347](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L347)*
+*Defined in [shape.ts:392](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L392)*
 
+
+
+Truchet
 
 
 
@@ -1108,8 +1213,11 @@ ___
 
 
 
-*Defined in [shape.ts:193](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L193)*
+*Defined in [shape.ts:223](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L223)*
 
+
+
+Twist a [Shape](../interfaces/_shape_.shape.md) along the x axis
 
 
 **Parameters:**
@@ -1140,8 +1248,11 @@ ___
 
 
 
-*Defined in [shape.ts:198](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L198)*
+*Defined in [shape.ts:229](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L229)*
 
+
+
+Twist a [Shape](../interfaces/_shape_.shape.md) along the y axis
 
 
 **Parameters:**
@@ -1172,8 +1283,11 @@ ___
 
 
 
-*Defined in [shape.ts:203](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L203)*
+*Defined in [shape.ts:235](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L235)*
 
+
+
+Twist a [Shape](../interfaces/_shape_.shape.md) along the z axis
 
 
 **Parameters:**
@@ -1204,8 +1318,11 @@ ___
 
 
 
-*Defined in [shape.ts:137](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L137)*
+*Defined in [shape.ts:160](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L160)*
 
+
+
+The union of two [Shape](../interfaces/_shape_.shape.md)s
 
 
 **Parameters:**
@@ -1236,8 +1353,11 @@ ___
 
 
 
-*Defined in [shape.ts:18](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L18)*
+*Defined in [shape.ts:28](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L28)*
 
+
+
+Unit distance function
 
 
 
@@ -1259,8 +1379,11 @@ ___
 
 
 
-*Defined in [shape.ts:246](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L246)*
+*Defined in [shape.ts:283](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L283)*
 
+
+
+Wrap a [Shape](../interfaces/_shape_.shape.md) about the x axis
 
 
 **Parameters:**
@@ -1290,8 +1413,11 @@ ___
 
 
 
-*Defined in [shape.ts:13](https://github.com/gribbet/rayity/blob/afedd20/src/shape.ts#L13)*
+*Defined in [shape.ts:22](https://github.com/gribbet/rayity/blob/7a9144e/src/shape.ts#L22)*
 
+
+
+Null distance function
 
 
 
