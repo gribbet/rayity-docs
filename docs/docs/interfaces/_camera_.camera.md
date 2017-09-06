@@ -12,8 +12,11 @@
 
 **●  aperture**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L8)*
+*Defined in [camera.ts:13](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L13)*
 
+
+
+Aperture size for depth of field
 
 
 
@@ -26,8 +29,11 @@ ___
 
 **●  eye**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:4](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L4)*
+*Defined in [camera.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L5)*
 
+
+
+Location of the camera
 
 
 
@@ -40,8 +46,11 @@ ___
 
 **●  fieldOfView**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L7)*
+*Defined in [camera.ts:11](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L11)*
 
+
+
+Field of view angle in radians
 
 
 
@@ -54,8 +63,11 @@ ___
 
 **●  focalFactor**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L9)*
+*Defined in [camera.ts:15](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L15)*
 
+
+
+Focal distance relative to target distance
 
 
 
@@ -68,8 +80,11 @@ ___
 
 **●  target**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L5)*
+*Defined in [camera.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L7)*
 
+
+
+Location of the target
 
 
 
@@ -82,8 +97,11 @@ ___
 
 **●  up**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [camera.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L6)*
+*Defined in [camera.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L9)*
 
+
+
+Up direction vector
 
 
 

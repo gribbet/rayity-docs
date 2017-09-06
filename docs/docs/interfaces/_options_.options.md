@@ -12,7 +12,7 @@
 
 **●  bounces**:  *`number`* 
 
-*Defined in [options.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L6)*
+*Defined in [options.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L8)*
 
 
 
@@ -26,7 +26,7 @@ ___
 
 **●  cheapNormals**:  *`boolean`* 
 
-*Defined in [options.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L9)*
+*Defined in [options.ts:11](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L11)*
 
 
 
@@ -40,7 +40,7 @@ ___
 
 **●  epsilon**:  *`number`* 
 
-*Defined in [options.ts:4](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L4)*
+*Defined in [options.ts:6](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L6)*
 
 
 
@@ -54,7 +54,7 @@ ___
 
 **●  gamma**:  *`number`* 
 
-*Defined in [options.ts:11](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L11)*
+*Defined in [options.ts:13](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L13)*
 
 
 
@@ -68,8 +68,11 @@ ___
 
 **●  height**:  *`number`* 
 
-*Defined in [options.ts:3](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L3)*
+*Defined in [options.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L5)*
 
+
+
+Render target height in pixels
 
 
 
@@ -82,7 +85,7 @@ ___
 
 **●  iterations**:  *`number`* 
 
-*Defined in [options.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L7)*
+*Defined in [options.ts:9](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L9)*
 
 
 
@@ -96,7 +99,7 @@ ___
 
 **●  memory**:  *`number`* 
 
-*Defined in [options.ts:8](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L8)*
+*Defined in [options.ts:10](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L10)*
 
 
 
@@ -110,7 +113,7 @@ ___
 
 **●  stepFactor**:  *`number`* 
 
-*Defined in [options.ts:10](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L10)*
+*Defined in [options.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L12)*
 
 
 
@@ -124,7 +127,7 @@ ___
 
 **●  steps**:  *`number`* 
 
-*Defined in [options.ts:5](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L5)*
+*Defined in [options.ts:7](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L7)*
 
 
 
@@ -138,8 +141,11 @@ ___
 
 **●  width**:  *`number`* 
 
-*Defined in [options.ts:2](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L2)*
+*Defined in [options.ts:3](https://github.com/gribbet/rayity/blob/4838bef/src/options.ts#L3)*
 
+
+
+Render target width in pixels
 
 
 

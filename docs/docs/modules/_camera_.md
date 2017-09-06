@@ -9,6 +9,8 @@
 ### Interfaces
 
 * [Camera](../interfaces/_camera_.camera.md)
+* [CameraOptions](../interfaces/_camera_.cameraoptions.md)
+* [OrbitOptions](../interfaces/_camera_.orbitoptions.md)
 
 
 ### Functions
@@ -24,12 +26,12 @@
 
 ###  camera
 
-► **camera**(values?: *`undefined`⎮object*): [Camera](../interfaces/_camera_.camera.md)
+► **camera**(values?: *[CameraOptions](../interfaces/_camera_.cameraoptions.md)*): [Camera](../interfaces/_camera_.camera.md)
 
 
 
 
-*Defined in [camera.ts:12](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L12)*
+*Defined in [camera.ts:45](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L45)*
 
 
 
@@ -37,7 +39,7 @@
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| values | `undefined`⎮object   |  - |
+| values | [CameraOptions](../interfaces/_camera_.cameraoptions.md)   |  - |
 
 
 
@@ -55,12 +57,12 @@ ___
 
 ###  orbit
 
-► **orbit**(values?: *`undefined`⎮object*): [Camera](../interfaces/_camera_.camera.md)
+► **orbit**(values?: *[OrbitOptions](../interfaces/_camera_.orbitoptions.md)*): [Camera](../interfaces/_camera_.camera.md)
 
 
 
 
-*Defined in [camera.ts:32](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L32)*
+*Defined in [camera.ts:88](https://github.com/gribbet/rayity/blob/4838bef/src/camera.ts#L88)*
 
 
 
@@ -68,7 +70,7 @@ ___
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| values | `undefined`⎮object   |  - |
+| values | [OrbitOptions](../interfaces/_camera_.orbitoptions.md)   |  - |
 
 
 

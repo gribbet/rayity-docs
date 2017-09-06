@@ -23,8 +23,11 @@
 
 
 
-*Defined in [build.ts:160](https://github.com/gribbet/rayity/blob/4838bef/src/build.ts#L160)*
+*Defined in [build.ts:161](https://github.com/gribbet/rayity/blob/4838bef/src/build.ts#L161)*
 
+
+
+Generate the GLSL shader for this scene
 
 
 **Parameters:**
