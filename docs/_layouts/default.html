@@ -11,9 +11,11 @@
 
 <body>
   <header>
-    <h1>{{ site.title | default: site.github.repository_name }}</h1>
-    <p>{{ site.description | default: site.github.project_tagline }}</p>
-    <ul>
+    <div class="project">
+      <h1>{{ site.title | default: site.github.repository_name }}</h1>
+      <p>{{ site.description | default: site.github.project_tagline }}</p>
+    </div>
+    <ul class="links">
       <li><a href="{{ '/#examples' | relative_url }}">Examples</a></li>
       <li><a href="{{ '/docs/'  | relative_url }}">Documentation</a></li>
       <li><a href="https://github.com/gribbet/rayity/">GitHub</a></li>
