@@ -73,9 +73,9 @@ ___
 
 
 
-Material's average scatter distance
+Material's average scatter distance. 0 to disable
 
-Default: 1e10
+Default: 0
 
 
 

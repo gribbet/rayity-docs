@@ -8,7 +8,7 @@
 ## Properties
 <a id="air"></a>
 
-###  air
+### «Optional» air
 
 **●  air**:  *[Material](_material_.material.md)* 
 
@@ -18,7 +18,7 @@
 
 Scene air [Material](_material_.material.md)
 
-Default: [material](../modules/_material_.md#material-1)()
+Default: [material](../modules/_material_.md#material-1)({ color: value(1, 1, 1) })
 
 
 
@@ -27,7 +27,7 @@ ___
 
 <a id="camera"></a>
 
-###  camera
+### «Optional» camera
 
 **●  camera**:  *[Camera](_camera_.camera.md)* 
 
@@ -46,7 +46,7 @@ ___
 
 <a id="models"></a>
 
-###  models
+### «Optional» models
 
 **●  models**:  *[Model](_model_.model.md)[]* 
 

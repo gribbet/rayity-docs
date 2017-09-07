@@ -5,7 +5,7 @@ module.exports = {
 	devtool: "source-map",
 	entry: "./index.ts",
 	output: {
-		path: path.resolve("docs/assets/js/"),
+		path: path.resolve("docs/"),
 		publicPath: "/assets/js/",
 		filename: "index.js"
 	},
@@ -24,7 +24,7 @@ module.exports = {
 	},
 	plugins: [
 		new TypedocWebpackPlugin({
-			out: "docs/docs",
+			out: "docs/",
 			tsconfig: "node_modules/rayity/tsconfig.json",
 			mode: "modules",
 			excludeNotExported: true,

@@ -63,7 +63,7 @@ ___
 
 ###  spotlight
 
-► **spotlight**(options: *[SpotlightOptions](../interfaces/_material_.spotlightoptions.md)*): [Material](../interfaces/_material_.material.md)
+► **spotlight**(options?: *[SpotlightOptions](../interfaces/_material_.spotlightoptions.md)*): [Material](../interfaces/_material_.material.md)
 
 
 
