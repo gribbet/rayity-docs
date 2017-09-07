@@ -1,3 +1,5 @@
+<example id="cornell" />
+
 # {{ site.title }}
 
 {{ site.description }}
@@ -5,8 +7,6 @@
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](docs/modules/_camera_).
-
-<example id="dodecahedron" />
 
 ```ts
 model({
