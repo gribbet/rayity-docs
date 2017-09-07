@@ -1,4 +1,4 @@
-<example id="cornell" />
+<example id="cornell"></example>
 
 # {{ site.title }}
 
