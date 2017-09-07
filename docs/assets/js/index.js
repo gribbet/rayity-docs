@@ -1025,7 +1025,13 @@ exports.viewer = viewer;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var rayity_1 = __webpack_require__(5);
-rayity_1.viewer(document.body, rayity_1.scene({
+function example(id, scene, options) {
+    var element = document.querySelector("example#" + id);
+    if (element === null)
+        return;
+    rayity_1.viewer(element, scene, options);
+}
+example("dodecahedron", rayity_1.scene({
     air: rayity_1.material({
         scatter: rayity_1.value(1000),
     }),

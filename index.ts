@@ -1,22 +1,29 @@
 import {
 	camera,
-	viewer,
 	dodecahedron,
 	material,
 	model,
+	Options,
 	options,
 	orbit,
 	plane,
 	scale,
+	Scene,
 	scene,
 	sphere,
 	spotlight,
 	value,
+	viewer,
 } from 'rayity';
 
+function example(id: string, scene: Scene, options: Options) {
+	const element = <HTMLElement>document.querySelector(`example#${id}`);
+	if (element === null)
+		return;
+	viewer(element, scene, options);
+}
 
-viewer(
-	document.body,
+example("dodecahedron",
 	scene({
 		air: material({
 			scatter: value(1000),

@@ -597,7 +597,7 @@ ___
 
 
 
-Rotate a [Shape](../interfaces/_shape_.shape.md) about the x axis
+Rotate a [Shape](../interfaces/_shape_.shape.md) about the x-axis
 
 
 **Parameters:**
@@ -632,7 +632,7 @@ ___
 
 
 
-Rotate a [Shape](../interfaces/_shape_.shape.md) about the y axis
+Rotate a [Shape](../interfaces/_shape_.shape.md) about the y-axis
 
 
 **Parameters:**
@@ -667,7 +667,7 @@ ___
 
 
 
-Rotate a [Shape](../interfaces/_shape_.shape.md) about the z axis
+Rotate a [Shape](../interfaces/_shape_.shape.md) about the z-axis
 
 
 **Parameters:**
@@ -1217,7 +1217,7 @@ ___
 
 
 
-Twist a [Shape](../interfaces/_shape_.shape.md) along the x axis
+Twist a [Shape](../interfaces/_shape_.shape.md) along the x-axis
 
 
 **Parameters:**
@@ -1252,7 +1252,7 @@ ___
 
 
 
-Twist a [Shape](../interfaces/_shape_.shape.md) along the y axis
+Twist a [Shape](../interfaces/_shape_.shape.md) along the y-axis
 
 
 **Parameters:**
@@ -1287,7 +1287,7 @@ ___
 
 
 
-Twist a [Shape](../interfaces/_shape_.shape.md) along the z axis
+Twist a [Shape](../interfaces/_shape_.shape.md) along the z-axis
 
 
 **Parameters:**
@@ -1383,7 +1383,7 @@ ___
 
 
 
-Wrap a [Shape](../interfaces/_shape_.shape.md) about the x axis
+Wrap a [Shape](../interfaces/_shape_.shape.md) about the x-axis
 
 
 **Parameters:**
