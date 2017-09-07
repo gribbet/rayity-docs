@@ -32,7 +32,7 @@ Module for creating a [Scene](../interfaces/_scene_.scene.md)
 
 
 
-*Defined in [scene.ts:42](https://github.com/gribbet/rayity/blob/7a9144e/src/scene.ts#L42)*
+*Defined in [scene.ts:42](https://github.com/gribbet/rayity/blob/3875d6f/src/scene.ts#L42)*
 
 
 

@@ -28,7 +28,7 @@
 
 
 
-*Defined in [viewer.ts:14](https://github.com/gribbet/rayity/blob/7a9144e/src/viewer.ts#L14)*
+*Defined in [viewer.ts:14](https://github.com/gribbet/rayity/blob/3875d6f/src/viewer.ts#L14)*
 
 
 

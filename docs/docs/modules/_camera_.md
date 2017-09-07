@@ -34,7 +34,7 @@ Module for creating a [Camera](../interfaces/_camera_.camera.md)
 
 
 
-*Defined in [camera.ts:63](https://github.com/gribbet/rayity/blob/7a9144e/src/camera.ts#L63)*
+*Defined in [camera.ts:63](https://github.com/gribbet/rayity/blob/3875d6f/src/camera.ts#L63)*
 
 
 
@@ -68,7 +68,7 @@ ___
 
 
 
-*Defined in [camera.ts:121](https://github.com/gribbet/rayity/blob/7a9144e/src/camera.ts#L121)*
+*Defined in [camera.ts:121](https://github.com/gribbet/rayity/blob/3875d6f/src/camera.ts#L121)*
 
 
 

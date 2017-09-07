@@ -12,7 +12,7 @@
 
 **●  ambient**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:98](https://github.com/gribbet/rayity/blob/7a9144e/src/material.ts#L98)*
+*Defined in [material.ts:98](https://github.com/gribbet/rayity/blob/3875d6f/src/material.ts#L98)*
 
 
 
@@ -31,7 +31,7 @@ ___
 
 **●  color**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:86](https://github.com/gribbet/rayity/blob/7a9144e/src/material.ts#L86)*
+*Defined in [material.ts:86](https://github.com/gribbet/rayity/blob/3875d6f/src/material.ts#L86)*
 
 
 
@@ -50,7 +50,7 @@ ___
 
 **●  direction**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:80](https://github.com/gribbet/rayity/blob/7a9144e/src/material.ts#L80)*
+*Defined in [material.ts:80](https://github.com/gribbet/rayity/blob/3875d6f/src/material.ts#L80)*
 
 
 
@@ -69,7 +69,7 @@ ___
 
 **●  spread**:  *[Expression](_expression_.expression.md)* 
 
-*Defined in [material.ts:92](https://github.com/gribbet/rayity/blob/7a9144e/src/material.ts#L92)*
+*Defined in [material.ts:92](https://github.com/gribbet/rayity/blob/3875d6f/src/material.ts#L92)*
 
 
 
