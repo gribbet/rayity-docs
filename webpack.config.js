@@ -6,8 +6,7 @@ module.exports = {
 	entry: "./index.ts",
 	output: {
 		path: path.resolve("docs/"),
-		publicPath: "/assets/js/",
-		filename: "index.js"
+		filename: "assets/js/index.js"
 	},
 	resolve: {
 		extensions: [".js", ".ts"]
