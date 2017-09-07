@@ -4,14 +4,14 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "webpack",
-		"start": "webpack-dev-server --content-base ./docs"
+		"start": "webpack-dev-server --content-base docs/ --watch-content-base"
 	},
 	"devDependencies": {
 		"source-map-loader": "^0.2.1",
 		"ts-loader": "^2.3.3",
 		"typedoc-plugin-markdown": "^1.0.8",
 		"typedoc-webpack-plugin": "^1.1.4",
-		"webpack": "^2.6.1",
+		"webpack": "^3.5.6",
 		"webpack-dev-server": "^2.4.5"
 	},
 	"dependencies": {

@@ -1,10 +1,13 @@
 const TypedocWebpackPlugin = require("typedoc-webpack-plugin");
+const path = require("path");
 
 module.exports = {
 	devtool: "source-map",
 	entry: "./index.ts",
 	output: {
-		filename: "docs/assets/js/index.js"
+		path: path.resolve("docs/assets/js/"),
+		publicPath: "/assets/js/",
+		filename: "index.js"
 	},
 	resolve: {
 		extensions: [".js", ".ts"]
