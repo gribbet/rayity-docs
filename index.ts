@@ -66,8 +66,6 @@ function example(id: string, scene: Scene, options: Options): Example | null {
 	element.addEventListener("click", () =>
 		example.start());
 
-	example.start();
-
 	return example;
 }
 
