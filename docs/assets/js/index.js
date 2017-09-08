@@ -826,10 +826,10 @@ example("cornell", lib_1.scene({
         })
     ]
 }), lib_1.options({
-    width: 256,
-    height: 256,
+    width: 512,
+    height: 512,
     epsilon: 1e-4,
-    steps: 30,
+    steps: 50,
     bounces: 10,
     iterations: 2,
     cheapNormals: true,

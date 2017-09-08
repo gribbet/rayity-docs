@@ -81,11 +81,11 @@ example {
 
     &#cornell {
         background-image: url("../media/example-cornell.png");
+        width: 512px;
+        min-height: 512px;
     }
 
     &#dodecahedron {
         background-image: url("../media/example-dodecahedron.png");
-        width: 256px;
-        min-height: 256px;
     }
 }
