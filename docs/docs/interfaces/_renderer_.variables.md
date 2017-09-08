@@ -15,7 +15,7 @@ Interface to store scene variables
 
 **●  clicked**:  *`boolean`* 
 
-*Defined in [renderer.ts:29](https://github.com/gribbet/rayity/blob/3875d6f/src/renderer.ts#L29)*
+*Defined in [renderer.ts:29](https://github.com/gribbet/rayity/blob/master/src/renderer.ts#L29)*
 
 
 
@@ -32,7 +32,7 @@ ___
 
 **●  mouse**:  *[Point](_renderer_.point.md)* 
 
-*Defined in [renderer.ts:31](https://github.com/gribbet/rayity/blob/3875d6f/src/renderer.ts#L31)*
+*Defined in [renderer.ts:31](https://github.com/gribbet/rayity/blob/master/src/renderer.ts#L31)*
 
 
 
@@ -49,7 +49,7 @@ ___
 
 **●  time**:  *`number`* 
 
-*Defined in [renderer.ts:27](https://github.com/gribbet/rayity/blob/3875d6f/src/renderer.ts#L27)*
+*Defined in [renderer.ts:27](https://github.com/gribbet/rayity/blob/master/src/renderer.ts#L27)*
 
 
 

@@ -256,9 +256,7 @@ function octohedron() {
 }
 exports.octohedron = octohedron;
 /**
- * Dodecahedron with circumscribed diameter of 1
- *
- * <example id="dodecahedron" />
+ * Dodecahedron with circumscribed diameter of 1. <example id="dodecahedron" />
  */
 function dodecahedron() {
     var phi = 0.5 * (1 + Math.sqrt(5));

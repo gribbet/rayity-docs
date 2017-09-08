@@ -32,7 +32,7 @@ Module for creating a [Model](../interfaces/_model_.model.md)
 
 
 
-*Defined in [model.ts:29](https://github.com/gribbet/rayity/blob/3875d6f/src/model.ts#L29)*
+*Defined in [model.ts:29](https://github.com/gribbet/rayity/blob/master/src/model.ts#L29)*
 
 
 

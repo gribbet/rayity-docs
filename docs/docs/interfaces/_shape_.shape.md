@@ -15,7 +15,7 @@ A distance function
 
 **●  call**:  *function* 
 
-*Defined in [shape.ts:11](https://github.com/gribbet/rayity/blob/3875d6f/src/shape.ts#L11)*
+*Defined in [shape.ts:11](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L11)*
 
 
 
@@ -25,7 +25,7 @@ Calculate the distance from `position`
 (position: *[Expression](_expression_.expression.md)*): [Expression](_expression_.expression.md)
 
 
-*Defined in [shape.ts:11](https://github.com/gribbet/rayity/blob/3875d6f/src/shape.ts#L11)*
+*Defined in [shape.ts:11](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L11)*
 
 
 

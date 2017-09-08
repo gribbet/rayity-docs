@@ -33,7 +33,7 @@ Functionality related to rendering a [Scene](../interfaces/_scene_.scene.md) in 
 
 
 
-*Defined in [renderer.ts:35](https://github.com/gribbet/rayity/blob/3875d6f/src/renderer.ts#L35)*
+*Defined in [renderer.ts:35](https://github.com/gribbet/rayity/blob/master/src/renderer.ts#L35)*
 
 
 

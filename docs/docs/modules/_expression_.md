@@ -37,7 +37,7 @@ Functionality related to managing GLSL expressions
 
 **Τ Code**:  *`string`* 
 
-*Defined in [expression.ts:6](https://github.com/gribbet/rayity/blob/3875d6f/src/expression.ts#L6)*
+*Defined in [expression.ts:6](https://github.com/gribbet/rayity/blob/master/src/expression.ts#L6)*
 
 
 
@@ -54,12 +54,12 @@ ___
 
 ###  expression
 
-► **expression**(body: *[Code](_expression_.md#code)*): [Expression](../interfaces/_expression_.expression.md)
+► **expression**(body: *[Code](_expression_.md#code)*, dependencies?: *[Expression](../interfaces/_expression_.expression.md)[]*): [Expression](../interfaces/_expression_.expression.md)
 
 
 
 
-*Defined in [expression.ts:23](https://github.com/gribbet/rayity/blob/3875d6f/src/expression.ts#L23)*
+*Defined in [expression.ts:23](https://github.com/gribbet/rayity/blob/master/src/expression.ts#L23)*
 
 
 
@@ -71,6 +71,7 @@ Create an [Expression](../interfaces/_expression_.expression.md)
 | Param | Type | Description |
 | ------ | ------ | ------ |
 | body | [Code](_expression_.md#code)   |  - |
+| dependencies | [Expression](../interfaces/_expression_.expression.md)[]   |  - |
 
 
 
@@ -93,7 +94,7 @@ ___
 
 
 
-*Defined in [expression.ts:71](https://github.com/gribbet/rayity/blob/3875d6f/src/expression.ts#L71)*
+*Defined in [expression.ts:72](https://github.com/gribbet/rayity/blob/master/src/expression.ts#L72)*
 
 
 
@@ -127,7 +128,7 @@ ___
 
 
 
-*Defined in [expression.ts:66](https://github.com/gribbet/rayity/blob/3875d6f/src/expression.ts#L66)*
+*Defined in [expression.ts:67](https://github.com/gribbet/rayity/blob/master/src/expression.ts#L67)*
 
 
 
@@ -161,7 +162,7 @@ ___
 
 
 
-*Defined in [expression.ts:53](https://github.com/gribbet/rayity/blob/3875d6f/src/expression.ts#L53)*
+*Defined in [expression.ts:54](https://github.com/gribbet/rayity/blob/master/src/expression.ts#L54)*
 
 
 
@@ -197,7 +198,7 @@ ___
 
 
 
-*Defined in [expression.ts:61](https://github.com/gribbet/rayity/blob/3875d6f/src/expression.ts#L61)*
+*Defined in [expression.ts:62](https://github.com/gribbet/rayity/blob/master/src/expression.ts#L62)*
 
 
 

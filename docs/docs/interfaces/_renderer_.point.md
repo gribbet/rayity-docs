@@ -15,7 +15,7 @@ A 2D point
 
 **●  x**:  *`number`* 
 
-*Defined in [renderer.ts:19](https://github.com/gribbet/rayity/blob/3875d6f/src/renderer.ts#L19)*
+*Defined in [renderer.ts:19](https://github.com/gribbet/rayity/blob/master/src/renderer.ts#L19)*
 
 
 
@@ -32,7 +32,7 @@ ___
 
 **●  y**:  *`number`* 
 
-*Defined in [renderer.ts:21](https://github.com/gribbet/rayity/blob/3875d6f/src/renderer.ts#L21)*
+*Defined in [renderer.ts:21](https://github.com/gribbet/rayity/blob/master/src/renderer.ts#L21)*
 
 
 

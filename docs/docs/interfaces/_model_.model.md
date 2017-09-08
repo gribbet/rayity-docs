@@ -15,7 +15,7 @@ An object in a [Scene](_scene_.scene.md)
 
 **●  id**:  *`number`* 
 
-*Defined in [model.ts:12](https://github.com/gribbet/rayity/blob/3875d6f/src/model.ts#L12)*
+*Defined in [model.ts:12](https://github.com/gribbet/rayity/blob/master/src/model.ts#L12)*
 
 
 
@@ -32,7 +32,7 @@ ___
 
 **●  material**:  *[Material](_material_.material.md)* 
 
-*Defined in [model.ts:16](https://github.com/gribbet/rayity/blob/3875d6f/src/model.ts#L16)*
+*Defined in [model.ts:16](https://github.com/gribbet/rayity/blob/master/src/model.ts#L16)*
 
 
 
@@ -49,7 +49,7 @@ ___
 
 **●  shape**:  *[Shape](_shape_.shape.md)* 
 
-*Defined in [model.ts:14](https://github.com/gribbet/rayity/blob/3875d6f/src/model.ts#L14)*
+*Defined in [model.ts:14](https://github.com/gribbet/rayity/blob/master/src/model.ts#L14)*
 
 
 
