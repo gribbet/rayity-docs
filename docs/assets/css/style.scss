@@ -80,9 +80,10 @@ example {
     }
 
     &#cornell {
-        background-image: url("../media/example-cornell.png");
+        float: right;
         width: 512px;
-        min-height: 512px;
+        min-height: 512px;     
+        background-image: url("../media/example-cornell.png");
     }
 
     &#dodecahedron {
