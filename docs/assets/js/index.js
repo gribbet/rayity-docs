@@ -198,7 +198,11 @@ function unit() {
     });
 }
 exports.unit = unit;
-/** Sphere of diameter 1 */
+/**
+ * <example id="sphere" />
+ *
+ * Sphere of diameter 1
+ */
 function sphere() {
     return shape(function (p) {
         return expression_1.expression("length(" + p + ") - 0.5");
@@ -233,7 +237,7 @@ function tetrahedron() {
 }
 exports.tetrahedron = tetrahedron;
 /**
- * <example id="tetrahedron" />
+ * <example id="cube" />
  *
  * Cube of width 1
  */
@@ -248,7 +252,11 @@ function cube() {
     ]);
 }
 exports.cube = cube;
-/** Octohedron with circumscribed diameter of 1 */
+/**
+ * <example id="octohedron" />
+ *
+ * Octohedron with circumscribed diameter of 1
+ */
 function octohedron() {
     var l = Math.sqrt(3);
     return unitShape([
@@ -287,14 +295,22 @@ function dodecahedron() {
     ]);
 }
 exports.dodecahedron = dodecahedron;
-/** Cylinder of diameter 1 along the (0, 1, 0) axis */
+/**
+ * <example id="cylinder" />
+ *
+ * Cylinder of diameter 1 along the (0, 1, 0) axis
+ */
 function cylinder() {
     return shape(function (p) {
         return expression_1.expression("length(" + p + ".xz) - 0.5");
     });
 }
 exports.cylinder = cylinder;
-/** Torus with outer diameter of 1, inner radius of 0.1 */
+/**
+ * <example id="torus" />
+ *
+ * Torus with outer diameter of 1, inner radius of 0.1
+ */
 function torus() {
     return shape(function (p) {
         return expression_1.expression("length(vec2(length(" + p + ".xz) - 0.5, " + p + ".y)) - 0.1");
@@ -334,7 +350,11 @@ function stretch(x, a) {
     });
 }
 exports.stretch = stretch;
-/** Repeat a [[Shape]] with repetition factor `x`  */
+/**
+ * <example id="repeat" />
+ *
+ * Repeat a [[Shape]] with repetition factor `x`
+ */
 function repeat(x, a) {
     return shape(function (p) {
         return a.call(expression_1.expression("mod(" + p + " - " + x + " * 0.5, " + x + ") - " + x + " * 0.5"));
@@ -480,15 +500,23 @@ function offset(x, a) {
     return shape(function (p) { return a.call(expression_1.expression(p + " - " + x(p))); });
 }
 exports.offset = offset;
-/** A box with rounded corners */
+/**
+ * <example id="smoothBox" />
+ *
+ * A box with rounded corners
+ */
 function smoothBox(dimensions, radius) {
     return mirror(expression_1.value(1, 0, 0), mirror(expression_1.value(0, 1, 0), mirror(expression_1.value(0, 0, 1), translate(expression_1.expression("0.5 * (" + dimensions + " - " + radius + ")"), max(scale(radius, sphere()))))));
 }
 exports.smoothBox = smoothBox;
-/** A box with aritrary dimensions */
+/**
+ * <example id="box" />
+ *
+ * A box with aritrary dimensions
+ */
 function box(dimensions) {
     return shape(function (p) {
-        var d = expression_1.expression("abs(" + p + ") - " + dimensions);
+        var d = expression_1.expression("abs(" + p + ") - " + dimensions + " * 0.5");
         return expression_1.expression("max(min(" + d + ".x, min(" + d + ".y, " + d + ".z)), 0.0) + length(max(" + d + ", 0.0))");
     });
 }
@@ -509,7 +537,11 @@ function sierpinski(iterations, a) {
     }, a);
 }
 exports.sierpinski = sierpinski;
-/** A recursive tree [[Shape]] */
+/**
+ * <example id="tree" />
+ *
+ * A recursive tree [[Shape]]
+ */
 function tree(iterations) {
     if (iterations === void 0) { iterations = 8; }
     var factor = 0.58;
@@ -564,7 +596,11 @@ function truchet() {
     });
 }
 exports.truchet = truchet;
-/** Skull */
+/**
+ * <example id="skull" />
+ *
+ * Skull
+ */
 function skull() {
     var skull = translate(expression_1.value(0, 0.05, 0), spheroid(function (p) { return expression_1.expression("0.333 * cos(cos(" + p + ".y * 11.0 + 0.55) * " + p + ".z * 2.3)"); }));
     var globeFront = translate(expression_1.value(0.1, 0.23, 0), scale(expression_1.value(0.574), sphere()));
@@ -602,7 +638,7 @@ function skull() {
     lowerJaw = smoothDifference(expression_1.value(0.02), lowerJaw, translate(expression_1.value(0.1, -0.32, 0), scale(expression_1.value(0.259), sphere())));
     lowerJaw = smoothDifference(expression_1.value(0.02), lowerJaw, translate(expression_1.value(0.1, -0.034, 0), scale(expression_1.value(0.721), sphere())));
     lowerJaw = smoothDifference(expression_1.value(0.02), lowerJaw, translate(expression_1.value(0, -0.4, 0), scale(expression_1.value(0.245), sphere())));
-    lowerJaw = smoothUnion(expression_1.value(0.13), lowerJaw, offset(function (p) { return expression_1.expression("0.04 - 0.03 * cos(" + p + ".y * 20.2), -0.23, 0.27 + sin(" + p + ".y) * 0.27"); }, box(expression_1.value(0.03, 0.12, 0.014))));
+    lowerJaw = smoothUnion(expression_1.value(0.13), lowerJaw, offset(function (p) { return expression_1.expression("0.04 - 0.03 * cos(" + p + ".y * 20.2), -0.23, 0.27 + sin(" + p + ".y) * 0.27"); }, box(expression_1.value(0.06, 0.24, 0.028))));
     lowerJaw = difference(lowerJaw, translate(expression_1.value(0, 0.153, 0.2), scale(expression_1.value(0.595), sphere())));
     lowerJaw = smoothUnion(expression_1.value(0.08), lowerJaw, translate(expression_1.value(0.19, -0.44, 0.05), scale(expression_1.value(0.035), sphere())));
     skull = smoothUnion(expression_1.value(0.02), skull, lowerJaw);
@@ -723,7 +759,7 @@ exports.options = options;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var lib_1 = __webpack_require__(6);
+var rayity_1 = __webpack_require__(6);
 function example(id, scene, options) {
     var element = document.querySelector("example#" + id);
     if (element === null)
@@ -733,7 +769,7 @@ function example(id, scene, options) {
         start: function () {
             if (view !== null)
                 return;
-            view = lib_1.viewer(element, scene, options);
+            view = rayity_1.viewer(element, scene, options);
         },
         stop: function () {
             if (view === null)
@@ -744,113 +780,124 @@ function example(id, scene, options) {
     element.addEventListener("click", function () {
         return example.start();
     });
+    example.start();
     return example;
 }
 function simpleExample(id, shape) {
-    return example(id, lib_1.scene({
-        camera: lib_1.orbit({
-            radius: lib_1.value(2.5),
-            offset: lib_1.value(-0.2, -0.5),
-            fieldOfView: lib_1.value(45 / 180 * Math.PI)
+    return example(id, rayity_1.scene({
+        camera: rayity_1.orbit({
+            radius: rayity_1.value(2.5),
+            offset: rayity_1.value(-0.2, -0.5),
+            fieldOfView: rayity_1.value(45 / 180 * Math.PI)
         }),
         models: [
-            lib_1.model({
-                shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
-                material: lib_1.spotlight({
-                    direction: lib_1.value(1, 1, 0),
-                    spread: lib_1.value(0.25),
-                    color: lib_1.value(0.25),
-                    ambient: lib_1.value(1)
+            rayity_1.model({
+                shape: rayity_1.scale(rayity_1.value(10000), rayity_1.sphere()),
+                material: rayity_1.spotlight({
+                    direction: rayity_1.value(1, 1, 0),
+                    spread: rayity_1.value(0.25),
+                    color: rayity_1.value(0.25),
+                    ambient: rayity_1.value(1)
                 })
             }),
-            lib_1.model({
+            rayity_1.model({
                 shape: shape,
-                material: lib_1.material({
-                    color: lib_1.value(0.8, 0.9, 0.1)
+                material: rayity_1.material({
+                    color: rayity_1.value(0.8, 0.9, 0.1)
                 })
             })
         ]
-    }), lib_1.options({
-        width: 256,
-        height: 256,
+    }), rayity_1.options({
+        width: 128,
+        height: 128,
         epsilon: 1e-4,
         steps: 100,
-        bounces: 4,
+        bounces: 5,
         iterations: 1,
         cheapNormals: false,
         gamma: 1.0
     }));
 }
-example("cornell", lib_1.scene({
-    camera: lib_1.orbit({
-        radius: lib_1.value(7),
-        fieldOfView: lib_1.value(45 / 180 * Math.PI),
+simpleExample("sphere", rayity_1.sphere());
+simpleExample("tetrahedron", rayity_1.scale(rayity_1.value(0.75), rayity_1.tetrahedron()));
+simpleExample("cube", rayity_1.cube());
+simpleExample("octohedron", rayity_1.octohedron());
+simpleExample("dodecahedron", rayity_1.dodecahedron());
+simpleExample("cylinder", rayity_1.scale(rayity_1.value(0.5), rayity_1.cylinder()));
+simpleExample("torus", rayity_1.torus());
+simpleExample("repeat", rayity_1.scale(rayity_1.value(0.25), rayity_1.repeat(rayity_1.value(2, 0, 2), rayity_1.cube())));
+simpleExample("smoothBox", rayity_1.smoothBox(rayity_1.value(1.5, 1, 1), rayity_1.value(0.25)));
+simpleExample("box", rayity_1.box(rayity_1.value(1, 0.5, 0.5)));
+simpleExample("sierpinski", rayity_1.scale(rayity_1.value(0.75), rayity_1.sierpinski()));
+simpleExample("tree", rayity_1.scale(rayity_1.value(0.5), rayity_1.tree()));
+simpleExample("skull", rayity_1.rotateZ(rayity_1.value(-Math.PI / 4), rayity_1.skull()));
+example("cornell", rayity_1.scene({
+    camera: rayity_1.orbit({
+        radius: rayity_1.value(7),
+        fieldOfView: rayity_1.value(45 / 180 * Math.PI),
     }),
     models: [
-        lib_1.model({
-            shape: lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(2))
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(0, -1, 0), rayity_1.value(2))
         }),
-        lib_1.model({
-            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(2))
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(2))
         }),
-        lib_1.model({
-            shape: lib_1.plane(lib_1.value(0, 0, 1), lib_1.value(2))
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(0, 0, 1), rayity_1.value(2))
         }),
-        lib_1.model({
-            shape: lib_1.plane(lib_1.value(1, 0, 0), lib_1.value(2)),
-            material: lib_1.material({
-                color: lib_1.value(1, 0.5, 0.5)
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(1, 0, 0), rayity_1.value(2)),
+            material: rayity_1.material({
+                color: rayity_1.value(1, 0.5, 0.5)
             })
         }),
-        lib_1.model({
-            shape: lib_1.plane(lib_1.value(-1, 0, 0), lib_1.value(2)),
-            material: lib_1.material({
-                color: lib_1.value(0.5, 1, 0.5)
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(-1, 0, 0), rayity_1.value(2)),
+            material: rayity_1.material({
+                color: rayity_1.value(0.5, 1, 0.5)
             })
         }),
-        lib_1.model({
-            shape: lib_1.translate(lib_1.value(0, 1.999, 0), lib_1.intersection(lib_1.scale(lib_1.value(2.5), lib_1.cylinder()), lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(0)))),
-            material: lib_1.material({
-                emissivity: lib_1.value(1, 0.80, 0.65)
+        rayity_1.model({
+            shape: rayity_1.translate(rayity_1.value(0, 1.999, 0), rayity_1.intersection(rayity_1.scale(rayity_1.value(2.5), rayity_1.cylinder()), rayity_1.plane(rayity_1.value(0, -1, 0), rayity_1.value(0)))),
+            material: rayity_1.material({
+                emissivity: rayity_1.value(1, 0.80, 0.65)
             })
         }),
-        lib_1.model({
-            shape: lib_1.translate(lib_1.value(-0.2, -1.5, 1), lib_1.sphere()),
-            material: lib_1.material({
-                color: lib_1.value(0.8, 0.8, 1),
-                smoothness: lib_1.value(0.9999),
-                transmittance: lib_1.value(0.9),
-                refraction: lib_1.value(1.4)
+        rayity_1.model({
+            shape: rayity_1.translate(rayity_1.value(-0.2, -1.5, 1), rayity_1.sphere()),
+            material: rayity_1.material({
+                color: rayity_1.value(0.8, 0.8, 1),
+                smoothness: rayity_1.value(0.9999),
+                transmittance: rayity_1.value(0.9),
+                refraction: rayity_1.value(1.4)
             })
         }),
-        lib_1.model({
-            shape: lib_1.translate(lib_1.value(1, -1, -0.5), lib_1.rotateY(lib_1.value(0.5), lib_1.smoothBox(lib_1.value(1, 2, 1), lib_1.value(0.6)))),
-            material: lib_1.material({
-                color: lib_1.value(1, 0.9, 0.8),
-                smoothness: lib_1.value(0.999)
+        rayity_1.model({
+            shape: rayity_1.translate(rayity_1.value(1, -1, -0.5), rayity_1.rotateY(rayity_1.value(0.5), rayity_1.smoothBox(rayity_1.value(1, 2, 1), rayity_1.value(0.6)))),
+            material: rayity_1.material({
+                color: rayity_1.value(1, 0.9, 0.8),
+                smoothness: rayity_1.value(0.999)
             })
         }),
-        lib_1.model({
-            shape: lib_1.translate(lib_1.value(-1, -1.5, -0.8), lib_1.rotateY(lib_1.value(0.8), lib_1.cube())),
-            material: lib_1.material({
-                color: lib_1.value(0.7)
+        rayity_1.model({
+            shape: rayity_1.translate(rayity_1.value(-1, -1.5, -0.8), rayity_1.rotateY(rayity_1.value(0.8), rayity_1.cube())),
+            material: rayity_1.material({
+                color: rayity_1.value(0.7)
             })
         })
     ]
-}), lib_1.options({
+}), rayity_1.options({
     width: 512,
     height: 512,
-    epsilon: 1e-4,
-    steps: 50,
+    epsilon: 1e-5,
+    steps: 100,
     bounces: 10,
+    stepFactor: 0.5,
     iterations: 2,
     cheapNormals: true,
     gamma: 3
 }));
-simpleExample("dodecahedron", lib_1.dodecahedron());
-simpleExample("cube", lib_1.cube());
-simpleExample("sierpinski", lib_1.scale(lib_1.value(0.75), lib_1.sierpinski()));
-simpleExample("tetrahedron", lib_1.scale(lib_1.value(0.75), lib_1.tetrahedron()));
 
 
 /***/ }),
@@ -1168,7 +1215,7 @@ function build(scene, options) {
         scene.air.scatter,
         scene.air.emissivity,
         scene.air.color
-    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance >= scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
+    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0 || distance > MAX_VALUE) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance >= scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
     console.log(code);
     return code;
 }
