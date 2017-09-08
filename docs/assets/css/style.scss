@@ -64,10 +64,9 @@ pre.highlight {
 }
 
 example {
-    display: block;
-    float: right;
-    width: 256px;
-    min-height: 256px;
+    display: inline-block;
+    width: 128px;
+    min-height: 128px;
     background-color: #f5f5f5;
     background-size: cover;
     cursor: pointer;
@@ -86,5 +85,7 @@ example {
 
     &#dodecahedron {
         background-image: url("../media/example-dodecahedron.png");
+        width: 256px;
+        min-height: 256px;Ï
     }
 }
