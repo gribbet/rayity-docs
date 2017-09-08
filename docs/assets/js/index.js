@@ -217,7 +217,11 @@ function unitShape(normals) {
         return intersection(s, plane(n, expression_1.value(-0.5)));
     }, unit());
 }
-/** Tetrahedron with circumscribed diameter of 1 */
+/**
+ * <example id="tetrahedron" />
+ *
+ * Tetrahedron with circumscribed diameter of 1
+ */
 function tetrahedron() {
     var l = Math.sqrt(3);
     return unitShape([
@@ -228,7 +232,11 @@ function tetrahedron() {
     ]);
 }
 exports.tetrahedron = tetrahedron;
-/** Cube of width 1 */
+/**
+ * <example id="tetrahedron" />
+ *
+ * Cube of width 1
+ */
 function cube() {
     return unitShape([
         expression_1.value(1, 0, 0),
@@ -485,7 +493,11 @@ function box(dimensions) {
     });
 }
 exports.box = box;
-/** A sierpinksi fractal */
+/**
+ * <example id="sierpinski" />
+ *
+ * A sierpinksi fractal
+ */
 function sierpinski(iterations, a) {
     if (iterations === void 0) { iterations = 5; }
     if (a === void 0) { a = tetrahedron(); }
@@ -759,10 +771,10 @@ function simpleExample(id, shape) {
             })
         ]
     }), lib_1.options({
-        width: 128,
-        height: 128,
+        width: 256,
+        height: 256,
         epsilon: 1e-4,
-        steps: 50,
+        steps: 100,
         bounces: 4,
         iterations: 1,
         cheapNormals: false,
@@ -837,6 +849,8 @@ example("cornell", lib_1.scene({
 }));
 simpleExample("dodecahedron", lib_1.dodecahedron());
 simpleExample("cube", lib_1.cube());
+simpleExample("sierpinski", lib_1.scale(lib_1.value(0.75), lib_1.sierpinski()));
+simpleExample("tetrahedron", lib_1.scale(lib_1.value(0.75), lib_1.tetrahedron()));
 
 
 /***/ }),
