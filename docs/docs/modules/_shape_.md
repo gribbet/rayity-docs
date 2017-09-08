@@ -72,7 +72,7 @@ Module for creating shape distance functions
 
 
 
-*Defined in [shape.ts:318](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L318)*
+*Defined in [shape.ts:326](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L326)*
 
 
 
@@ -106,7 +106,7 @@ ___
 
 
 
-*Defined in [shape.ts:386](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L386)*
+*Defined in [shape.ts:398](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L398)*
 
 
 
@@ -141,9 +141,11 @@ ___
 
 
 
-*Defined in [shape.ts:64](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L64)*
+*Defined in [shape.ts:72](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L72)*
 
 
+
+<example id="tetrahedron"></example>
 
 Cube of width 1
 
@@ -167,7 +169,7 @@ ___
 
 
 
-*Defined in [shape.ts:116](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L116)*
+*Defined in [shape.ts:124](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L124)*
 
 
 
@@ -193,7 +195,7 @@ ___
 
 
 
-*Defined in [shape.ts:182](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L182)*
+*Defined in [shape.ts:190](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L190)*
 
 
 
@@ -228,7 +230,7 @@ ___
 
 
 
-*Defined in [shape.ts:95](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L95)*
+*Defined in [shape.ts:103](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L103)*
 
 
 
@@ -256,7 +258,7 @@ ___
 
 
 
-*Defined in [shape.ts:219](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L219)*
+*Defined in [shape.ts:227](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L227)*
 
 
 
@@ -291,7 +293,7 @@ ___
 
 
 
-*Defined in [shape.ts:173](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L173)*
+*Defined in [shape.ts:181](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L181)*
 
 
 
@@ -326,7 +328,7 @@ ___
 
 
 
-*Defined in [shape.ts:146](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L146)*
+*Defined in [shape.ts:154](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L154)*
 
 
 
@@ -357,7 +359,7 @@ ___
 
 
 
-*Defined in [shape.ts:296](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L296)*
+*Defined in [shape.ts:304](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L304)*
 
 
 
@@ -392,7 +394,7 @@ ___
 
 
 
-*Defined in [shape.ts:367](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L367)*
+*Defined in [shape.ts:379](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L379)*
 
 
 
@@ -428,7 +430,7 @@ ___
 
 
 
-*Defined in [shape.ts:76](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L76)*
+*Defined in [shape.ts:84](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L84)*
 
 
 
@@ -454,7 +456,7 @@ ___
 
 
 
-*Defined in [shape.ts:302](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L302)*
+*Defined in [shape.ts:310](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L310)*
 
 
 
@@ -524,7 +526,7 @@ ___
 
 
 
-*Defined in [shape.ts:158](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L158)*
+*Defined in [shape.ts:166](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L166)*
 
 
 
@@ -559,7 +561,7 @@ ___
 
 
 
-*Defined in [shape.ts:269](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L269)*
+*Defined in [shape.ts:277](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L277)*
 
 
 
@@ -595,7 +597,7 @@ ___
 
 
 
-*Defined in [shape.ts:245](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L245)*
+*Defined in [shape.ts:253](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L253)*
 
 
 
@@ -630,7 +632,7 @@ ___
 
 
 
-*Defined in [shape.ts:253](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L253)*
+*Defined in [shape.ts:261](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L261)*
 
 
 
@@ -665,7 +667,7 @@ ___
 
 
 
-*Defined in [shape.ts:261](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L261)*
+*Defined in [shape.ts:269](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L269)*
 
 
 
@@ -700,7 +702,7 @@ ___
 
 
 
-*Defined in [shape.ts:134](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L134)*
+*Defined in [shape.ts:142](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L142)*
 
 
 
@@ -769,9 +771,11 @@ ___
 
 
 
-*Defined in [shape.ts:326](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L326)*
+*Defined in [shape.ts:338](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L338)*
 
 
+
+<example id="sierpinski"></example>
 
 A sierpinksi fractal
 
@@ -804,7 +808,7 @@ ___
 
 
 
-*Defined in [shape.ts:415](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L415)*
+*Defined in [shape.ts:427](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L427)*
 
 
 
@@ -830,7 +834,7 @@ ___
 
 
 
-*Defined in [shape.ts:307](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L307)*
+*Defined in [shape.ts:315](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L315)*
 
 
 
@@ -865,7 +869,7 @@ ___
 
 
 
-*Defined in [shape.ts:213](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L213)*
+*Defined in [shape.ts:221](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L221)*
 
 
 
@@ -901,7 +905,7 @@ ___
 
 
 
-*Defined in [shape.ts:207](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L207)*
+*Defined in [shape.ts:215](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L215)*
 
 
 
@@ -937,7 +941,7 @@ ___
 
 
 
-*Defined in [shape.ts:201](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L201)*
+*Defined in [shape.ts:209](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L209)*
 
 
 
@@ -999,7 +1003,7 @@ ___
 
 
 
-*Defined in [shape.ts:142](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L142)*
+*Defined in [shape.ts:150](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L150)*
 
 
 
@@ -1033,7 +1037,7 @@ ___
 
 
 
-*Defined in [shape.ts:152](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L152)*
+*Defined in [shape.ts:160](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L160)*
 
 
 
@@ -1068,9 +1072,11 @@ ___
 
 
 
-*Defined in [shape.ts:53](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L53)*
+*Defined in [shape.ts:57](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L57)*
 
 
+
+<example id="tetrahedron"></example>
 
 Tetrahedron with circumscribed diameter of 1
 
@@ -1094,7 +1100,7 @@ ___
 
 
 
-*Defined in [shape.ts:122](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L122)*
+*Defined in [shape.ts:130](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L130)*
 
 
 
@@ -1120,7 +1126,7 @@ ___
 
 
 
-*Defined in [shape.ts:128](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L128)*
+*Defined in [shape.ts:136](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L136)*
 
 
 
@@ -1155,7 +1161,7 @@ ___
 
 
 
-*Defined in [shape.ts:340](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L340)*
+*Defined in [shape.ts:352](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L352)*
 
 
 
@@ -1189,7 +1195,7 @@ ___
 
 
 
-*Defined in [shape.ts:396](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L396)*
+*Defined in [shape.ts:408](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L408)*
 
 
 
@@ -1215,7 +1221,7 @@ ___
 
 
 
-*Defined in [shape.ts:227](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L227)*
+*Defined in [shape.ts:235](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L235)*
 
 
 
@@ -1250,7 +1256,7 @@ ___
 
 
 
-*Defined in [shape.ts:233](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L233)*
+*Defined in [shape.ts:241](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L241)*
 
 
 
@@ -1285,7 +1291,7 @@ ___
 
 
 
-*Defined in [shape.ts:239](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L239)*
+*Defined in [shape.ts:247](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L247)*
 
 
 
@@ -1320,7 +1326,7 @@ ___
 
 
 
-*Defined in [shape.ts:164](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L164)*
+*Defined in [shape.ts:172](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L172)*
 
 
 
@@ -1381,7 +1387,7 @@ ___
 
 
 
-*Defined in [shape.ts:287](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L287)*
+*Defined in [shape.ts:295](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L295)*
 
 
 

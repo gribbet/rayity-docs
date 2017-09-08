@@ -79,14 +79,22 @@ example {
         background-image: url("../media/example-cube.png");
     }
 
+    &#dodecahedron {
+        background-image: url("../media/example-dodecahedron.png");
+    }
+
+    &#sierpinski {
+        background-image: url("../media/example-sierpinski.png");
+    }
+
+    &#tetrahedron {
+        background-image: url("../media/example-tetrahedron.png");
+    }
+
     &#cornell {
         float: right;
         width: 512px;
         min-height: 512px;     
         background-image: url("../media/example-cornell.png");
-    }
-
-    &#dodecahedron {
-        background-image: url("../media/example-dodecahedron.png");
     }
 }

@@ -1,18 +1,33 @@
 import {
 	camera,
+	cube,
+	cylinder,
+	difference,
 	dodecahedron,
+	expression,
+	intersection,
 	material,
 	model,
 	Options,
 	options,
 	orbit,
 	plane,
+	rotateY,
+	scale,
 	Scene,
 	scene,
+	Shape,
+	sierpinski,
+	skull,
+	smoothBox,
 	sphere,
 	spotlight,
-	value, rotateY, expression, scale, translate, Viewer, Shape,
-	viewer, cube, intersection, difference, stretch, skull, cylinder, smoothBox
+	stretch,
+	tetrahedron,
+	translate,
+	value,
+	viewer,
+	Viewer,
 } from 'rayity/lib';
 
 interface Example {
@@ -71,10 +86,10 @@ function simpleExample(id: string, shape: Shape) {
 			})
 		]
 	}), options({
-		width: 128,
-		height: 128,
+		width: 256,
+		height: 256,
 		epsilon: 1e-4,
-		steps: 50,
+		steps: 100,
 		bounces: 4,
 		iterations: 1,
 		cheapNormals: false,
@@ -158,4 +173,6 @@ example("cornell", scene({
 
 simpleExample("dodecahedron", dodecahedron());
 simpleExample("cube", cube());
+simpleExample("sierpinski", scale(value(0.75), sierpinski()));
+simpleExample("tetrahedron", scale(value(0.75), tetrahedron()));
 
