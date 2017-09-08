@@ -75,12 +75,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var context = [];
 /** Create an [[Expression]] */
-function expression(body) {
+function expression(body, dependencies) {
+    dependencies = dependencies || context;
     var id = generateId(body);
     var self = {
         id: id,
         body: body,
-        dependencies: context,
+        dependencies: dependencies,
         toString: function () {
             if (context.indexOf(self) === -1)
                 context.push(self);
@@ -105,12 +106,12 @@ function value(x, y, z) {
     if (x === void 0) { x = 0; }
     if (y === void 0) { y = x; }
     if (z === void 0) { z = y; }
-    return expression("vec3(" + x.toPrecision(10) + ", " + y.toPrecision(10) + ", " + z.toPrecision(10) + ")");
+    return expression("vec3(" + x.toPrecision(10) + ", " + y.toPrecision(10) + ", " + z.toPrecision(10) + ")", []);
 }
 exports.value = value;
 /** An expression which is equal to a named variable */
 function variable(name) {
-    return expression(name);
+    return expression(name, []);
 }
 exports.variable = variable;
 /** A random value */
@@ -714,46 +715,60 @@ var lib_1 = __webpack_require__(6);
 function example(id, scene, options) {
     var element = document.querySelector("example#" + id);
     if (element === null)
-        return;
-    lib_1.viewer(element, scene, options);
+        return null;
+    var view = null;
+    var example = {
+        start: function () {
+            if (view !== null)
+                return;
+            view = lib_1.viewer(element, scene, options);
+        },
+        stop: function () {
+            if (view === null)
+                return;
+            view.stop();
+        }
+    };
+    element.addEventListener("click", function () {
+        return example.start();
+    });
+    return example;
 }
-example("basic", lib_1.scene({
-    camera: lib_1.orbit({
-        radius: lib_1.value(2),
-        offset: lib_1.value(-0.2, -0.5)
-    }),
-    models: [
-        lib_1.model({
-            shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
-            material: lib_1.spotlight({
-                direction: lib_1.value(1, 1, 0),
-                color: lib_1.value(0.25),
-                ambient: lib_1.value(1)
-            })
+function simpleExample(id, shape) {
+    return example(id, lib_1.scene({
+        camera: lib_1.orbit({
+            radius: lib_1.value(2.5),
+            offset: lib_1.value(-0.2, -0.5),
+            fieldOfView: lib_1.value(45 / 180 * Math.PI)
         }),
-        lib_1.model({
-            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0.5)),
-            material: lib_1.material({
-                color: lib_1.value(0.5)
+        models: [
+            lib_1.model({
+                shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
+                material: lib_1.spotlight({
+                    direction: lib_1.value(1, 1, 0),
+                    spread: lib_1.value(0.25),
+                    color: lib_1.value(0.25),
+                    ambient: lib_1.value(1)
+                })
+            }),
+            lib_1.model({
+                shape: shape,
+                material: lib_1.material({
+                    color: lib_1.value(0.8, 0.9, 0.1)
+                })
             })
-        }),
-        lib_1.model({
-            shape: lib_1.cube(),
-            material: lib_1.material({
-                color: lib_1.value(0.8, 0.9, 0.0)
-            })
-        })
-    ]
-}), lib_1.options({
-    width: 256,
-    height: 256,
-    epsilon: 1e-4,
-    steps: 100,
-    bounces: 40,
-    iterations: 2,
-    cheapNormals: true,
-    gamma: 2
-}));
+        ]
+    }), lib_1.options({
+        width: 128,
+        height: 128,
+        epsilon: 1e-4,
+        steps: 50,
+        bounces: 4,
+        iterations: 1,
+        cheapNormals: false,
+        gamma: 1.0
+    }));
+}
 example("cornell", lib_1.scene({
     camera: lib_1.orbit({
         radius: lib_1.value(7),
@@ -820,42 +835,8 @@ example("cornell", lib_1.scene({
     cheapNormals: true,
     gamma: 3
 }));
-example("dodecahedron", lib_1.scene({
-    air: lib_1.material({
-        color: lib_1.value(1)
-    }),
-    camera: lib_1.orbit({
-        radius: lib_1.value(1.4),
-        aperture: lib_1.value(0.1),
-        target: lib_1.value(0),
-        offset: lib_1.value(0.25, -0.5),
-        fieldOfView: lib_1.value(60 / 180 * Math.PI)
-    }),
-    models: [
-        lib_1.model({
-            shape: lib_1.translate(lib_1.value(0, 70, 0), lib_1.scale(lib_1.value(100), lib_1.sphere())),
-            material: lib_1.material({
-                color: lib_1.value(0),
-                emissivity: lib_1.value(1)
-            })
-        }),
-        lib_1.model({
-            shape: lib_1.rotateY(lib_1.expression("0.1 * time"), lib_1.dodecahedron()),
-            material: lib_1.material({
-                color: lib_1.value(1.0)
-            })
-        })
-    ]
-}), lib_1.options({
-    width: 128,
-    height: 128,
-    epsilon: 1e-3,
-    steps: 80,
-    bounces: 2,
-    iterations: 4,
-    cheapNormals: true,
-    memory: 0.95,
-}));
+simpleExample("dodecahedron", lib_1.dodecahedron());
+simpleExample("cube", lib_1.cube());
 
 
 /***/ }),
@@ -981,15 +962,22 @@ function viewer(element, scene, options) {
         }
     });
     var start = 0;
+    var running = true;
     function loop(time) {
         if (!start)
             start = time;
         variables.time = (time - start) / 1000.0;
         renderer_.render();
-        requestAnimationFrame(loop);
+        if (running)
+            requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
-    return {};
+    return {
+        stop: function () {
+            running = false;
+            element.removeChild(canvas);
+        }
+    };
 }
 exports.viewer = viewer;
 
@@ -1166,7 +1154,7 @@ function build(scene, options) {
         scene.air.scatter,
         scene.air.emissivity,
         scene.air.color
-    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance > scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
+    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance >= scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
     console.log(code);
     return code;
 }
