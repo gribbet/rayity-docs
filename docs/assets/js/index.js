@@ -780,7 +780,6 @@ function example(id, scene, options) {
     element.addEventListener("click", function () {
         return example.start();
     });
-    example.start();
     return example;
 }
 function simpleExample(id, shape) {
