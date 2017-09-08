@@ -75,26 +75,65 @@ example {
         width: 100%;
     }
 
-    &#cube {
-        background-image: url("../media/example-cube.png");
-    }
-
-    &#dodecahedron {
-        background-image: url("../media/example-dodecahedron.png");
-    }
-
-    &#sierpinski {
-        background-image: url("../media/example-sierpinski.png");
-    }
+    &#sphere {
+		background-image: url("../media/example-sphere.png");
+	}
 
     &#tetrahedron {
-        background-image: url("../media/example-tetrahedron.png");
-    }
+		background-image: url("../media/example-tetrahedron.png");
+	}
 
-    &#cornell {
-        float: right;
-        width: 512px;
-        min-height: 512px;     
+    &#cube {
+		background-image: url("../media/example-cube.png");
+	}
+
+    &#octohedron {
+		background-image: url("../media/example-octohedron.png");
+	}
+
+    &#dodecahedron {
+		background-image: url("../media/example-dodecahedron.png");
+	}
+
+    &#cylinder {
+		background-image: url("../media/example-cylinder.png");
+	}
+
+    &#torus {
+		background-image: url("../media/example-torus.png");
+	}
+
+    &#repeat {
+		background-image: url("../media/example-repeat.png");
+	}
+
+    &#smoothBox {
+		background-image: url("../media/example-smoothBox.png");
+	}
+
+    &#box {
+		background-image: url("../media/example-box.png");
+	}
+
+    &#sierpinski {
+		background-image: url("../media/example-sierpinski.png");
+	}
+
+    &#tree {
+		background-image: url("../media/example-tree.png");
+	}
+
+    &#skull {
+		background-image: url("../media/example-skull.png");
+	}
+
+    &#cornell {  
         background-image: url("../media/example-cornell.png");
     }
+}
+
+example#cornell {
+    float: right;
+    width: 512px;
+    min-height: 512px;
 }

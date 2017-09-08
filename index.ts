@@ -1,4 +1,5 @@
 import {
+	box,
 	camera,
 	cube,
 	cylinder,
@@ -8,14 +9,19 @@ import {
 	intersection,
 	material,
 	model,
+	octohedron,
 	Options,
 	options,
 	orbit,
 	plane,
+	repeat,
+	rotateX,
 	rotateY,
+	rotateZ,
 	scale,
-	Scene,
 	scene,
+	Scene,
+	shape,
 	Shape,
 	sierpinski,
 	skull,
@@ -24,11 +30,13 @@ import {
 	spotlight,
 	stretch,
 	tetrahedron,
+	torus,
 	translate,
+	tree,
 	value,
 	viewer,
 	Viewer,
-} from 'rayity/lib';
+} from 'rayity';
 
 interface Example {
 	readonly start: () => void;
@@ -58,6 +66,8 @@ function example(id: string, scene: Scene, options: Options): Example | null {
 	element.addEventListener("click", () =>
 		example.start());
 
+	example.start();
+
 	return example;
 }
 
@@ -86,16 +96,30 @@ function simpleExample(id: string, shape: Shape) {
 			})
 		]
 	}), options({
-		width: 256,
-		height: 256,
+		width: 128,
+		height: 128,
 		epsilon: 1e-4,
 		steps: 100,
-		bounces: 4,
+		bounces: 5,
 		iterations: 1,
 		cheapNormals: false,
 		gamma: 1.0
 	}))
 }
+
+simpleExample("sphere", sphere());
+simpleExample("tetrahedron", scale(value(0.75), tetrahedron()));
+simpleExample("cube", cube());
+simpleExample("octohedron", octohedron());
+simpleExample("dodecahedron", dodecahedron());
+simpleExample("cylinder", scale(value(0.5), cylinder()));
+simpleExample("torus", torus());
+simpleExample("repeat", scale(value(0.25), repeat(value(2, 0, 2), cube())));
+simpleExample("smoothBox", smoothBox(value(1.5, 1, 1), value(0.25)));
+simpleExample("box", box(value(1, 0.5, 0.5)));
+simpleExample("sierpinski", scale(value(0.75), sierpinski()));
+simpleExample("tree", scale(value(0.5), tree()));
+simpleExample("skull", rotateZ(value(-Math.PI / 4), skull()));
 
 example("cornell", scene({
 	camera: orbit({
@@ -163,16 +187,11 @@ example("cornell", scene({
 }), options({
 	width: 512,
 	height: 512,
-	epsilon: 1e-4,
-	steps: 50,
+	epsilon: 1e-5,
+	steps: 100,
 	bounces: 10,
+	stepFactor: 0.5,
 	iterations: 2,
 	cheapNormals: true,
 	gamma: 3
 }));
-
-simpleExample("dodecahedron", dodecahedron());
-simpleExample("cube", cube());
-simpleExample("sierpinski", scale(value(0.75), sierpinski()));
-simpleExample("tetrahedron", scale(value(0.75), tetrahedron()));
-
