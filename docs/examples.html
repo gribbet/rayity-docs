@@ -4,12 +4,37 @@
 <head>
     <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="assets/css/style.css" />
     <meta name="viewport" content="width=device-width" />
+    <style>
+        example {
+            display: block;
+            width: 256px;
+            height: 256px;
+            background-color: #f5f5f5;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        example#cube {
+            background-image: url("/assets/media/example-cube.png");
+        }
+
+        example#cornell {
+            background-image: url("/assets/media/example-cornell.png");
+        }
+
+        example#dodecahedron {
+            background-image: url("/assets/media/example-dodecahedron.png");
+        }
+
+        example canvas {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <example id="basic"></example>
+    <example id="cube"></example>
     <example id="cornell"></example>
     <example id="dodecahedron"></example>
 

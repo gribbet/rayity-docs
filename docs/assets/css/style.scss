@@ -65,5 +65,23 @@ pre.highlight {
 example {
     display: block;
     width: 256px;
-    float: right;
+    background-color: #f5f5f5;
+    background-size: cover;
+    cursor: pointer;
+
+    canvas {
+        width: 100%;
+    }
+
+    &#cube {
+        background-image: url("/assets/media/example-cube.png");
+    }
+
+    &#cornell {
+        background-image: url("/assets/media/example-cornell.png");
+    }
+
+    &#dodecahedron {
+        background-image: url("/assets/media/example-dodecahedron.png");
+    }
 }
