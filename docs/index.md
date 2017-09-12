@@ -14,7 +14,7 @@ Scenes and geometry are defined using TypeScript (or JavaScript). Rayity then us
 
 ## Examples
 
-### Simple example
+### Simple Example
 
 <example id="simple"></example>
 

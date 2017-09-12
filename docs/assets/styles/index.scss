@@ -69,8 +69,8 @@ header {
 }
 
 pre.highlight {
-    display: inline-block;
     padding: 10px;
+    margin-bottom: 20px;
 }
 
 example {
@@ -145,12 +145,24 @@ example {
         background-image: url("../media/example-simple.png");
         width: 256px;
         height: 256px;
+        margin-bottom: 20px;
+        float: right;
+
+        @include mobile {
+            float: none;
+        }
     }
 
     &#truchet {
         background-image: url("../media/example-truchet.png");
         width: 256px;
         height: 256px;
+        margin-bottom: 20px;
+        float: right;
+
+        @include mobile {
+            float: none;
+        }
     }
 }
 
