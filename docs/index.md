@@ -56,7 +56,7 @@ viewer(document.getElementById("canvas"),
 ```ts
 scene({
 	camera: orbit({
-		radius: value(1.5),
+		radius: value(1.54),
 		offset: value(-0.2, -0.5),
 	}),
 	models: [
