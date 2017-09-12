@@ -924,7 +924,7 @@ example("simple", rayity_1.scene({
 }), rayity_1.options({}));
 example("truchet", rayity_1.scene({
     camera: rayity_1.orbit({
-        radius: rayity_1.value(1.54),
+        radius: rayity_1.value(1.5),
         offset: rayity_1.value(-0.2, -0.5),
     }),
     models: [
@@ -933,7 +933,7 @@ example("truchet", rayity_1.scene({
             material: rayity_1.spotlight({
                 direction: rayity_1.value(1, 1, 0),
                 spread: rayity_1.value(0.1),
-                color: rayity_1.value(0.25)
+                color: rayity_1.value(0.5)
             })
         }),
         rayity_1.model({

@@ -6,7 +6,7 @@ module.exports = {
 	entry: "./index.ts",
 	output: {
 		path: path.resolve("docs/"),
-		filename: "assets/js/index.js"
+		filename: "assets/scripts/index.js"
 	},
 	resolve: {
 		extensions: [".js", ".ts"]
