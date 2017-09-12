@@ -225,7 +225,7 @@ example("simple", scene({
 
 example("truchet", scene({
 	camera: orbit({
-		radius: value(1.54),
+		radius: value(1.5),
 		offset: value(-0.2, -0.5),
 	}),
 	models: [
@@ -234,7 +234,7 @@ example("truchet", scene({
 			material: spotlight({
 				direction: value(1, 1, 0),
 				spread: value(0.1),
-				color: value(0.25)
+				color: value(0.5)
 			})
 		}),
 		model({
