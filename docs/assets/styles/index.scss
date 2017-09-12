@@ -75,8 +75,8 @@ pre.highlight {
 
 example {
     display: inline-block;
-    width: 128px;
-    min-height: 128px;
+    width: 256px;
+    min-height: 256px;
     background-color: white;
     background-size: cover;
     background-position: center;
@@ -86,89 +86,52 @@ example {
         width: 100%;
     }
 
-    &#sphere {
-		background-image: url("../media/example-sphere.png");
-	}
-
-    &#tetrahedron {
-		background-image: url("../media/example-tetrahedron.png");
-	}
-
-    &#cube {
-		background-image: url("../media/example-cube.png");
-	}
-
-    &#octohedron {
-		background-image: url("../media/example-octohedron.png");
-	}
-
-    &#dodecahedron {
-		background-image: url("../media/example-dodecahedron.png");
-	}
-
-    &#cylinder {
-		background-image: url("../media/example-cylinder.png");
-	}
-
-    &#torus {
-		background-image: url("../media/example-torus.png");
-	}
-
-    &#repeat {
-		background-image: url("../media/example-repeat.png");
-	}
-
-    &#smoothBox {
-		background-image: url("../media/example-smoothBox.png");
-	}
-
-    &#box {
-		background-image: url("../media/example-box.png");
-	}
-
-    &#sierpinski {
-		background-image: url("../media/example-sierpinski.png");
-	}
-
-    &#tree {
-		background-image: url("../media/example-tree.png");
-	}
-
-    &#skull {
-		background-image: url("../media/example-skull.png");
-	}
-
-    &#cornell {  
-        background-image: url("../media/example-cornell.png");
+    @mixin example($id) {
+        &#{$id} {
+            background-image: url("../media/example-" + id + ".png");
+        }
     }
 
-    &#simple {
-        background-image: url("../media/example-simple.png");
+    @mixin simple-example($id) {
+        @include example(id);
+        width: 128px;
+        height: 128px;
+    }
+
+    @mixin standard-example($id) {
+        @include example(id);
         width: 320px;
         height: 320px;
         margin-bottom: 20px;
         float: right;
-        padding: 20px;
+        border: 20px solid white;
+        border-right: none;
+        border-top: none;
 
         @include mobile {
             float: none;
-            padding: 0;
+            border: none;
         }
     }
 
-    &#truchet {
-        background-image: url("../media/example-truchet.png");
-        width: 320px;
-        height: 320px;
-        margin-bottom: 20px;
-        float: right;
-        padding: 20px;
+    @include example("cornell");
 
-        @include mobile {
-            float: none;
-            padding: 0;
-        }
-    }
+    @include simple-example("sphere");
+    @include simple-example("tetrahedron");
+    @include simple-example("cube");
+    @include simple-example("octohedron");
+    @include simple-example("dodecahedron");
+    @include simple-example("cylinder");
+    @include simple-example("torus");
+    @include simple-example("repeat");
+    @include simple-example("smoothBox");
+    @include simple-example("box");
+    @include simple-example("sierpinski");
+    @include simple-example("tree");
+    @include simple-example("skull");
+
+    @include standard-example("simple");
+    @include standard-example("truchet");
 }
 
 example#cornell {
