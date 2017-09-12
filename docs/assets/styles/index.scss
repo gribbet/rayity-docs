@@ -88,29 +88,35 @@ example {
 
     @mixin example($id) {
         &#{$id} {
-            background-image: url("../media/example-" + id + ".png");
+            background-image: url("../media/example-" + $id + ".png");
         }
     }
 
     @mixin simple-example($id) {
         @include example(id);
-        width: 128px;
-        height: 128px;
+
+        &#{$id} {
+            width: 128px;
+            height: 128px;
+        }
     }
 
     @mixin standard-example($id) {
         @include example(id);
-        width: 320px;
-        height: 320px;
-        margin-bottom: 20px;
-        float: right;
-        border: 20px solid white;
-        border-right: none;
-        border-top: none;
 
-        @include mobile {
-            float: none;
-            border: none;
+        &#{$id} {
+            width: 320px;
+            height: 320px;
+            margin-bottom: 20px;
+            float: right;
+            border: 20px solid white;
+            border-right: none;
+            border-top: none;
+
+            @include mobile {
+                float: none;
+                border: none;
+            }
         }
     }
 
