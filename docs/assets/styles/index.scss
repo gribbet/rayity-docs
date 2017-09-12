@@ -77,8 +77,9 @@ example {
     display: inline-block;
     width: 128px;
     min-height: 128px;
-    background-color: #f5f5f5;
+    background-color: white;
     background-size: cover;
+    background-position: center;
     cursor: pointer;
 
     canvas {
@@ -143,34 +144,39 @@ example {
 
     &#simple {
         background-image: url("../media/example-simple.png");
-        width: 256px;
-        height: 256px;
+        width: 320px;
+        height: 320px;
         margin-bottom: 20px;
         float: right;
+        padding: 20px;
 
         @include mobile {
             float: none;
+            padding: 0;
         }
     }
 
     &#truchet {
         background-image: url("../media/example-truchet.png");
-        width: 256px;
-        height: 256px;
+        width: 320px;
+        height: 320px;
         margin-bottom: 20px;
         float: right;
+        padding: 20px;
 
         @include mobile {
             float: none;
+            padding: 0;
         }
     }
 }
 
 example#cornell {
     float: right;
-    width: 512px;
-    min-height: 512px;
+    width: 460px;
+    min-height: 460px;
     margin-left: 20px;
+    margin-bottom: 20px;
 
     @include mobile {
         display: none;
