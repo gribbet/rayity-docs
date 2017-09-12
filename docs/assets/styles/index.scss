@@ -87,24 +87,24 @@ example {
     }
 
     @mixin example($id) {
-        &#{$id} {
+        ##{$id} {
             background-image: url("../media/example-" + $id + ".png");
         }
     }
 
     @mixin simple-example($id) {
-        @include example(id);
+        @include example($id);
 
-        &#{$id} {
+        ##{$id} {
             width: 128px;
             height: 128px;
         }
     }
 
     @mixin standard-example($id) {
-        @include example(id);
+        @include example($id);
 
-        &#{$id} {
+        ##{$id} {
             width: 320px;
             height: 320px;
             margin-bottom: 20px;
