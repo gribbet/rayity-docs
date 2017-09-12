@@ -699,7 +699,7 @@ function camera(values) {
         eye: values.eye || expression_1.value(0, 0, -1),
         target: values.target || expression_1.value(0, 0, 0),
         up: values.up || expression_1.value(0, 1, 0),
-        fieldOfView: values.fieldOfView || expression_1.value(90 / 180.0 * Math.PI),
+        fieldOfView: values.fieldOfView || expression_1.value(45 / 180.0 * Math.PI),
         aperture: values.aperture || expression_1.value(0.0),
         focalFactor: values.focalFactor || expression_1.value(1.0)
     };
@@ -787,7 +787,6 @@ function simpleExample(id, shape) {
         camera: rayity_1.orbit({
             radius: rayity_1.value(2.5),
             offset: rayity_1.value(-0.2, -0.5),
-            fieldOfView: rayity_1.value(45 / 180 * Math.PI)
         }),
         models: [
             rayity_1.model({
@@ -897,6 +896,58 @@ example("cornell", rayity_1.scene({
     cheapNormals: true,
     gamma: 3
 }));
+example("simple", rayity_1.scene({
+    camera: rayity_1.orbit({
+        radius: rayity_1.value(4),
+        offset: rayity_1.value(0.25, -0.5)
+    }),
+    models: [
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(0.5)),
+            material: rayity_1.material({
+                color: rayity_1.value(0.6)
+            })
+        }),
+        rayity_1.model({
+            shape: rayity_1.translate(rayity_1.value(-0.5, 0, 0), rayity_1.sphere()),
+            material: rayity_1.material({
+                color: rayity_1.value(0.8, 0.4, 0.8)
+            })
+        }),
+        rayity_1.model({
+            shape: rayity_1.translate(rayity_1.value(0.5, 0, 0), rayity_1.cube()),
+            material: rayity_1.material({
+                color: rayity_1.value(0.8, 0.9, 0.1)
+            })
+        })
+    ]
+}), rayity_1.options({}));
+example("truchet", rayity_1.scene({
+    camera: rayity_1.orbit({
+        radius: rayity_1.value(1.54),
+        offset: rayity_1.value(-0.2, -0.5),
+    }),
+    models: [
+        rayity_1.model({
+            shape: rayity_1.scale(rayity_1.value(10000), rayity_1.sphere()),
+            material: rayity_1.spotlight({
+                direction: rayity_1.value(1, 1, 0),
+                spread: rayity_1.value(0.1),
+                color: rayity_1.value(0.25)
+            })
+        }),
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(0)),
+        }),
+        rayity_1.model({
+            shape: rayity_1.intersection(rayity_1.sphere(), rayity_1.scale(rayity_1.value(0.1), rayity_1.truchet())),
+            material: rayity_1.material({
+                color: rayity_1.value(0.9, 0.8, 0.4),
+                smoothness: rayity_1.value(0.999)
+            })
+        })
+    ]
+}), rayity_1.options({}));
 
 
 /***/ }),
@@ -1214,7 +1265,7 @@ function build(scene, options) {
         scene.air.scatter,
         scene.air.emissivity,
         scene.air.color
-    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0 || distance > MAX_VALUE) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance >= scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
+    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance >= scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
     console.log(code);
     return code;
 }
