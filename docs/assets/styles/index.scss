@@ -5,9 +5,9 @@
 
 @mixin mobile {
     @media (max-width: 960px) {
-      @content;
+        @content;
     }
-  }
+}
 
 body {
     box-sizing: border-box;
@@ -26,6 +26,10 @@ table {
     th, td {
         padding-right: 20px;
     }
+}
+
+hr {
+    clear: both;
 }
 
 header {
