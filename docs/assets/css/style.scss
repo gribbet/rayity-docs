@@ -3,9 +3,17 @@
 
 @import "{{ site.theme }}";
 
+@mixin mobile {
+    @media (max-width: 960px) {
+      @content;
+    }
+  }
+
 body {
-    width: 960px;
+    box-sizing: border-box;
+    max-width: 960px;
     margin: auto;
+    padding: 20px;
 }
 
 h1, h2, h3, ul, table {
@@ -38,7 +46,6 @@ header {
 
     .links {
         display: flex;
-        list-style-type: none;
 
         a {
             display: inline-block;
@@ -148,4 +155,8 @@ example#cornell {
     width: 512px;
     min-height: 512px;
     margin-left: 20px;
+
+    @include mobile {
+        display: none;
+    }
 }
