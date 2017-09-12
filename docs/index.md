@@ -10,6 +10,8 @@ Scenes and geometry are defined using TypeScript (or JavaScript). Rayity then us
 
 [Documentation](docs/)
 
+***
+
 ## Examples
 
 ### Simple example

@@ -59,7 +59,6 @@ header {
 
 pre.highlight {
     display: inline-block;
-    margin: 0 -10px 10px -10px;
     padding: 10px;
 }
 
@@ -133,10 +132,14 @@ example {
 
     &#simple {
         background-image: url("../media/example-simple.png");
+        width: 256px;
+        height: 256px;
     }
 
     &#truchet {
         background-image: url("../media/example-truchet.png");
+        width: 256px;
+        height: 256px;
     }
 }
 
@@ -144,4 +147,5 @@ example#cornell {
     float: right;
     width: 512px;
     min-height: 512px;
+    margin-left: 20px;
 }
