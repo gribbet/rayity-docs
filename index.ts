@@ -33,6 +33,7 @@ import {
 	torus,
 	translate,
 	tree,
+	truchet,
 	value,
 	viewer,
 	Viewer,
@@ -43,7 +44,7 @@ interface Example {
 	readonly stop: () => void;
 }
 
-function example(id: string, scene: Scene, options: Options): Example | null {
+function example(id: string, scene: Scene, options?: Options): Example | null {
 	const element = <HTMLElement>document.querySelector(`example#${id}`);
 	if (element === null)
 		return null;
@@ -74,7 +75,6 @@ function simpleExample(id: string, shape: Shape) {
 		camera: orbit({
 			radius: value(2.5),
 			offset: value(-0.2, -0.5),
-			fieldOfView: value(45 / 180 * Math.PI)
 		}),
 		models: [
 			model({
@@ -193,3 +193,62 @@ example("cornell", scene({
 	cheapNormals: true,
 	gamma: 3
 }));
+
+example("simple", scene({
+	camera: orbit({
+		radius: value(4),
+		offset: value(0.25, -0.5)
+	}),
+	models: [
+		model({
+			shape: plane(value(0, 1, 0), value(0.5)),
+			material: material({
+				color: value(0.6)
+			})
+		}),
+		model({
+			shape: translate(value(-0.5, 0, 0),
+				sphere()),
+			material: material({
+				color: value(0.8, 0.4, 0.8)
+			})
+		}),
+		model({
+			shape: translate(value(0.5, 0, 0),
+				cube()),
+			material: material({
+				color: value(0.8, 0.9, 0.1)
+			})
+		})
+	]
+}), options({}));
+
+example("truchet", scene({
+	camera: orbit({
+		radius: value(1.54),
+		offset: value(-0.2, -0.5),
+	}),
+	models: [
+		model({
+			shape: scale(value(10000), sphere()),
+			material: spotlight({
+				direction: value(1, 1, 0),
+				spread: value(0.1),
+				color: value(0.25)
+			})
+		}),
+		model({
+			shape: plane(value(0, 1, 0), value(0)),
+		}),
+		model({
+			shape: intersection(
+				sphere(),
+				scale(value(0.1),
+					truchet())),
+			material: material({
+				color: value(0.9, 0.8, 0.4),
+				smoothness: value(0.999)
+			})
+		})
+	]
+}), options({}));
