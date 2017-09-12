@@ -922,6 +922,39 @@ example("simple", rayity_1.scene({
         })
     ]
 }), rayity_1.options({}));
+example("skulls", rayity_1.scene({
+    camera: rayity_1.orbit({
+        radius: rayity_1.value(3),
+        offset: rayity_1.value(-0.3, -0.4),
+        aperture: rayity_1.value(0.1)
+    }),
+    models: [
+        rayity_1.model({
+            shape: rayity_1.scale(rayity_1.value(10000), rayity_1.sphere()),
+            material: rayity_1.spotlight({
+                direction: rayity_1.value(1, 1, 0),
+                spread: rayity_1.value(0.1),
+                color: rayity_1.value(0.5),
+                ambient: rayity_1.value(1)
+            })
+        }),
+        rayity_1.model({
+            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(0.3)),
+            material: rayity_1.material({
+                color: rayity_1.value(0.5)
+            })
+        }),
+        rayity_1.model({
+            shape: rayity_1.repeat(rayity_1.value(1.3, 0, 1), rayity_1.rotateZ(rayity_1.value(-Math.PI / 4), rayity_1.skull())),
+            material: rayity_1.material({
+                smoothness: rayity_1.value(0.99),
+                color: rayity_1.value(0.4, 0.6, 0.8)
+            })
+        })
+    ]
+}), rayity_1.options({
+    stepFactor: 0.6
+}));
 example("truchet", rayity_1.scene({
     camera: rayity_1.orbit({
         radius: rayity_1.value(1.5),
