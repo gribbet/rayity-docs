@@ -762,7 +762,7 @@ function simpleExample(id, shape) {
         }),
         models: [
             lib_1.model({
-                shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
+                shape: lib_1.scale(lib_1.value(1000), lib_1.sphere()),
                 material: lib_1.spotlight({
                     direction: lib_1.value(1, 1, 0),
                     spread: lib_1.value(0.25),
@@ -894,52 +894,6 @@ example("simple", lib_1.scene({
         })
     ]
 }));
-example("scattering", lib_1.scene({
-    camera: lib_1.orbit({
-        radius: lib_1.value(4),
-        offset: lib_1.value(0.25, -0.5)
-    }),
-    models: [
-        lib_1.model({
-            shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
-            material: lib_1.spotlight({
-                direction: lib_1.value(1, 1, 0),
-                spread: lib_1.value(0.02),
-                color: lib_1.value(0.5),
-                ambient: lib_1.value(1)
-            })
-        }),
-        lib_1.model({
-            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0.5)),
-            material: lib_1.material({
-                color: lib_1.value(0.6)
-            })
-        }),
-        lib_1.model({
-            shape: lib_1.translate(lib_1.value(-0.25, 0, -0.25), lib_1.intersection(lib_1.difference(lib_1.scale(lib_1.value(2), lib_1.cylinder()), lib_1.scale(lib_1.value(1.5), lib_1.cylinder())), lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(-0.1)))),
-            material: lib_1.material({
-                color: lib_1.value(0.8, 0.9, 0.1),
-                scatter: lib_1.value(0.1),
-                transmittance: lib_1.value(0.9),
-                smoothness: lib_1.value(1),
-                refraction: lib_1.value(1.5)
-            })
-        }),
-        lib_1.model({
-            shape: lib_1.translate(lib_1.value(0.25, 0, 0.25), lib_1.intersection(lib_1.difference(lib_1.scale(lib_1.value(2), lib_1.cylinder()), lib_1.scale(lib_1.value(1.5), lib_1.cylinder())), lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(-0.1)))),
-            material: lib_1.material({
-                color: lib_1.value(0.8, 0.9, 0.1),
-                transmittance: lib_1.value(0.9),
-                smoothness: lib_1.value(1),
-                refraction: lib_1.value(1.5)
-            })
-        })
-    ]
-}), lib_1.options({
-    bounces: 40,
-    steps: 200,
-    stepFactor: 0.5
-}));
 example("skulls", lib_1.scene({
     camera: lib_1.orbit({
         radius: lib_1.value(3),
@@ -948,7 +902,7 @@ example("skulls", lib_1.scene({
     }),
     models: [
         lib_1.model({
-            shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
+            shape: lib_1.scale(lib_1.value(1000), lib_1.sphere()),
             material: lib_1.spotlight({
                 direction: lib_1.value(1, 1, 0),
                 spread: lib_1.value(0.1),
