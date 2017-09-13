@@ -2315,8 +2315,8 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
 "rayity@https://github.com/gribbet/rayity":
-  version "0.3.0"
-  resolved "https://github.com/gribbet/rayity#121936c7c89ae0334904adb5bde8614d0221fa13"
+  version "0.3.1"
+  resolved "https://github.com/gribbet/rayity#d7d67e69126c61a0ab1e55e39eb432e16e95a275"
 
 rc@^1.1.7:
   version "1.2.1"

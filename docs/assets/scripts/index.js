@@ -553,7 +553,7 @@ function tree(iterations, shape) {
         return smoothBox(expression_1.value(width, length, width), expression_1.value(width));
     else {
         shape = tree(iterations - 1, shape);
-        return smoothUnion(expression_1.value(smoothFactor * Math.pow(factor, iterations)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle), width + length / 2 * (1 + factor / 2 * Math.cos(angle)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle / 180 * Math.PI), shape)))))));
+        return smoothUnion(expression_1.value(smoothFactor * Math.pow(factor, iterations)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle), width + length / 2 * (1 + factor / 2 * Math.cos(angle)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle), shape)))))));
     }
 }
 exports.tree = tree;
@@ -1268,7 +1268,7 @@ function renderer(gl, scene, options, variables) {
     var screenShader = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(screenShader, build_1.build(scene, options));
     gl.compileShader(screenShader);
-    if (gl.getShaderInfoLog(screenShader))
+    if (!gl.getShaderParameter(screenShader, gl.COMPILE_STATUS))
         throw gl.getShaderInfoLog(screenShader);
     var program = gl.createProgram();
     gl.attachShader(program, vertexShader);
