@@ -23,7 +23,7 @@
 
 ###  viewer
 
-► **viewer**(element: *`HTMLElement`*, scene: *[Scene](../interfaces/_scene_.scene.md)*, options?: *[Options](../interfaces/_options_.options.md)*): [Viewer](../interfaces/_viewer_.viewer.md)
+► **viewer**(element: *`HTMLElement`*, scene: *[Scene](../interfaces/_scene_.scene.md)*, options: *[Options](../interfaces/_options_.options.md)*): [Viewer](../interfaces/_viewer_.viewer.md)
 
 
 

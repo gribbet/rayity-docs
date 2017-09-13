@@ -5,6 +5,7 @@ import {
 	cylinder,
 	difference,
 	dodecahedron,
+	expand,
 	expression,
 	intersection,
 	material,
@@ -26,6 +27,7 @@ import {
 	sierpinski,
 	skull,
 	smoothBox,
+	smoothIntersection,
 	smoothUnion,
 	sphere,
 	spotlight,
@@ -35,17 +37,19 @@ import {
 	translate,
 	tree,
 	truchet,
+	twistX,
+	union,
 	value,
 	viewer,
 	Viewer,
-} from 'rayity';
+} from 'rayity/lib';
 
 interface Example {
 	readonly start: () => void;
 	readonly stop: () => void;
 }
 
-function example(id: string, scene: Scene, options?: Options): Example | null {
+function example(id: string, scene: Scene, _options?: Options): Example | null {
 	const element = <HTMLElement>document.querySelector(`example#${id}`);
 	if (element === null)
 		return null;
@@ -55,8 +59,8 @@ function example(id: string, scene: Scene, options?: Options): Example | null {
 	let example: Example = {
 		start: () => {
 			if (view !== null)
-				return
-			view = viewer(element, scene, options);
+				return;
+			view = viewer(element, scene, _options || options({}));
 		},
 		stop: () => {
 			if (view === null)
@@ -222,7 +226,64 @@ example("simple", scene({
 			})
 		})
 	]
-}), options({}));
+}));
+
+example("scattering", scene({
+	camera: orbit({
+		radius: value(4),
+		offset: value(0.25, -0.5)
+	}),
+	models: [
+		model({
+			shape: scale(value(10000), sphere()),
+			material: spotlight({
+				direction: value(1, 1, 0),
+				spread: value(0.02),
+				color: value(0.5),
+				ambient: value(1)
+			})
+		}),
+		model({
+			shape: plane(value(0, 1, 0), value(0.5)),
+			material: material({
+				color: value(0.6)
+			})
+		}),
+		model({
+			shape: translate(value(-0.25, 0, -0.25),
+				intersection(
+					difference(
+						scale(value(2), cylinder()),
+						scale(value(1.5), cylinder())),
+					plane(value(0, 1, 0), value(-0.1)))),
+			material: material({
+				color: value(0.8, 0.9, 0.1),
+				scatter: value(0.1),
+				transmittance: value(0.9),
+				smoothness: value(1),
+				refraction: value(1.5)
+			})
+		}),
+		model({
+			shape: translate(value(0.25, 0, 0.25),
+				intersection(
+					difference(
+						scale(value(2), cylinder()),
+						scale(value(1.5), cylinder())),
+					plane(value(0, 1, 0), value(-0.1)))),
+			material: material({
+				color: value(0.8, 0.9, 0.1),
+				transmittance: value(0.9),
+				smoothness: value(1),
+				refraction: value(1.5)
+			})
+		})
+	]
+}), options({
+	bounces: 40,
+	steps: 200,
+	stepFactor: 0.5
+}));
 
 example("skulls", scene({
 	camera: orbit({
@@ -287,4 +348,115 @@ example("truchet", scene({
 			})
 		})
 	]
-}), options({}));
+}));
+
+example("kitchen", scene({
+	camera: orbit({
+		radius: value(4),
+		aperture: value(0.05),
+		target: value(0, 0.6, 0),
+		offset: value(0.2, -0.3)
+	}),
+	models: [
+		model({
+			shape: scale(value(1000),
+				sphere()),
+			material: spotlight({
+				color: value(0.3),
+				direction: value(1, 1, 1),
+				spread: value(0.01),
+				ambient: value(0.5, 0.6, 0.9)
+			})
+		}),
+		model({
+			shape: plane(value(0, 1, 0), value(0.002)),
+			material: material({
+				color: value(0.3, 0.35, 0.35),
+				smoothness: value(0),
+			})
+		}),
+		model({
+			shape: plane(value(0, 1, 0), value(0.001)),
+			material: material({
+				transmittance: value(0.9),
+				smoothness: value(0.95),
+				refraction: value(1.1)
+			})
+		}),
+		model({
+			shape: plane(value(0, 0, 1), value(1.58)),
+			material: material({
+				color: value(0.2)
+			})
+		}),
+		model({
+			shape: translate(value(0, 0.5, -2),
+				union(
+					repeat(value(2, 2, 0),
+						smoothBox(value(1.95, 0.95, 0.9), value(0.1))),
+					translate(value(1, 1, 0),
+						repeat(value(2, 2, 0),
+							smoothBox(value(1.95, 0.95, 0.9), value(0.1)))))),
+			material: material({
+				smoothness: value(0.5),
+				color: value(0.8)
+			})
+		}),
+		model({
+			shape: translate(value(0.8, 0.5, 0.25),
+				difference(
+					smoothUnion(value(0.1),
+						intersection(
+							cylinder(),
+							cube()),
+						translate(value(0, 0, 0.5),
+							rotateZ(value(Math.PI / 2),
+								scale(value(0.5),
+									torus())))),
+					intersection(
+						scale(value(0.9),
+							cylinder()),
+						plane(value(0, -1, 0), value(-0.4))))),
+			material: material({
+				color: value(1, 1, 0.99),
+				smoothness: value(1),
+				transmittance: value(0.9),
+				refraction: value(1.5),
+				scatter: value(0.01)
+			})
+		}),
+		model({
+			shape: translate(value(-0.8, 0.5, 0),
+				difference(
+					intersection(
+						smoothUnion(value(0.6),
+							translate(value(0, 0.5, 0),
+								scale(value(0.9),
+									sphere())),
+							translate(value(0, -0.25, 0),
+								scale(value(0.5),
+									cube()))),
+						plane(value(0, 1, 0), value(-0.5))),
+					intersection(
+						expand(value(-0.04),
+							smoothUnion(value(0.6),
+								translate(value(0, 0.5, 0),
+									scale(value(0.9),
+										sphere())),
+								translate(value(0, -0.25, 0),
+									scale(value(0.5),
+										cube())))),
+						plane(value(0, -1, 0), value(-0.4))))),
+			material: material({
+				transmittance: value(0.7),
+				smoothness: value(1),
+				refraction: value(1.9),
+				color: value(0.97, 0.97, 0.99),
+				scatter: value(1)
+			})
+		})
+	]
+}), options({
+	bounces: 40,
+}));
+
