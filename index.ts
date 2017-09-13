@@ -10,11 +10,13 @@ import {
 	intersection,
 	material,
 	model,
+	modulate,
 	octohedron,
 	Options,
 	options,
 	orbit,
 	plane,
+	random,
 	repeat,
 	rotateX,
 	rotateY,
@@ -320,6 +322,75 @@ example("skulls", scene({
 	stepFactor: 0.6
 }));
 
+example("modulation", scene({
+	air: material({
+		scatter: value(1000),
+	}),
+	camera: orbit({
+		fieldOfView: value(60 / 180 * Math.PI),
+		radius: value(10),
+		aperture: value(0.1),
+		target: value(0, 0, 0),
+		offset: value(0.25, -0.5)
+	}),
+	models: [
+		model({
+			shape: scale(value(1000),
+				sphere()),
+			material: spotlight({
+				color: value(1),
+				direction: value(1, 1, 1),
+				spread: value(0.1),
+				ambient: value(0)
+			})
+		}),
+		model({
+			shape: intersection(
+				modulate(value(1, 100, 1), index =>
+					smoothBox(expression(`0.9, 1.0 + 5.0 * ${random(index)}.x, 0.9`), value(0.5))),
+				plane(value(0, 1, 0), value(-6))),
+			material: material({
+				color: value(0.7, 0.6, 0.5),
+				smoothness: value(0.99)
+			})
+		})
+	]
+}), options({
+	steps: 200,
+	bounces: 6,
+	cheapNormals: true,
+}));
+
+example("truchet", scene({
+	camera: orbit({
+		radius: value(1.5),
+		offset: value(-0.2, -0.5),
+	}),
+	models: [
+		model({
+			shape: scale(value(10000), sphere()),
+			material: spotlight({
+				direction: value(1, 1, 0),
+				spread: value(0.1),
+				color: value(0.5)
+			})
+		}),
+		model({
+			shape: plane(value(0, 1, 0), value(0)),
+		}),
+		model({
+			shape: intersection(
+				sphere(),
+				scale(value(0.1),
+					truchet())),
+			material: material({
+				color: value(0.9, 0.8, 0.4),
+				smoothness: value(0.999)
+			})
+		})
+	]
+}));
+
 example("recursive", scene({
 	air: material({
 		scatter: value(1000)
@@ -353,36 +424,6 @@ example("recursive", scene({
 	width: 512,
 	height: 512,
 	epsilon: 1e-5
-}));
-
-example("truchet", scene({
-	camera: orbit({
-		radius: value(1.5),
-		offset: value(-0.2, -0.5),
-	}),
-	models: [
-		model({
-			shape: scale(value(10000), sphere()),
-			material: spotlight({
-				direction: value(1, 1, 0),
-				spread: value(0.1),
-				color: value(0.5)
-			})
-		}),
-		model({
-			shape: plane(value(0, 1, 0), value(0)),
-		}),
-		model({
-			shape: intersection(
-				sphere(),
-				scale(value(0.1),
-					truchet())),
-			material: material({
-				color: value(0.9, 0.8, 0.4),
-				smoothness: value(0.999)
-			})
-		})
-	]
 }));
 
 example("kitchen", scene({

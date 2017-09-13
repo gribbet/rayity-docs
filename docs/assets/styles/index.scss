@@ -137,9 +137,10 @@ example {
     @include simple-example("skull");
 
     @include standard-example("simple");
-    @include standard-example("skulls");
+    @include standard-example("modulation");
     @include standard-example("truchet");
     @include standard-example("recursive");
+    @include standard-example("skulls");
     @include standard-example("kitchen");
 }
 
