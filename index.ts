@@ -415,7 +415,7 @@ example("recursive", scene({
 			})
 		}),
 		model({
-			shape: tree(6),
+			shape: tree(),
 			material: material({
 				color: value(0.7, 0.5, 0.4)
 			})
