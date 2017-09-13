@@ -1058,7 +1058,7 @@ example("recursive", lib_1.scene({
             })
         }),
         lib_1.model({
-            shape: lib_1.tree(6),
+            shape: lib_1.tree(),
             material: lib_1.material({
                 color: lib_1.value(0.7, 0.5, 0.4)
             })
@@ -1106,7 +1106,7 @@ example("kitchen", lib_1.scene({
             })
         }),
         lib_1.model({
-            shape: lib_1.translate(lib_1.value(0, 0.5, -2), lib_1.union(lib_1.repeat(lib_1.value(2, 2, 0), lib_1.smoothBox(lib_1.value(1.95, 0.95, 0.9), lib_1.value(0.1))), lib_1.translate(lib_1.value(1, 1, 0), lib_1.repeat(lib_1.value(2, 2, 0), lib_1.smoothBox(lib_1.value(1.95, 0.95, 0.9), lib_1.value(0.1)))))),
+            shape: lib_1.translate(lib_1.value(0, 0.5, -2), lib_1.union(lib_1.repeat(lib_1.value(2, 2, 0), lib_1.smoothBox(lib_1.value(1.95, 0.95, 0.9), lib_1.value(0.05))), lib_1.translate(lib_1.value(1, 1, 0), lib_1.repeat(lib_1.value(2, 2, 0), lib_1.smoothBox(lib_1.value(1.95, 0.95, 0.9), lib_1.value(0.05)))))),
             material: lib_1.material({
                 smoothness: lib_1.value(0.5),
                 color: lib_1.value(0.8)
