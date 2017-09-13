@@ -133,34 +133,6 @@ scene({
 <example id="recursive"></example>
 
 ```ts
-function tree(iterations: number = 6, shape?: Shape): Shape {
-	let factor = 0.58;
-	let length = 1.2;
-	let width = 0.1;
-	let angle = 50 / 180 * Math.PI;
-	let smoothFactor = 0.15;
-
-	if (iterations <= 1)
-		return smoothBox(value(width, length, width), value(width));
-	else {
-		shape = tree(iterations - 1, shape);
-		return smoothUnion(
-			value(smoothFactor * Math.pow(factor, iterations)),
-			shape,
-			mirror(value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)),
-				mirror(value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)),
-					translate(
-						value(
-							length * factor / 2 * Math.sin(angle),
-							width + length / 2 * (1 + factor / 2 * Math.cos(angle)),
-							0),
-						scale(value(factor),
-							rotateY(value(0.1),
-								rotateZ(value(angle / 180 * Math.PI),
-									shape)))))));
-	}
-}
-
 scene({
 	camera: orbit({
 		radius: value(4),
@@ -192,6 +164,34 @@ scene({
 		})
 	]
 })
+
+function tree(iterations: number = 6, shape?: Shape): Shape {
+	let factor = 0.58;
+	let length = 1.2;
+	let width = 0.1;
+	let angle = 50 / 180 * Math.PI;
+	let smoothFactor = 0.15;
+
+	if (iterations <= 1)
+		return smoothBox(value(width, length, width), value(width));
+	else {
+		shape = tree(iterations - 1, shape);
+		return smoothUnion(
+			value(smoothFactor * Math.pow(factor, iterations)),
+			shape,
+			mirror(value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)),
+				mirror(value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)),
+					translate(
+						value(
+							length * factor / 2 * Math.sin(angle),
+							width + length / 2 * (1 + factor / 2 * Math.cos(angle)),
+							0),
+						scale(value(factor),
+							rotateY(value(0.1),
+								rotateZ(value(angle / 180 * Math.PI),
+									shape)))))));
+	}
+}
 ```
 
 ### Skulls
