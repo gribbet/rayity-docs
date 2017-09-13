@@ -542,17 +542,18 @@ exports.sierpinski = sierpinski;
  *
  * A recursive tree [[Shape]]
  */
-function tree(iterations) {
-    if (iterations === void 0) { iterations = 7; }
+function tree(iterations, shape) {
+    if (iterations === void 0) { iterations = 8; }
     var factor = 0.58;
     var length = 1.2;
     var width = 0.1;
     var angle = 50;
-    return Array(iterations)
-        .fill(0)
-        .reduce(function (shape, _, i) {
-        return smoothUnion(expression_1.value(0.15 * Math.pow(factor, i)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle / 180 * Math.PI), length / 2 * (1 + factor / 2 * Math.cos(angle / 180 * Math.PI)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle / 180 * Math.PI), shape)))))));
-    }, smoothBox(expression_1.value(width, length, width), expression_1.value(width / 2)));
+    if (iterations <= 1)
+        return smoothBox(expression_1.value(width, length, width), expression_1.value(width));
+    else {
+        shape = tree(iterations - 1, shape);
+        return smoothUnion(expression_1.value(0.15 * Math.pow(factor, iterations)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle / 180 * Math.PI), width + length / 2 * (1 + factor / 2 * Math.cos(angle / 180 * Math.PI)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle / 180 * Math.PI), shape)))))));
+    }
 }
 exports.tree = tree;
 /** [[repeat]] where the repetition index can be used to generate the [[Shape]] */
@@ -1035,12 +1036,9 @@ example("truchet", lib_1.scene({
     ]
 }));
 example("recursive", lib_1.scene({
-    air: lib_1.material({
-        scatter: lib_1.value(1000)
-    }),
     camera: lib_1.orbit({
         radius: lib_1.value(4),
-        target: lib_1.value(0, 0.3, 0),
+        target: lib_1.value(0, 0.4, 0),
         offset: lib_1.value(-0.2, -0.2),
     }),
     models: [
@@ -1049,23 +1047,25 @@ example("recursive", lib_1.scene({
             material: lib_1.spotlight({
                 direction: lib_1.value(1, 1, 0),
                 spread: lib_1.value(0.05),
+                ambient: lib_1.value(1),
                 color: lib_1.value(0.5)
             })
         }),
         lib_1.model({
-            shape: lib_1.translate(lib_1.value(0, -0.5, 0), lib_1.cube())
+            shape: lib_1.translate(lib_1.value(0, -0.5, 0), lib_1.cube()),
+            material: lib_1.material({
+                color: lib_1.value(0.7)
+            })
         }),
         lib_1.model({
-            shape: lib_1.tree(),
+            shape: lib_1.tree(6),
             material: lib_1.material({
-                color: lib_1.value(0.7, 0.9, 0.7)
+                color: lib_1.value(0.7, 0.5, 0.4)
             })
         })
     ]
 }), lib_1.options({
-    width: 512,
-    height: 512,
-    epsilon: 1e-5
+    gamma: 1
 }));
 example("kitchen", lib_1.scene({
     camera: lib_1.orbit({
