@@ -320,6 +320,41 @@ example("skulls", scene({
 	stepFactor: 0.6
 }));
 
+example("recursive", scene({
+	air: material({
+		scatter: value(1000)
+	}),
+	camera: orbit({
+		radius: value(4),
+		target: value(0, 0.3, 0),
+		offset: value(-0.2, -0.2),
+	}),
+	models: [
+		model({
+			shape: scale(value(1000), sphere()),
+			material: spotlight({
+				direction: value(1, 1, 0),
+				spread: value(0.05),
+				color: value(0.5)
+			})
+		}),
+		model({
+			shape: translate(value(0, -0.5, 0),
+				cube())
+		}),
+		model({
+			shape: tree(),
+			material: material({
+				color: value(0.7, 0.9, 0.7)
+			})
+		})
+	]
+}), options({
+	width: 512,
+	height: 512,
+	epsilon: 1e-5
+}));
+
 example("truchet", scene({
 	camera: orbit({
 		radius: value(1.5),

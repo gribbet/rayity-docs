@@ -1190,7 +1190,7 @@ A recursive tree [Shape](../interfaces/_shape_.shape.md)
 
 | Param | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| iterations | `number`  | 8 |   - |
+| iterations | `number`  | 7 |   - |
 
 
 

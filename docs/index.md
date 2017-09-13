@@ -124,6 +124,13 @@ scene({
 })
 ```
 
+### Recursive Geometry
+
+<example id="recursive"></example>
+
+```ts
+```
+
 ### Kitchen
 
 <example id="kitchen"></example>
