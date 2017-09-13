@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -543,7 +543,7 @@ exports.sierpinski = sierpinski;
  * A recursive tree [[Shape]]
  */
 function tree(iterations) {
-    if (iterations === void 0) { iterations = 8; }
+    if (iterations === void 0) { iterations = 7; }
     var factor = 0.58;
     var length = 1.2;
     var width = 0.1;
@@ -729,38 +729,9 @@ exports.orbit = orbit;
 
 "use strict";
 
-/**
- * Module for rendering options
- */
 Object.defineProperty(exports, "__esModule", { value: true });
-/** Create an [[Options]] */
-function options(values) {
-    values = values || {};
-    return Object.assign({
-        width: 256,
-        height: 256,
-        epsilon: 1e-5,
-        steps: 100,
-        bounces: 8,
-        iterations: 1,
-        memory: 1.0,
-        cheapNormals: false,
-        stepFactor: 0.9,
-        gamma: 2.2
-    }, values || {});
-}
-exports.options = options;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var rayity_1 = __webpack_require__(6);
-function example(id, scene, options) {
+var lib_1 = __webpack_require__(5);
+function example(id, scene, _options) {
     var element = document.querySelector("example#" + id);
     if (element === null)
         return null;
@@ -769,7 +740,7 @@ function example(id, scene, options) {
         start: function () {
             if (view !== null)
                 return;
-            view = rayity_1.viewer(element, scene, options);
+            view = lib_1.viewer(element, scene, _options || lib_1.options({}));
         },
         stop: function () {
             if (view === null)
@@ -783,29 +754,29 @@ function example(id, scene, options) {
     return example;
 }
 function simpleExample(id, shape) {
-    return example(id, rayity_1.scene({
-        camera: rayity_1.orbit({
-            radius: rayity_1.value(2.5),
-            offset: rayity_1.value(-0.2, -0.5),
+    return example(id, lib_1.scene({
+        camera: lib_1.orbit({
+            radius: lib_1.value(2.5),
+            offset: lib_1.value(-0.2, -0.5),
         }),
         models: [
-            rayity_1.model({
-                shape: rayity_1.scale(rayity_1.value(10000), rayity_1.sphere()),
-                material: rayity_1.spotlight({
-                    direction: rayity_1.value(1, 1, 0),
-                    spread: rayity_1.value(0.25),
-                    color: rayity_1.value(0.25),
-                    ambient: rayity_1.value(1)
+            lib_1.model({
+                shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
+                material: lib_1.spotlight({
+                    direction: lib_1.value(1, 1, 0),
+                    spread: lib_1.value(0.25),
+                    color: lib_1.value(0.25),
+                    ambient: lib_1.value(1)
                 })
             }),
-            rayity_1.model({
+            lib_1.model({
                 shape: shape,
-                material: rayity_1.material({
-                    color: rayity_1.value(0.8, 0.9, 0.1)
+                material: lib_1.material({
+                    color: lib_1.value(0.8, 0.9, 0.1)
                 })
             })
         ]
-    }), rayity_1.options({
+    }), lib_1.options({
         width: 128,
         height: 128,
         epsilon: 1e-4,
@@ -816,76 +787,76 @@ function simpleExample(id, shape) {
         gamma: 1.0
     }));
 }
-simpleExample("sphere", rayity_1.sphere());
-simpleExample("tetrahedron", rayity_1.scale(rayity_1.value(0.75), rayity_1.tetrahedron()));
-simpleExample("cube", rayity_1.cube());
-simpleExample("octohedron", rayity_1.octohedron());
-simpleExample("dodecahedron", rayity_1.dodecahedron());
-simpleExample("cylinder", rayity_1.scale(rayity_1.value(0.5), rayity_1.cylinder()));
-simpleExample("torus", rayity_1.torus());
-simpleExample("repeat", rayity_1.scale(rayity_1.value(0.25), rayity_1.repeat(rayity_1.value(2, 0, 2), rayity_1.cube())));
-simpleExample("smoothBox", rayity_1.smoothBox(rayity_1.value(1.5, 1, 1), rayity_1.value(0.25)));
-simpleExample("box", rayity_1.box(rayity_1.value(1, 0.5, 0.5)));
-simpleExample("sierpinski", rayity_1.scale(rayity_1.value(0.75), rayity_1.sierpinski()));
-simpleExample("tree", rayity_1.scale(rayity_1.value(0.5), rayity_1.tree()));
-simpleExample("skull", rayity_1.rotateZ(rayity_1.value(-Math.PI / 4), rayity_1.skull()));
-example("cornell", rayity_1.scene({
-    camera: rayity_1.orbit({
-        radius: rayity_1.value(7),
-        fieldOfView: rayity_1.value(45 / 180 * Math.PI),
+simpleExample("sphere", lib_1.sphere());
+simpleExample("tetrahedron", lib_1.scale(lib_1.value(0.75), lib_1.tetrahedron()));
+simpleExample("cube", lib_1.cube());
+simpleExample("octohedron", lib_1.octohedron());
+simpleExample("dodecahedron", lib_1.dodecahedron());
+simpleExample("cylinder", lib_1.scale(lib_1.value(0.5), lib_1.cylinder()));
+simpleExample("torus", lib_1.torus());
+simpleExample("repeat", lib_1.scale(lib_1.value(0.25), lib_1.repeat(lib_1.value(2, 0, 2), lib_1.cube())));
+simpleExample("smoothBox", lib_1.smoothBox(lib_1.value(1.5, 1, 1), lib_1.value(0.25)));
+simpleExample("box", lib_1.box(lib_1.value(1, 0.5, 0.5)));
+simpleExample("sierpinski", lib_1.scale(lib_1.value(0.75), lib_1.sierpinski()));
+simpleExample("tree", lib_1.scale(lib_1.value(0.5), lib_1.tree()));
+simpleExample("skull", lib_1.rotateZ(lib_1.value(-Math.PI / 4), lib_1.skull()));
+example("cornell", lib_1.scene({
+    camera: lib_1.orbit({
+        radius: lib_1.value(7),
+        fieldOfView: lib_1.value(45 / 180 * Math.PI),
     }),
     models: [
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(0, -1, 0), rayity_1.value(2))
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(2))
         }),
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(2))
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(2))
         }),
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(0, 0, 1), rayity_1.value(2))
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 0, 1), lib_1.value(2))
         }),
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(1, 0, 0), rayity_1.value(2)),
-            material: rayity_1.material({
-                color: rayity_1.value(1, 0.5, 0.5)
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(1, 0, 0), lib_1.value(2)),
+            material: lib_1.material({
+                color: lib_1.value(1, 0.5, 0.5)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(-1, 0, 0), rayity_1.value(2)),
-            material: rayity_1.material({
-                color: rayity_1.value(0.5, 1, 0.5)
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(-1, 0, 0), lib_1.value(2)),
+            material: lib_1.material({
+                color: lib_1.value(0.5, 1, 0.5)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.translate(rayity_1.value(0, 1.999, 0), rayity_1.intersection(rayity_1.scale(rayity_1.value(2.5), rayity_1.cylinder()), rayity_1.plane(rayity_1.value(0, -1, 0), rayity_1.value(0)))),
-            material: rayity_1.material({
-                emissivity: rayity_1.value(1, 0.80, 0.65)
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(0, 1.999, 0), lib_1.intersection(lib_1.scale(lib_1.value(2.5), lib_1.cylinder()), lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(0)))),
+            material: lib_1.material({
+                emissivity: lib_1.value(1, 0.80, 0.65)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.translate(rayity_1.value(-0.2, -1.5, 1), rayity_1.sphere()),
-            material: rayity_1.material({
-                color: rayity_1.value(0.8, 0.8, 1),
-                smoothness: rayity_1.value(0.9999),
-                transmittance: rayity_1.value(0.9),
-                refraction: rayity_1.value(1.4)
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(-0.2, -1.5, 1), lib_1.sphere()),
+            material: lib_1.material({
+                color: lib_1.value(0.8, 0.8, 1),
+                smoothness: lib_1.value(0.9999),
+                transmittance: lib_1.value(0.9),
+                refraction: lib_1.value(1.4)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.translate(rayity_1.value(1, -1, -0.5), rayity_1.rotateY(rayity_1.value(0.5), rayity_1.smoothBox(rayity_1.value(1, 2, 1), rayity_1.value(0.6)))),
-            material: rayity_1.material({
-                color: rayity_1.value(1, 0.9, 0.8),
-                smoothness: rayity_1.value(0.999)
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(1, -1, -0.5), lib_1.rotateY(lib_1.value(0.5), lib_1.smoothBox(lib_1.value(1, 2, 1), lib_1.value(0.6)))),
+            material: lib_1.material({
+                color: lib_1.value(1, 0.9, 0.8),
+                smoothness: lib_1.value(0.999)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.translate(rayity_1.value(-1, -1.5, -0.8), rayity_1.rotateY(rayity_1.value(0.8), rayity_1.cube())),
-            material: rayity_1.material({
-                color: rayity_1.value(0.7)
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(-1, -1.5, -0.8), lib_1.rotateY(lib_1.value(0.8), lib_1.cube())),
+            material: lib_1.material({
+                color: lib_1.value(0.7)
             })
         })
     ]
-}), rayity_1.options({
+}), lib_1.options({
     width: 512,
     height: 512,
     epsilon: 1e-5,
@@ -896,95 +867,279 @@ example("cornell", rayity_1.scene({
     cheapNormals: true,
     gamma: 3
 }));
-example("simple", rayity_1.scene({
-    camera: rayity_1.orbit({
-        radius: rayity_1.value(4),
-        offset: rayity_1.value(0.25, -0.5)
+example("simple", lib_1.scene({
+    camera: lib_1.orbit({
+        radius: lib_1.value(4),
+        offset: lib_1.value(0.25, -0.5)
     }),
     models: [
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(0.5)),
-            material: rayity_1.material({
-                color: rayity_1.value(0.6)
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0.5)),
+            material: lib_1.material({
+                color: lib_1.value(0.6)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.translate(rayity_1.value(-0.5, 0, 0), rayity_1.sphere()),
-            material: rayity_1.material({
-                color: rayity_1.value(0.8, 0.4, 0.8)
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(-0.5, 0, 0), lib_1.sphere()),
+            material: lib_1.material({
+                color: lib_1.value(0.8, 0.4, 0.8)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.translate(rayity_1.value(0.5, 0, 0), rayity_1.cube()),
-            material: rayity_1.material({
-                color: rayity_1.value(0.8, 0.9, 0.1)
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(0.5, 0, 0), lib_1.cube()),
+            material: lib_1.material({
+                color: lib_1.value(0.8, 0.9, 0.1)
             })
         })
     ]
-}), rayity_1.options({}));
-example("skulls", rayity_1.scene({
-    camera: rayity_1.orbit({
-        radius: rayity_1.value(3),
-        offset: rayity_1.value(-0.3, -0.4),
-        aperture: rayity_1.value(0.1)
+}));
+example("scattering", lib_1.scene({
+    camera: lib_1.orbit({
+        radius: lib_1.value(4),
+        offset: lib_1.value(0.25, -0.5)
     }),
     models: [
-        rayity_1.model({
-            shape: rayity_1.scale(rayity_1.value(10000), rayity_1.sphere()),
-            material: rayity_1.spotlight({
-                direction: rayity_1.value(1, 1, 0),
-                spread: rayity_1.value(0.1),
-                color: rayity_1.value(0.5),
-                ambient: rayity_1.value(1)
+        lib_1.model({
+            shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
+            material: lib_1.spotlight({
+                direction: lib_1.value(1, 1, 0),
+                spread: lib_1.value(0.02),
+                color: lib_1.value(0.5),
+                ambient: lib_1.value(1)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(0.3)),
-            material: rayity_1.material({
-                color: rayity_1.value(0.5)
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0.5)),
+            material: lib_1.material({
+                color: lib_1.value(0.6)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.repeat(rayity_1.value(1.3, 0, 1), rayity_1.rotateZ(rayity_1.value(-Math.PI / 4), rayity_1.skull())),
-            material: rayity_1.material({
-                smoothness: rayity_1.value(0.99),
-                color: rayity_1.value(0.4, 0.6, 0.8)
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(-0.25, 0, -0.25), lib_1.intersection(lib_1.difference(lib_1.scale(lib_1.value(2), lib_1.cylinder()), lib_1.scale(lib_1.value(1.5), lib_1.cylinder())), lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(-0.1)))),
+            material: lib_1.material({
+                color: lib_1.value(0.8, 0.9, 0.1),
+                scatter: lib_1.value(0.1),
+                transmittance: lib_1.value(0.9),
+                smoothness: lib_1.value(1),
+                refraction: lib_1.value(1.5)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(0.25, 0, 0.25), lib_1.intersection(lib_1.difference(lib_1.scale(lib_1.value(2), lib_1.cylinder()), lib_1.scale(lib_1.value(1.5), lib_1.cylinder())), lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(-0.1)))),
+            material: lib_1.material({
+                color: lib_1.value(0.8, 0.9, 0.1),
+                transmittance: lib_1.value(0.9),
+                smoothness: lib_1.value(1),
+                refraction: lib_1.value(1.5)
             })
         })
     ]
-}), rayity_1.options({
+}), lib_1.options({
+    bounces: 40,
+    steps: 200,
+    stepFactor: 0.5
+}));
+example("skulls", lib_1.scene({
+    camera: lib_1.orbit({
+        radius: lib_1.value(3),
+        offset: lib_1.value(-0.3, -0.4),
+        aperture: lib_1.value(0.1)
+    }),
+    models: [
+        lib_1.model({
+            shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
+            material: lib_1.spotlight({
+                direction: lib_1.value(1, 1, 0),
+                spread: lib_1.value(0.1),
+                color: lib_1.value(0.5),
+                ambient: lib_1.value(1)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0.3)),
+            material: lib_1.material({
+                color: lib_1.value(0.5)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.repeat(lib_1.value(1.3, 0, 1), lib_1.rotateZ(lib_1.value(-Math.PI / 4), lib_1.skull())),
+            material: lib_1.material({
+                smoothness: lib_1.value(0.99),
+                color: lib_1.value(0.4, 0.6, 0.8)
+            })
+        })
+    ]
+}), lib_1.options({
     stepFactor: 0.6
 }));
-example("truchet", rayity_1.scene({
-    camera: rayity_1.orbit({
-        radius: rayity_1.value(1.5),
-        offset: rayity_1.value(-0.2, -0.5),
+example("modulation", lib_1.scene({
+    air: lib_1.material({
+        scatter: lib_1.value(1000),
+    }),
+    camera: lib_1.orbit({
+        fieldOfView: lib_1.value(60 / 180 * Math.PI),
+        radius: lib_1.value(10),
+        aperture: lib_1.value(0.1),
+        target: lib_1.value(0, 0, 0),
+        offset: lib_1.value(0.25, -0.5)
     }),
     models: [
-        rayity_1.model({
-            shape: rayity_1.scale(rayity_1.value(10000), rayity_1.sphere()),
-            material: rayity_1.spotlight({
-                direction: rayity_1.value(1, 1, 0),
-                spread: rayity_1.value(0.1),
-                color: rayity_1.value(0.5)
+        lib_1.model({
+            shape: lib_1.scale(lib_1.value(1000), lib_1.sphere()),
+            material: lib_1.spotlight({
+                color: lib_1.value(1),
+                direction: lib_1.value(1, 1, 1),
+                spread: lib_1.value(0.1),
+                ambient: lib_1.value(0)
             })
         }),
-        rayity_1.model({
-            shape: rayity_1.plane(rayity_1.value(0, 1, 0), rayity_1.value(0)),
-        }),
-        rayity_1.model({
-            shape: rayity_1.intersection(rayity_1.sphere(), rayity_1.scale(rayity_1.value(0.1), rayity_1.truchet())),
-            material: rayity_1.material({
-                color: rayity_1.value(0.9, 0.8, 0.4),
-                smoothness: rayity_1.value(0.999)
+        lib_1.model({
+            shape: lib_1.intersection(lib_1.modulate(lib_1.value(1, 100, 1), function (index) {
+                return lib_1.smoothBox(lib_1.expression("0.9, 1.0 + 5.0 * " + lib_1.random(index) + ".x, 0.9"), lib_1.value(0.5));
+            }), lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(-6))),
+            material: lib_1.material({
+                color: lib_1.value(0.7, 0.6, 0.5),
+                smoothness: lib_1.value(0.99)
             })
         })
     ]
-}), rayity_1.options({}));
+}), lib_1.options({
+    steps: 200,
+    bounces: 6,
+    cheapNormals: true,
+}));
+example("truchet", lib_1.scene({
+    camera: lib_1.orbit({
+        radius: lib_1.value(1.5),
+        offset: lib_1.value(-0.2, -0.5),
+    }),
+    models: [
+        lib_1.model({
+            shape: lib_1.scale(lib_1.value(10000), lib_1.sphere()),
+            material: lib_1.spotlight({
+                direction: lib_1.value(1, 1, 0),
+                spread: lib_1.value(0.1),
+                color: lib_1.value(0.5)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0)),
+        }),
+        lib_1.model({
+            shape: lib_1.intersection(lib_1.sphere(), lib_1.scale(lib_1.value(0.1), lib_1.truchet())),
+            material: lib_1.material({
+                color: lib_1.value(0.9, 0.8, 0.4),
+                smoothness: lib_1.value(0.999)
+            })
+        })
+    ]
+}));
+example("recursive", lib_1.scene({
+    air: lib_1.material({
+        scatter: lib_1.value(1000)
+    }),
+    camera: lib_1.orbit({
+        radius: lib_1.value(4),
+        target: lib_1.value(0, 0.3, 0),
+        offset: lib_1.value(-0.2, -0.2),
+    }),
+    models: [
+        lib_1.model({
+            shape: lib_1.scale(lib_1.value(1000), lib_1.sphere()),
+            material: lib_1.spotlight({
+                direction: lib_1.value(1, 1, 0),
+                spread: lib_1.value(0.05),
+                color: lib_1.value(0.5)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(0, -0.5, 0), lib_1.cube())
+        }),
+        lib_1.model({
+            shape: lib_1.tree(),
+            material: lib_1.material({
+                color: lib_1.value(0.7, 0.9, 0.7)
+            })
+        })
+    ]
+}), lib_1.options({
+    width: 512,
+    height: 512,
+    epsilon: 1e-5
+}));
+example("kitchen", lib_1.scene({
+    camera: lib_1.orbit({
+        radius: lib_1.value(4),
+        aperture: lib_1.value(0.05),
+        target: lib_1.value(0, 0.6, 0),
+        offset: lib_1.value(0.2, -0.3)
+    }),
+    models: [
+        lib_1.model({
+            shape: lib_1.scale(lib_1.value(1000), lib_1.sphere()),
+            material: lib_1.spotlight({
+                color: lib_1.value(0.3),
+                direction: lib_1.value(1, 1, 1),
+                spread: lib_1.value(0.01),
+                ambient: lib_1.value(0.5, 0.6, 0.9)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0.002)),
+            material: lib_1.material({
+                color: lib_1.value(0.3, 0.35, 0.35),
+                smoothness: lib_1.value(0),
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0.001)),
+            material: lib_1.material({
+                transmittance: lib_1.value(0.9),
+                smoothness: lib_1.value(0.95),
+                refraction: lib_1.value(1.1)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.plane(lib_1.value(0, 0, 1), lib_1.value(1.58)),
+            material: lib_1.material({
+                color: lib_1.value(0.2)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(0, 0.5, -2), lib_1.union(lib_1.repeat(lib_1.value(2, 2, 0), lib_1.smoothBox(lib_1.value(1.95, 0.95, 0.9), lib_1.value(0.1))), lib_1.translate(lib_1.value(1, 1, 0), lib_1.repeat(lib_1.value(2, 2, 0), lib_1.smoothBox(lib_1.value(1.95, 0.95, 0.9), lib_1.value(0.1)))))),
+            material: lib_1.material({
+                smoothness: lib_1.value(0.5),
+                color: lib_1.value(0.8)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(0.8, 0.5, 0.25), lib_1.difference(lib_1.smoothUnion(lib_1.value(0.1), lib_1.intersection(lib_1.cylinder(), lib_1.cube()), lib_1.translate(lib_1.value(0, 0, 0.5), lib_1.rotateZ(lib_1.value(Math.PI / 2), lib_1.scale(lib_1.value(0.5), lib_1.torus())))), lib_1.intersection(lib_1.scale(lib_1.value(0.9), lib_1.cylinder()), lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(-0.4))))),
+            material: lib_1.material({
+                color: lib_1.value(1, 1, 0.99),
+                smoothness: lib_1.value(1),
+                transmittance: lib_1.value(0.9),
+                refraction: lib_1.value(1.5),
+                scatter: lib_1.value(0.01)
+            })
+        }),
+        lib_1.model({
+            shape: lib_1.translate(lib_1.value(-0.8, 0.5, 0), lib_1.difference(lib_1.intersection(lib_1.smoothUnion(lib_1.value(0.6), lib_1.translate(lib_1.value(0, 0.5, 0), lib_1.scale(lib_1.value(0.9), lib_1.sphere())), lib_1.translate(lib_1.value(0, -0.25, 0), lib_1.scale(lib_1.value(0.5), lib_1.cube()))), lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(-0.5))), lib_1.intersection(lib_1.expand(lib_1.value(-0.04), lib_1.smoothUnion(lib_1.value(0.6), lib_1.translate(lib_1.value(0, 0.5, 0), lib_1.scale(lib_1.value(0.9), lib_1.sphere())), lib_1.translate(lib_1.value(0, -0.25, 0), lib_1.scale(lib_1.value(0.5), lib_1.cube())))), lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(-0.4))))),
+            material: lib_1.material({
+                transmittance: lib_1.value(0.7),
+                smoothness: lib_1.value(1),
+                refraction: lib_1.value(1.9),
+                color: lib_1.value(0.97, 0.97, 0.99),
+                scatter: lib_1.value(1)
+            })
+        })
+    ]
+}), lib_1.options({
+    bounces: 40,
+}));
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -998,17 +1153,17 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Exports */
 __export(__webpack_require__(0));
-__export(__webpack_require__(7));
+__export(__webpack_require__(6));
 __export(__webpack_require__(1));
-__export(__webpack_require__(8));
+__export(__webpack_require__(7));
 __export(__webpack_require__(2));
-__export(__webpack_require__(9));
+__export(__webpack_require__(8));
 __export(__webpack_require__(3));
-__export(__webpack_require__(4));
+__export(__webpack_require__(11));
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1033,7 +1188,7 @@ exports.model = model;
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1060,7 +1215,7 @@ exports.scene = scene;
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1069,11 +1224,9 @@ exports.scene = scene;
  * Module for creating a Rayity viewer
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var options_1 = __webpack_require__(4);
-var renderer_1 = __webpack_require__(10);
+var renderer_1 = __webpack_require__(9);
 /** Create a [[Viewer]] */
 function viewer(element, scene, options) {
-    options = options || options_1.options();
     var canvas = document.createElement("canvas");
     canvas.width = options.width;
     canvas.height = options.height;
@@ -1127,7 +1280,7 @@ exports.viewer = viewer;
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1137,7 +1290,7 @@ exports.viewer = viewer;
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 /** Imports */
-var build_1 = __webpack_require__(11);
+var build_1 = __webpack_require__(10);
 /** Create a [[Renderer]] */
 function renderer(gl, scene, options, variables) {
     if (!gl.getExtension("OES_texture_float"))
@@ -1215,7 +1368,7 @@ exports.renderer = renderer;
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1303,6 +1456,35 @@ function build(scene, options) {
     return code;
 }
 exports.build = build;
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Module for rendering options
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+/** Create an [[Options]] */
+function options(values) {
+    values = values || {};
+    return Object.assign({
+        width: 256,
+        height: 256,
+        epsilon: 1e-5,
+        steps: 100,
+        bounces: 8,
+        iterations: 1,
+        memory: 1.0,
+        cheapNormals: false,
+        stepFactor: 0.9,
+        gamma: 2.2
+    }, values || {});
+}
+exports.options = options;
 
 
 /***/ })
