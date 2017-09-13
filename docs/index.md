@@ -104,7 +104,7 @@ scene({
 	}),
 	models: [
 		model({
-			shape: scale(value(10000), sphere()),
+			shape: scale(value(1000), sphere()),
 			material: spotlight({
 				direction: value(1, 1, 0),
 				spread: value(0.1),
@@ -207,7 +207,7 @@ scene({
 	}),
 	models: [
 		model({
-			shape: scale(value(10000), sphere()),
+			shape: scale(value(1000), sphere()),
 			material: spotlight({
 				direction: value(1, 1, 0),
 				spread: value(0.1),

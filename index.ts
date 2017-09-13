@@ -85,7 +85,7 @@ function simpleExample(id: string, shape: Shape) {
 		}),
 		models: [
 			model({
-				shape: scale(value(10000), sphere()),
+				shape: scale(value(1000), sphere()),
 				material: spotlight({
 					direction: value(1, 1, 0),
 					spread: value(0.25),
@@ -230,63 +230,6 @@ example("simple", scene({
 	]
 }));
 
-example("scattering", scene({
-	camera: orbit({
-		radius: value(4),
-		offset: value(0.25, -0.5)
-	}),
-	models: [
-		model({
-			shape: scale(value(10000), sphere()),
-			material: spotlight({
-				direction: value(1, 1, 0),
-				spread: value(0.02),
-				color: value(0.5),
-				ambient: value(1)
-			})
-		}),
-		model({
-			shape: plane(value(0, 1, 0), value(0.5)),
-			material: material({
-				color: value(0.6)
-			})
-		}),
-		model({
-			shape: translate(value(-0.25, 0, -0.25),
-				intersection(
-					difference(
-						scale(value(2), cylinder()),
-						scale(value(1.5), cylinder())),
-					plane(value(0, 1, 0), value(-0.1)))),
-			material: material({
-				color: value(0.8, 0.9, 0.1),
-				scatter: value(0.1),
-				transmittance: value(0.9),
-				smoothness: value(1),
-				refraction: value(1.5)
-			})
-		}),
-		model({
-			shape: translate(value(0.25, 0, 0.25),
-				intersection(
-					difference(
-						scale(value(2), cylinder()),
-						scale(value(1.5), cylinder())),
-					plane(value(0, 1, 0), value(-0.1)))),
-			material: material({
-				color: value(0.8, 0.9, 0.1),
-				transmittance: value(0.9),
-				smoothness: value(1),
-				refraction: value(1.5)
-			})
-		})
-	]
-}), options({
-	bounces: 40,
-	steps: 200,
-	stepFactor: 0.5
-}));
-
 example("skulls", scene({
 	camera: orbit({
 		radius: value(3),
@@ -295,7 +238,7 @@ example("skulls", scene({
 	}),
 	models: [
 		model({
-			shape: scale(value(10000), sphere()),
+			shape: scale(value(1000), sphere()),
 			material: spotlight({
 				direction: value(1, 1, 0),
 				spread: value(0.1),
