@@ -543,16 +543,17 @@ exports.sierpinski = sierpinski;
  * A recursive tree [[Shape]]
  */
 function tree(iterations, shape) {
-    if (iterations === void 0) { iterations = 8; }
+    if (iterations === void 0) { iterations = 6; }
     var factor = 0.58;
     var length = 1.2;
     var width = 0.1;
-    var angle = 50;
+    var angle = 50 / 180 * Math.PI;
+    var smoothFactor = 0.15;
     if (iterations <= 1)
         return smoothBox(expression_1.value(width, length, width), expression_1.value(width));
     else {
         shape = tree(iterations - 1, shape);
-        return smoothUnion(expression_1.value(0.15 * Math.pow(factor, iterations)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle / 180 * Math.PI), width + length / 2 * (1 + factor / 2 * Math.cos(angle / 180 * Math.PI)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle / 180 * Math.PI), shape)))))));
+        return smoothUnion(expression_1.value(smoothFactor * Math.pow(factor, iterations)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle), width + length / 2 * (1 + factor / 2 * Math.cos(angle)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle / 180 * Math.PI), shape)))))));
     }
 }
 exports.tree = tree;
