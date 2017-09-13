@@ -392,12 +392,9 @@ example("truchet", scene({
 }));
 
 example("recursive", scene({
-	air: material({
-		scatter: value(1000)
-	}),
 	camera: orbit({
 		radius: value(4),
-		target: value(0, 0.3, 0),
+		target: value(0, 0.4, 0),
 		offset: value(-0.2, -0.2),
 	}),
 	models: [
@@ -406,24 +403,26 @@ example("recursive", scene({
 			material: spotlight({
 				direction: value(1, 1, 0),
 				spread: value(0.05),
+				ambient: value(1),
 				color: value(0.5)
 			})
 		}),
 		model({
 			shape: translate(value(0, -0.5, 0),
-				cube())
+				cube()),
+			material: material({
+				color: value(0.7)
+			})
 		}),
 		model({
-			shape: tree(),
+			shape: tree(6),
 			material: material({
-				color: value(0.7, 0.9, 0.7)
+				color: value(0.7, 0.5, 0.4)
 			})
 		})
 	]
 }), options({
-	width: 512,
-	height: 512,
-	epsilon: 1e-5
+	gamma: 1
 }));
 
 example("kitchen", scene({

@@ -54,6 +54,40 @@ viewer(document.getElementById("canvas"),
 <example id="modulation"></example>
 
 ```ts
+scene({
+	air: material({
+		scatter: value(1000),
+	}),
+	camera: orbit({
+		fieldOfView: value(60 / 180 * Math.PI),
+		radius: value(10),
+		aperture: value(0.1),
+		target: value(0, 0, 0),
+		offset: value(0.25, -0.5)
+	}),
+	models: [
+		model({
+			shape: scale(value(1000),
+				sphere()),
+			material: spotlight({
+				color: value(1),
+				direction: value(1, 1, 1),
+				spread: value(0.1),
+				ambient: value(0)
+			})
+		}),
+		model({
+			shape: intersection(
+				modulate(value(1, 100, 1), index =>
+					smoothBox(expression(`0.9, 1.0 + 5.0 * ${random(index)}.x, 0.9`), value(0.5))),
+				plane(value(0, 1, 0), value(-6))),
+			material: material({
+				color: value(0.7, 0.6, 0.5),
+				smoothness: value(0.99)
+			})
+		})
+	]
+})
 ```
 
 ### Truchet
@@ -97,6 +131,64 @@ scene({
 <example id="recursive"></example>
 
 ```ts
+function tree(iterations: number = 6, shape?: Shape): Shape {
+	let factor = 0.58;
+	let length = 1.2;
+	let width = 0.1;
+	let angle = 50;
+
+	if (iterations <= 1)
+		return smoothBox(value(width, length, width), value(width));
+	else {
+		shape = tree(iterations - 1, shape);
+		return smoothUnion(
+			value(0.15 * Math.pow(factor, iterations)),
+			shape,
+			mirror(value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)),
+				mirror(value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)),
+					translate(
+						value(
+							length * factor / 2 * Math.sin(angle / 180 * Math.PI),
+							width + length / 2 * (1 + factor / 2 * Math.cos(angle / 180 * Math.PI)),
+							0),
+						scale(value(factor),
+							rotateY(value(0.1),
+								rotateZ(value(angle / 180 * Math.PI),
+									shape)))))));
+	}
+}
+
+scene({
+	camera: orbit({
+		radius: value(4),
+		target: value(0, 0.4, 0),
+		offset: value(-0.2, -0.2),
+	}),
+	models: [
+		model({
+			shape: scale(value(1000), sphere()),
+			material: spotlight({
+				direction: value(1, 1, 0),
+				spread: value(0.05),
+				ambient: value(1),
+				color: value(0.5)
+			})
+		}),
+		model({
+			shape: translate(value(0, -0.5, 0),
+				cube()),
+			material: material({
+				color: value(0.7)
+			})
+		}),
+		model({
+			shape: tree(6),
+			material: material({
+				color: value(0.7, 0.5, 0.4)
+			})
+		})
+	]
+})
 ```
 
 ### Skulls
