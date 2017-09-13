@@ -79,7 +79,9 @@ scene({
 		model({
 			shape: intersection(
 				modulate(value(1, 100, 1), index =>
-					smoothBox(expression(`0.9, 1.0 + 5.0 * ${random(index)}.x, 0.9`), value(0.5))),
+					smoothBox(
+						expression(`0.9, 1.0 + 5.0 * ${random(index)}.x, 0.9`), 
+						value(0.5))),
 				plane(value(0, 1, 0), value(-6))),
 			material: material({
 				color: value(0.7, 0.6, 0.5),
@@ -135,21 +137,22 @@ function tree(iterations: number = 6, shape?: Shape): Shape {
 	let factor = 0.58;
 	let length = 1.2;
 	let width = 0.1;
-	let angle = 50;
+	let angle = 50 / 180 * Math.PI;
+	let smoothFactor = 0.15;
 
 	if (iterations <= 1)
 		return smoothBox(value(width, length, width), value(width));
 	else {
 		shape = tree(iterations - 1, shape);
 		return smoothUnion(
-			value(0.15 * Math.pow(factor, iterations)),
+			value(smoothFactor * Math.pow(factor, iterations)),
 			shape,
 			mirror(value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)),
 				mirror(value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)),
 					translate(
 						value(
-							length * factor / 2 * Math.sin(angle / 180 * Math.PI),
-							width + length / 2 * (1 + factor / 2 * Math.cos(angle / 180 * Math.PI)),
+							length * factor / 2 * Math.sin(angle),
+							width + length / 2 * (1 + factor / 2 * Math.cos(angle)),
 							0),
 						scale(value(factor),
 							rotateY(value(0.1),
@@ -278,10 +281,14 @@ scene({
 			shape: translate(value(0, 0.5, -2),
 				union(
 					repeat(value(2, 2, 0),
-						smoothBox(value(1.95, 0.95, 0.9), value(0.1))),
+						smoothBox(
+							value(1.95, 0.95, 0.9), 
+							value(0.05))),
 					translate(value(1, 1, 0),
 						repeat(value(2, 2, 0),
-							smoothBox(value(1.95, 0.95, 0.9), value(0.1)))))),
+							smoothBox(
+								value(1.95, 0.95, 0.9), 
+								value(0.05)))))),
 			material: material({
 				smoothness: value(0.5),
 				color: value(0.8)

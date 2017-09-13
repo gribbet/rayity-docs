@@ -347,7 +347,9 @@ example("modulation", scene({
 		model({
 			shape: intersection(
 				modulate(value(1, 100, 1), index =>
-					smoothBox(expression(`0.9, 1.0 + 5.0 * ${random(index)}.x, 0.9`), value(0.5))),
+					smoothBox(
+						expression(`0.9, 1.0 + 5.0 * ${random(index)}.x, 0.9`),
+						value(0.5))),
 				plane(value(0, 1, 0), value(-6))),
 			material: material({
 				color: value(0.7, 0.6, 0.5),
@@ -468,10 +470,14 @@ example("kitchen", scene({
 			shape: translate(value(0, 0.5, -2),
 				union(
 					repeat(value(2, 2, 0),
-						smoothBox(value(1.95, 0.95, 0.9), value(0.1))),
+						smoothBox(
+							value(1.95, 0.95, 0.9),
+							value(0.05))),
 					translate(value(1, 1, 0),
 						repeat(value(2, 2, 0),
-							smoothBox(value(1.95, 0.95, 0.9), value(0.1)))))),
+							smoothBox(
+								value(1.95, 0.95, 0.9),
+								value(0.05)))))),
 			material: material({
 				smoothness: value(0.5),
 				color: value(0.8)

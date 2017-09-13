@@ -108,7 +108,7 @@ ___
 
 
 
-*Defined in [shape.ts:431](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L431)*
+*Defined in [shape.ts:432](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L432)*
 
 
 
@@ -398,7 +398,7 @@ ___
 
 
 
-*Defined in [shape.ts:412](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L412)*
+*Defined in [shape.ts:413](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L413)*
 
 
 
@@ -816,7 +816,7 @@ ___
 
 
 
-*Defined in [shape.ts:464](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L464)*
+*Defined in [shape.ts:465](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L465)*
 
 
 
@@ -1214,7 +1214,7 @@ ___
 
 
 
-*Defined in [shape.ts:441](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L441)*
+*Defined in [shape.ts:442](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L442)*
 
 
 
