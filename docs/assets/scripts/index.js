@@ -798,7 +798,7 @@ simpleExample("repeat", lib_1.scale(lib_1.value(0.25), lib_1.repeat(lib_1.value(
 simpleExample("smoothBox", lib_1.smoothBox(lib_1.value(1.5, 1, 1), lib_1.value(0.25)));
 simpleExample("box", lib_1.box(lib_1.value(1, 0.5, 0.5)));
 simpleExample("sierpinski", lib_1.scale(lib_1.value(0.75), lib_1.sierpinski()));
-simpleExample("tree", lib_1.scale(lib_1.value(0.5), lib_1.tree()));
+simpleExample("tree", lib_1.translate(lib_1.value(0, -0.5, 0), lib_1.scale(lib_1.value(0.75), lib_1.tree())));
 simpleExample("skull", lib_1.rotateZ(lib_1.value(-Math.PI / 4), lib_1.skull()));
 example("cornell", lib_1.scene({
     camera: lib_1.orbit({
