@@ -543,17 +543,16 @@ exports.sierpinski = sierpinski;
  * A recursive tree [[Shape]]
  */
 function tree(iterations, shape) {
-    if (iterations === void 0) { iterations = 6; }
-    var factor = 0.58;
-    var length = 1.2;
-    var width = 0.1;
-    var angle = 50 / 180 * Math.PI;
-    var smoothFactor = 0.15;
+    if (iterations === void 0) { iterations = 7; }
+    var factor = 0.6;
+    var length = 1;
+    var width = 0.15;
+    var angle = 30 / 180 * Math.PI;
     if (iterations <= 1)
         return smoothBox(expression_1.value(width, length, width), expression_1.value(width));
     else {
         shape = tree(iterations - 1, shape);
-        return smoothUnion(expression_1.value(smoothFactor * Math.pow(factor, iterations)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle), width + length / 2 * (1 + factor / 2 * Math.cos(angle)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle), shape)))))));
+        return union(shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle), length / 2 * (1 + factor / 2 * Math.cos(angle)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle), shape)))))));
     }
 }
 exports.tree = tree;
@@ -805,7 +804,6 @@ simpleExample("skull", lib_1.rotateZ(lib_1.value(-Math.PI / 4), lib_1.skull()));
 example("cornell", lib_1.scene({
     camera: lib_1.orbit({
         radius: lib_1.value(7),
-        fieldOfView: lib_1.value(45 / 180 * Math.PI),
     }),
     models: [
         lib_1.model({
@@ -830,44 +828,39 @@ example("cornell", lib_1.scene({
             })
         }),
         lib_1.model({
-            shape: lib_1.translate(lib_1.value(0, 1.999, 0), lib_1.intersection(lib_1.scale(lib_1.value(2.5), lib_1.cylinder()), lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(0)))),
+            shape: lib_1.translate(lib_1.value(0, 1.999, 0), lib_1.intersection(lib_1.scale(lib_1.value(2), lib_1.cylinder()), lib_1.plane(lib_1.value(0, -1, 0), lib_1.value(0)))),
             material: lib_1.material({
-                emissivity: lib_1.value(1, 0.80, 0.65)
+                emissivity: lib_1.value(2, 1.6, 1.3)
             })
         }),
         lib_1.model({
             shape: lib_1.translate(lib_1.value(-0.2, -1.5, 1), lib_1.sphere()),
             material: lib_1.material({
-                color: lib_1.value(0.8, 0.8, 1),
-                smoothness: lib_1.value(0.9999),
+                color: lib_1.value(0.7, 0.7, 1),
+                smoothness: lib_1.value(0.999),
                 transmittance: lib_1.value(0.9),
                 refraction: lib_1.value(1.4)
             })
         }),
         lib_1.model({
-            shape: lib_1.translate(lib_1.value(1, -1, -0.5), lib_1.rotateY(lib_1.value(0.5), lib_1.smoothBox(lib_1.value(1, 2, 1), lib_1.value(0.6)))),
+            shape: lib_1.translate(lib_1.value(1, -1.5, -0.5), lib_1.rotateY(lib_1.value(0.5), lib_1.smoothBox(lib_1.value(1, 1, 1), lib_1.value(0.25)))),
             material: lib_1.material({
-                color: lib_1.value(1, 0.9, 0.8),
+                color: lib_1.value(0.7, 0.7, 1),
                 smoothness: lib_1.value(0.999)
             })
         }),
         lib_1.model({
-            shape: lib_1.translate(lib_1.value(-1, -1.5, -0.8), lib_1.rotateY(lib_1.value(0.8), lib_1.cube())),
+            shape: lib_1.translate(lib_1.value(-1, -1.5, -0.8), lib_1.rotateY(lib_1.value(0.8), lib_1.box(lib_1.value(1, 2.5, 1)))),
             material: lib_1.material({
-                color: lib_1.value(0.7)
+                color: lib_1.value(0.8)
             })
         })
     ]
 }), lib_1.options({
     width: 512,
     height: 512,
-    epsilon: 1e-5,
-    steps: 100,
-    bounces: 10,
-    stepFactor: 0.5,
-    iterations: 2,
-    cheapNormals: true,
-    gamma: 3
+    bounces: 15,
+    iterations: 10,
 }));
 example("simple", lib_1.scene({
     camera: lib_1.orbit({
@@ -992,13 +985,13 @@ example("truchet", lib_1.scene({
 }));
 example("recursive", lib_1.scene({
     camera: lib_1.orbit({
-        radius: lib_1.value(4),
-        target: lib_1.value(0, 0.4, 0),
+        radius: lib_1.value(2.5),
+        target: lib_1.value(0, 0.8, 0),
         offset: lib_1.value(-0.2, -0.2),
     }),
     models: [
         lib_1.model({
-            shape: lib_1.scale(lib_1.value(1000), lib_1.sphere()),
+            shape: lib_1.scale(lib_1.value(10), lib_1.sphere()),
             material: lib_1.spotlight({
                 direction: lib_1.value(1, 1, 0),
                 spread: lib_1.value(0.05),
@@ -1007,7 +1000,7 @@ example("recursive", lib_1.scene({
             })
         }),
         lib_1.model({
-            shape: lib_1.translate(lib_1.value(0, -0.5, 0), lib_1.cube()),
+            shape: lib_1.plane(lib_1.value(0, 1, 0), lib_1.value(0)),
             material: lib_1.material({
                 color: lib_1.value(0.7)
             })
@@ -1015,7 +1008,7 @@ example("recursive", lib_1.scene({
         lib_1.model({
             shape: lib_1.tree(),
             material: lib_1.material({
-                color: lib_1.value(0.7, 0.5, 0.4)
+                color: lib_1.value(0.7, 0.6, 0.5)
             })
         })
     ]
@@ -1427,8 +1420,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function options(values) {
     values = values || {};
     return Object.assign({
-        width: 256,
-        height: 256,
+        width: 512,
+        height: 512,
         epsilon: 1e-5,
         steps: 100,
         bounces: 8,
