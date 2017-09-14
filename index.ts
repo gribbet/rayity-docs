@@ -122,7 +122,7 @@ simpleExample("repeat", scale(value(0.25), repeat(value(2, 0, 2), cube())));
 simpleExample("smoothBox", smoothBox(value(1.5, 1, 1), value(0.25)));
 simpleExample("box", box(value(1, 0.5, 0.5)));
 simpleExample("sierpinski", scale(value(0.75), sierpinski()));
-simpleExample("tree", scale(value(0.5), tree()));
+simpleExample("tree", translate(value(0, -0.5, 0), scale(value(0.75), tree())));
 simpleExample("skull", rotateZ(value(-Math.PI / 4), skull()));
 
 example("cornell", scene({
