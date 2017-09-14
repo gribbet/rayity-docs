@@ -106,7 +106,6 @@ function simpleExample(id: string, shape: Shape) {
 		epsilon: 1e-4,
 		steps: 100,
 		bounces: 5,
-		iterations: 1,
 		cheapNormals: false,
 		gamma: 1.0
 	}))
@@ -193,7 +192,6 @@ example("cornell", scene({
 	width: 512,
 	height: 512,
 	bounces: 15,
-	iterations: 10,
 }));
 
 example("simple", scene({
