@@ -64,7 +64,7 @@ function example(id: string, scene: Scene, _options?: Options): Example | null {
 			if (view !== null)
 				return;
 			view = viewer(element, scene, _options || options({}));
-			track("Example", { id: id });
+			track("Example", { "ID": id });
 		},
 		stop: () => {
 			if (view === null)

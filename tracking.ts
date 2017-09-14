@@ -7,7 +7,9 @@ if (window.location.hostname === "gribbet.github.io")
 
 mixpanel.init(token);
 
-track("Load", { "path": window.location.pathname });
+track("Load", {
+    "Path": window.location.pathname.replace("/rayity-docs/", "")
+});
 
 export function track(event: string, parameters: { [key: string]: string } = {}) {
     mixpanel.track(event, parameters);
