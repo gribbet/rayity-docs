@@ -177,7 +177,9 @@ var token = "7ab7815e830c8dbe458296b30465b7da";
 if (window.location.hostname === "gribbet.github.io")
     token = "0f7b50ed2b090ae369958d2398f93a2f";
 mixpanel.init(token);
-track("Load", { "path": window.location.pathname });
+track("Load", {
+    "Path": window.location.pathname.replace("/rayity-docs/", "")
+});
 function track(event, parameters) {
     if (parameters === void 0) { parameters = {}; }
     mixpanel.track(event, parameters);
@@ -6319,7 +6321,7 @@ function example(id, scene, _options) {
             if (view !== null)
                 return;
             view = lib_1.viewer(element, scene, _options || lib_1.options({}));
-            tracking_1.track("Example", { id: id });
+            tracking_1.track("Example", { "ID": id });
         },
         stop: function () {
             if (view === null)
