@@ -1193,8 +1193,10 @@ function viewer(element, scene, options) {
             return;
         var link = document.createElement("a");
         link.setAttribute("download", "render.png");
-        link.setAttribute("href", canvas.toDataURL());
-        link.click();
+        canvas.toBlob(function (blob) {
+            link.setAttribute("href", URL.createObjectURL(blob));
+            link.click();
+        });
     });
     canvas.addEventListener("mousedown", function () { return variables.clicked = true; });
     document.addEventListener("mouseup", function () { return variables.clicked = false; });
