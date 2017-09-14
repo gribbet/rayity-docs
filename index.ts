@@ -129,7 +129,6 @@ simpleExample("skull", rotateZ(value(-Math.PI / 4), skull()));
 example("cornell", scene({
 	camera: orbit({
 		radius: value(7),
-		fieldOfView: value(45 / 180 * Math.PI),
 	}),
 	models: [
 		model({
@@ -156,49 +155,45 @@ example("cornell", scene({
 		model({
 			shape: translate(value(0, 1.999, 0),
 				intersection(
-					scale(value(2.5), cylinder()),
+					scale(value(2), cylinder()),
 					plane(value(0, -1, 0), value(0)))),
 			material: material({
-				emissivity: value(1, 0.80, 0.65)
+				emissivity: value(2, 1.6, 1.3)
 			})
 		}),
 		model({
 			shape: translate(value(-0.2, -1.5, 1),
 				sphere()),
 			material: material({
-				color: value(0.8, 0.8, 1),
-				smoothness: value(0.9999),
+				color: value(0.7, 0.7, 1),
+				smoothness: value(0.999),
 				transmittance: value(0.9),
 				refraction: value(1.4)
 			})
 		}),
 		model({
-			shape: translate(value(1, -1, -0.5),
+			shape: translate(value(1, -1.5, -0.5),
 				rotateY(value(0.5),
-					smoothBox(value(1, 2, 1), value(0.6)))),
+					smoothBox(value(1, 1, 1), value(0.25)))),
 			material: material({
-				color: value(1, 0.9, 0.8),
+				color: value(0.7, 0.7, 1),
 				smoothness: value(0.999)
 			})
 		}),
 		model({
 			shape: translate(value(-1, -1.5, -0.8),
-				rotateY(value(0.8), cube())),
+				rotateY(value(0.8),
+					box(value(1, 2.5, 1)))),
 			material: material({
-				color: value(0.7)
+				color: value(0.8)
 			})
 		})
 	]
 }), options({
 	width: 512,
 	height: 512,
-	epsilon: 1e-5,
-	steps: 100,
-	bounces: 10,
-	stepFactor: 0.5,
-	iterations: 2,
-	cheapNormals: true,
-	gamma: 3
+	bounces: 15,
+	iterations: 10,
 }));
 
 example("simple", scene({
@@ -338,13 +333,13 @@ example("truchet", scene({
 
 example("recursive", scene({
 	camera: orbit({
-		radius: value(4),
-		target: value(0, 0.4, 0),
+		radius: value(2.5),
+		target: value(0, 0.8, 0),
 		offset: value(-0.2, -0.2),
 	}),
 	models: [
 		model({
-			shape: scale(value(1000), sphere()),
+			shape: scale(value(10), sphere()),
 			material: spotlight({
 				direction: value(1, 1, 0),
 				spread: value(0.05),
@@ -353,8 +348,7 @@ example("recursive", scene({
 			})
 		}),
 		model({
-			shape: translate(value(0, -0.5, 0),
-				cube()),
+			shape: plane(value(0, 1, 0), value(0)),
 			material: material({
 				color: value(0.7)
 			})
@@ -362,7 +356,7 @@ example("recursive", scene({
 		model({
 			shape: tree(),
 			material: material({
-				color: value(0.7, 0.5, 0.4)
+				color: value(0.7, 0.6, 0.5)
 			})
 		})
 	]

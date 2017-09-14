@@ -135,13 +135,13 @@ scene({
 ```ts
 scene({
 	camera: orbit({
-		radius: value(4),
-		target: value(0, 0.4, 0),
+		radius: value(2.5),
+		target: value(0, 0.8, 0),
 		offset: value(-0.2, -0.2),
 	}),
 	models: [
 		model({
-			shape: scale(value(1000), sphere()),
+			shape: scale(value(10), sphere()),
 			material: spotlight({
 				direction: value(1, 1, 0),
 				spread: value(0.05),
@@ -150,41 +150,38 @@ scene({
 			})
 		}),
 		model({
-			shape: translate(value(0, -0.5, 0),
-				cube()),
+			shape: plane(value(0, 1, 0), value(0)),
 			material: material({
 				color: value(0.7)
 			})
 		}),
 		model({
-			shape: tree(6),
+			shape: tree(),
 			material: material({
-				color: value(0.7, 0.5, 0.4)
+				color: value(0.7, 0.6, 0.5)
 			})
 		})
 	]
 })
 
-function tree(iterations: number = 6, shape?: Shape): Shape {
-	let factor = 0.58;
-	let length = 1.2;
-	let width = 0.1;
-	let angle = 50 / 180 * Math.PI;
-	let smoothFactor = 0.15;
+function tree(iterations: number = 7, shape?: Shape): Shape {
+	let factor = 0.6;
+	let length = 1;
+	let width = 0.15;
+	let angle = 30 / 180 * Math.PI;
 
 	if (iterations <= 1)
 		return smoothBox(value(width, length, width), value(width));
 	else {
 		shape = tree(iterations - 1, shape);
-		return smoothUnion(
-			value(smoothFactor * Math.pow(factor, iterations)),
+		return union(
 			shape,
 			mirror(value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)),
 				mirror(value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)),
 					translate(
 						value(
 							length * factor / 2 * Math.sin(angle),
-							width + length / 2 * (1 + factor / 2 * Math.cos(angle)),
+							length / 2 * (1 + factor / 2 * Math.cos(angle)),
 							0),
 						scale(value(factor),
 							rotateY(value(0.1),
