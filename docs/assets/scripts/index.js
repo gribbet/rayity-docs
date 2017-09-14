@@ -565,17 +565,16 @@ exports.sierpinski = sierpinski;
  * A recursive tree [[Shape]]
  */
 function tree(iterations, shape) {
-    if (iterations === void 0) { iterations = 6; }
-    var factor = 0.58;
-    var length = 1.2;
-    var width = 0.1;
-    var angle = 50 / 180 * Math.PI;
-    var smoothFactor = 0.15;
+    if (iterations === void 0) { iterations = 7; }
+    var factor = 0.6;
+    var length = 1;
+    var width = 0.15;
+    var angle = 30 / 180 * Math.PI;
     if (iterations <= 1)
         return smoothBox(expression_1.value(width, length, width), expression_1.value(width));
     else {
         shape = tree(iterations - 1, shape);
-        return smoothUnion(expression_1.value(smoothFactor * Math.pow(factor, iterations)), shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle), width + length / 2 * (1 + factor / 2 * Math.cos(angle)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle), shape)))))));
+        return union(shape, mirror(expression_1.value(1 / Math.sqrt(2), 0, 1 / Math.sqrt(2)), mirror(expression_1.value(1 / Math.sqrt(2), 0, -1 / Math.sqrt(2)), translate(expression_1.value(length * factor / 2 * Math.sin(angle), length / 2 * (1 + factor / 2 * Math.cos(angle)), 0), scale(expression_1.value(factor), rotateY(expression_1.value(0.1), rotateZ(expression_1.value(angle), shape)))))));
     }
 }
 exports.tree = tree;
@@ -6773,8 +6772,10 @@ function viewer(element, scene, options) {
             return;
         var link = document.createElement("a");
         link.setAttribute("download", "render.png");
-        link.setAttribute("href", canvas.toDataURL());
-        link.click();
+        canvas.toBlob(function (blob) {
+            link.setAttribute("href", URL.createObjectURL(blob));
+            link.click();
+        });
     });
     canvas.addEventListener("mousedown", function () { return variables.clicked = true; });
     document.addEventListener("mouseup", function () { return variables.clicked = false; });
