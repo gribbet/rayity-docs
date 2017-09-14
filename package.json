@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "webpack",
-		"start": "webpack-dev-server --content-base docs/ --watch-content-base"
+		"start": "webpack-dev-server --content-base docs/ --watch-content-base --disable-host-check --host 0.0.0.0"
 	},
 	"devDependencies": {
 		"source-map-loader": "^0.2.1",
