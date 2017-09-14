@@ -6,6 +6,8 @@ Rayity is a library for creating photorealistic renderings of three-dimensional 
 
 Scenes and geometry are defined using TypeScript (or JavaScript). Rayity then uses a code generation technique to convert that scene into a GLSL [shader](https://en.wikipedia.org/wiki/Shader). This allows the scene to be rendered quickly by taking advantage of graphics processing hardware. 
 
+
+
 [Example Project](https://github.com/gribbet/rayity-example)
 
 [Documentation](docs/)
