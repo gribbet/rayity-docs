@@ -108,7 +108,7 @@ ___
 
 
 
-*Defined in [shape.ts:432](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L432)*
+*Defined in [shape.ts:430](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L430)*
 
 
 
@@ -398,7 +398,7 @@ ___
 
 
 
-*Defined in [shape.ts:413](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L413)*
+*Defined in [shape.ts:411](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L411)*
 
 
 
@@ -816,7 +816,7 @@ ___
 
 
 
-*Defined in [shape.ts:465](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L465)*
+*Defined in [shape.ts:463](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L463)*
 
 
 
@@ -1190,7 +1190,7 @@ A recursive tree [Shape](../interfaces/_shape_.shape.md)
 
 | Param | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
-| iterations | `number`  | 6 |   - |
+| iterations | `number`  | 7 |   - |
 | shape | [Shape](../interfaces/_shape_.shape.md)  | - |   - |
 
 
@@ -1214,7 +1214,7 @@ ___
 
 
 
-*Defined in [shape.ts:442](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L442)*
+*Defined in [shape.ts:440](https://github.com/gribbet/rayity/blob/master/src/shape.ts#L440)*
 
 
 
