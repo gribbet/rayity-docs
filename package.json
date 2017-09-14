@@ -16,7 +16,7 @@
 	},
 	"dependencies": {
 		"mixpanel-browser": "^2.13.0",
-		"rayity": "https://github.com/gribbet/rayity",
+		"rayity": "^0.3.1",
 		"typedoc": "^0.8.0",
 		"typescript": "^2.4.2"
 	}
