@@ -1420,8 +1420,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function options(values) {
     values = values || {};
     return Object.assign({
-        width: 512,
-        height: 512,
+        width: 256,
+        height: 256,
         epsilon: 1e-5,
         steps: 100,
         bounces: 8,
