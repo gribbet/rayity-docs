@@ -2318,9 +2318,9 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
-rayity@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/rayity/-/rayity-0.3.2.tgz#2f16966a64592304033ef868acd3fe136e54fe59"
+rayity@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/rayity/-/rayity-0.3.3.tgz#ad209ab46b912cb521ee443197867bff3d35e470"
 
 rc@^1.1.7:
   version "1.2.1"

@@ -106,7 +106,7 @@ function value(x, y, z) {
     if (x === void 0) { x = 0; }
     if (y === void 0) { y = x; }
     if (z === void 0) { z = y; }
-    return expression("vec3(" + x.toPrecision(10) + ", " + y.toPrecision(10) + ", " + z.toPrecision(10) + ")", []);
+    return expression(x.toPrecision(10) + ", " + y.toPrecision(10) + ", " + z.toPrecision(10), []);
 }
 exports.value = value;
 /** An expression which is equal to a named variable */
@@ -734,9 +734,11 @@ function orbit(values) {
     values.target = values.target || expression_1.value(0, 0, 0);
     values.offset = values.offset || expression_1.value(0, 0);
     values.radius = values.radius || expression_1.value(1);
+    var r = expression_1.value(Math.PI, Math.PI / 2);
+    var q = spherical(expression_1.expression("vec3(mouse + " + values.offset + ".xy + vec2(0.5, 1), 1) * " + r));
     return camera({
         target: values.target,
-        eye: expression_1.expression(values.target + " + " + values.radius + ".x * spherical((mouse + " + values.offset + ".xy) * vec2(PI, 0.5 * PI) + vec2(0.5 * PI))"),
+        eye: expression_1.expression(values.target + " + " + values.radius + ".x * " + q),
         up: values.up,
         fieldOfView: values.fieldOfView,
         aperture: values.aperture,
@@ -744,6 +746,9 @@ function orbit(values) {
     });
 }
 exports.orbit = orbit;
+function spherical(a) {
+    return expression_1.expression("vec3(sin(" + a + ".y) * cos(" + a + ".x), cos(" + a + ".y), sin(" + a + ".y) * sin(" + a + ".x))");
+}
 
 
 /***/ }),
@@ -6438,6 +6443,8 @@ example("cornell", lib_1.scene({
     width: 512,
     height: 512,
     bounces: 15,
+    steps: 40,
+    epsilon: 0.0001
 }));
 example("simple", lib_1.scene({
     camera: lib_1.orbit({
@@ -6496,7 +6503,9 @@ example("skulls", lib_1.scene({
         })
     ]
 }), lib_1.options({
-    stepFactor: 0.6
+    stepFactor: 0.6,
+    steps: 50,
+    bounces: 5
 }));
 example("modulation", lib_1.scene({
     air: lib_1.material({
@@ -6828,13 +6837,15 @@ function renderer(gl, scene, options, variables) {
         gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, options.width, options.height, 0, gl.RGBA, textureHalfFloatExtension.HALF_FLOAT_OES, null);
         return texture;
     });
     gl.bindTexture(gl.TEXTURE_2D, null);
     var framebuffer = gl.createFramebuffer();
     var renderShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(renderShader, "\n\t\tprecision highp float;\n\n\t\tvarying vec2 uv;\n\t\tuniform highp sampler2D texture;\n\t\t\n\t\tvoid main() {\n\t\t\tvec4 result = texture2D(texture, uv * 0.5 - 0.5);\n\t\t\tgl_FragColor = vec4(pow(result.xyz / result.w, vec3(1.0 / " + options.gamma.toFixed(10) + ")), 1.0);\n\t\t}");
+    gl.shaderSource(renderShader, "\n\t\tprecision highp float;\n\n\t\tvarying vec2 uv;\n\t\tuniform highp sampler2D texture;\n\t\t\n\t\tvoid main() {\n\t\t\tvec4 result = texture2D(texture, uv * 0.5 + 0.5);\n\t\t\tgl_FragColor = vec4(pow(result.xyz / result.w, vec3(1.0 / " + options.gamma.toFixed(10) + ")), 1.0);\n\t\t}");
     gl.compileShader(renderShader);
     if (!gl.getShaderParameter(renderShader, gl.COMPILE_STATUS))
         throw gl.getShaderInfoLog(renderShader);
@@ -6944,14 +6955,14 @@ function dependencyTree(expressions) {
 }
 function buildModel(model, options) {
     var distance = model.shape.call(expression_1.variable("p"));
-    var code = "\n\t\nfloat distance" + model.id + "(vec3 p) {\n\t" + buildExpression(distance) + "\n\treturn " + distance + ".x;\n}\n\nMaterial material" + model.id + "(vec3 p, vec3 n, vec3 d) {\n\tMaterial m;\n\t" + buildExpressions([
+    var code = "\n\t\nfloat distance" + model.id + "(vec3 p) {\n\t" + buildExpression(distance) + "\n\treturn " + distance + ".x;\n}\n\nMaterial material" + model.id + "(vec3 p, vec3 n, vec3 d) {\n\t" + buildExpressions([
         model.material.transmittance,
         model.material.smoothness,
         model.material.refraction,
         model.material.scatter,
         model.material.color,
         model.material.emissivity
-    ]) + "\n\tm.transmittance = " + model.material.transmittance + ".x;\n\tm.smoothness = " + model.material.smoothness + ".x;\n\tm.refraction = " + model.material.refraction + ".x;\n\tm.scatter = " + model.material.scatter + ".x;\n\tm.color = " + model.material.color + ";\n\tm.emissivity = " + model.material.emissivity + ";\n\treturn m;\n}";
+    ]) + "\n\tMaterial m;\t\t\t\n\tm.transmittance = " + model.material.transmittance + ".x;\n\tm.smoothness = " + model.material.smoothness + ".x;\n\tm.refraction = " + model.material.refraction + ".x;\n\tm.scatter = " + model.material.scatter + ".x;\n\tm.color = " + model.material.color + ";\n\tm.emissivity = " + model.material.emissivity + ";\n\treturn m;\n}";
     if (options.cheapNormals)
         code += "\n\nvec3 normal" + model.id + "(vec3 p) {\n\tconst vec3 a = vec3( 1, 1, 1) / sqrt(3.0);\n\tconst vec3 b = vec3( 1,-1,-1) / sqrt(3.0);\n\tconst vec3 c = vec3(-1, 1,-1) / sqrt(3.0);\n\tconst vec3 d = vec3(-1,-1, 1) / sqrt(3.0);\n\tfloat z = distance" + model.id + "(p);\n\treturn normalize(\n\t\ta * (distance" + model.id + "(p + a * epsilon) - z) + \n\t\tb * (distance" + model.id + "(p + b * epsilon) - z) +\n\t\tc * (distance" + model.id + "(p + c * epsilon) - z) +\n\t\td * (distance" + model.id + "(p + d * epsilon) - z));\n}";
     else
@@ -6974,19 +6985,18 @@ function buildScene(scene, options) {
 }
 /** Generate the GLSL shader for this [[Scene]] */
 function build(scene, options) {
-    var code = "\nprecision highp float;\n\nuniform sampler2D texture;\nuniform vec2 resolution;\nuniform vec2 mouse;\nuniform bool clicked;\nuniform float time;\nvarying vec2 uv;\n\nconst float PI = 3.14159;\nconst float MAX_VALUE = 1e10;\n\nconst float epsilon = " + options.epsilon + ";\nconst int steps = " + options.steps + ";\nconst int bounces = " + options.bounces + ";\nconst int iterations = " + options.iterations + ";\n\nstruct Closest {\n\tint object;\n\tfloat distance;\n};\n\nstruct Material {\n\tfloat transmittance;\n\tfloat smoothness;\n\tfloat refraction;\n\tfloat scatter;\n\tvec3 color;\n\tvec3 emissivity;\n};\n\nClosest calculateClosest(vec3 position);\nvec3 calculateNormal(int object, vec3 position);\nMaterial calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);\n\nvec2 random(int seed) {\n\tvec2 s = (vec2(1) + uv) * float(seed) + time;\n\treturn vec2(\n\t\tfract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),\n\t\tfract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));\n}\n\nvec3 ortho(vec3 v) {\n\treturn abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0) : vec3(0.0, -v.z, v.y);\n}\n\nvec3 calculateSample(vec3 normal, float smoothness, vec2 noise) {\n\tvec3 o1 = normalize(ortho(normal));\n\tvec3 o2 = normalize(cross(normal, o1));\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = sqrt(smoothness + (1.0 - smoothness) * noise.y);\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn q * (cos(noise.x) * o1  + sin(noise.x) * o2) + noise.y * normal;\n}\n\nvec3 sampleSphere(vec2 noise) {\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = noise.y * 2.0 - 1.0;\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn vec3(q * cos(noise.x), q * sin(noise.x), noise.y);\n}\n\nvec3 spherical(vec2 angle) {\n\treturn vec3(sin(angle.y) * cos(angle.x), cos(angle.y), sin(angle.y) * sin(angle.x));\n}\n\nvoid main() {\n\t" + buildExpressions([
+    var code = "\nprecision highp float;\n\nuniform sampler2D texture;\nuniform vec2 resolution;\nuniform vec2 mouse;\nuniform bool clicked;\nuniform float time;\nvarying vec2 uv;\n\nconst float PI = 3.14159;\nconst float MAX_VALUE = 1e10;\n\nconst float epsilon = " + options.epsilon + ";\nconst int steps = " + options.steps + ";\nconst int bounces = " + options.bounces + ";\nconst int iterations = " + options.iterations + ";\n\nstruct Closest {\n\tint object;\n\tfloat distance;\n};\n\nstruct Material {\n\tfloat transmittance;\n\tfloat smoothness;\n\tfloat refraction;\n\tfloat scatter;\n\tvec3 color;\n\tvec3 emissivity;\n};\n\nClosest calculateClosest(vec3 position);\nvec3 calculateNormal(int object, vec3 position);\nMaterial calculateMaterial(int object, vec3 position, vec3 normal, vec3 direction);\n\nvec2 random(vec2 uv, int seed) {\n\tvec2 s = (vec2(1) + uv) * float(seed) + time;\n\treturn vec2(\n\t\tfract(sin(dot(s.xy, vec2(12.9898, 78.233))) * 43758.5453),\n\t\tfract(cos(dot(s.xy, vec2(4.898, 7.23))) * 23421.631));\n}\n\nvec3 ortho(vec3 v) {\n\treturn abs(v.x) > abs(v.z) ? vec3(-v.y, v.x, 0.0) : vec3(0.0, -v.z, v.y);\n}\n\nvec3 calculateSample(vec3 normal, float smoothness, vec2 noise) {\n\tvec3 o1 = normalize(ortho(normal));\n\tvec3 o2 = normalize(cross(normal, o1));\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = sqrt(smoothness + (1.0 - smoothness) * noise.y);\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn q * (cos(noise.x) * o1  + sin(noise.x) * o2) + noise.y * normal;\n}\n\nvec3 sampleSphere(vec2 noise) {\n\tnoise.x *= 2.0 * PI;\n\tnoise.y = noise.y * 2.0 - 1.0;\n\tfloat q = sqrt(1.0 - noise.y * noise.y);\n\treturn vec3(q * cos(noise.x), q * sin(noise.x), noise.y);\n}\n\nvoid main() {\n\t" + buildExpressions([
         scene.camera.eye,
         scene.camera.target,
         scene.camera.up,
         scene.camera.fieldOfView,
         scene.camera.aperture,
-        scene.camera.focalFactor
-    ]) + "\n\tvec3 eye = " + scene.camera.eye + ";\n\tvec3 target = " + scene.camera.target + ";\n\tvec3 up = " + scene.camera.up + ";\n\tfloat fieldOfView = " + scene.camera.fieldOfView + ".x;\n\tfloat aperture = " + scene.camera.aperture + ".x;\n\tfloat focalFactor = " + scene.camera.focalFactor + ".x;\n\n\tvec3 look = normalize(target - eye);\n\tup = normalize(up - dot(look, up) * look);\n\tvec3 right = cross(look, up);\n\t\n\tvec3 total = vec3(0);\n\n\tfor(int iteration = 1; iteration <= iterations; iteration++) {\n\t\tvec2 noise = random(iteration);\n\n\t\tvec2 offset = noise.x * aperture * vec2(cos(noise.y * 2.0 * PI), sin(noise.y * 2.0 * PI));\n\t\tvec3 from = eye + offset.x * right + offset.y * up;\n\n\t\tvec2 angle = (uv * 0.5 + (noise - 0.5) / resolution) * fieldOfView;\n\t\tvec3 screen = vec3(cos(angle.y) * sin(angle.x), sin(angle.y), cos(angle.y) * cos(angle.x));\n\t\tvec3 to = eye + focalFactor * length(target - eye) * (right * screen.x + up * screen.y + look * screen.z);\n\n\t\tvec3 direction = normalize(to - from);\n\n\t\tvec3 luminance = vec3(1);\n\n\t\tMaterial air;\n\t\t" + buildExpressions([
+        scene.camera.focalFactor,
         scene.air.refraction,
         scene.air.scatter,
         scene.air.emissivity,
         scene.air.color
-    ]) + "\n\t\tair.refraction = " + scene.air.refraction + ".x;\n\t\tair.scatter = " + scene.air.scatter + ".x;\n\t\tair.emissivity = " + scene.air.emissivity + ";\n\t\tair.color = " + scene.air.color + ";\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance >= scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 - 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
+    ]) + "\n\tvec3 eye = " + scene.camera.eye + ";\n\tvec3 target = " + scene.camera.target + ";\n\tvec3 up = " + scene.camera.up + ";\n\tfloat fieldOfView = " + scene.camera.fieldOfView + ".x;\n\tfloat aperture = " + scene.camera.aperture + ".x;\n\tfloat focalFactor = " + scene.camera.focalFactor + ".x;\n\tfloat aspect = resolution.x / resolution.y;\n\n\tMaterial air;\t\t\n\tair.refraction = " + scene.air.refraction + ".x;\n\tair.scatter = " + scene.air.scatter + ".x;\n\tair.emissivity = " + scene.air.emissivity + ";\n\tair.color = " + scene.air.color + ";\n\n\tvec3 look = normalize(target - eye);\n\tup = normalize(up - dot(look, up) * look);\n\tvec3 right = cross(look, up);\n\t\n\tvec3 total = vec3(0);\n\n\tfor(int iteration = 1; iteration <= iterations; iteration++) {\n\t\tvec2 noise = random(uv, iteration);\n\n\t\tvec2 offset = noise.x * aperture * vec2(cos(noise.y * 2.0 * PI), sin(noise.y * 2.0 * PI));\n\t\tvec3 from = eye + offset.x * right + offset.y * up;\n\n\t\tvec2 angle = (uv * 0.5 + (noise - 0.5) / resolution) * fieldOfView * vec2(aspect, 1);\n\t\tvec3 screen = vec3(cos(angle.y) * sin(angle.x), sin(angle.y), cos(angle.y) * cos(angle.x));\n\t\tvec3 to = eye + focalFactor * length(target - eye) * (right * screen.x + up * screen.y + look * screen.z);\n\n\t\tvec3 direction = normalize(to - from);\n\n\t\tvec3 luminance = vec3(1);\n\n\t\tMaterial current = air;\n\n\t\tfor (int bounce = 1; bounce <= bounces; bounce++) {\n\t\t\tClosest closest;\n\t\t\tvec3 position = from;\n\t\t\tfloat distance = 0.0;\n\n\t\t\tvec2 noise = random(uv, iteration * bounces + bounce);\n\n\t\t\tfloat scatter = -log(noise.y) * current.scatter;\t\t\t\n\n\t\t\tfor (int step = 1; step <= steps; step++) {\n\t\t\t\tclosest = calculateClosest(position);\n\n\t\t\t\tif (closest.distance < epsilon)\n\t\t\t\t\tbreak;\n\n\t\t\t\tdistance = distance + closest.distance * " + options.stepFactor.toFixed(10) + ";\n\t\t\t\tposition = from + direction * distance;\n\n\t\t\t\tif (scatter > 0.0 && distance >= scatter)\n\t\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (closest.object == 0) {\n\t\t\t\ttotal += air.color * luminance;\n\t\t\t\tbreak;\n\t\t\t}\n\n\t\t\tif (scatter > 0.0 && distance >= scatter) {\n\t\t\t\tfrom = position - (distance - scatter) * direction;\n\t\t\t\tdirection = sampleSphere(noise);\n\t\t\t\ttotal += luminance * current.emissivity;\n\t\t\t\tluminance *= current.color;\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tvec3 normal = calculateNormal(closest.object, position);\n\n\t\t\tMaterial material = calculateMaterial(closest.object, position, normal, direction);\n\n\t\t\ttotal += luminance * material.emissivity;\n\n\t\t\tif (material.color == vec3(0))\n\t\t\t\tbreak;\n\n\t\t\tbool backface = dot(direction, normal) > 0.0; \n\t\t\tif (backface)\n\t\t\t\tnormal = -normal; \n\n\t\t\tnormal = calculateSample(normal, material.smoothness, noise);\n\t\t\t\n\t\t\tif (noise.y < material.transmittance) {\n\t\t\t\tfloat eta;\n\t\t\t\tif (!backface)\n\t\t\t\t\teta = current.refraction / material.refraction;\n\t\t\t\telse\n\t\t\t\t\teta = material.refraction / air.refraction;\n\t\t\t\n\t\t\t\tvec3 refracted = refract(direction, normal, eta);\n\t\t\t\tif (refracted != vec3(0)) {\n\t\t\t\t\tfrom = position - 5.0 * epsilon * normal;\n\t\t\t\t\tdirection = refracted;\n\t\t\t\t\tif (!backface)\n\t\t\t\t\t\tcurrent = material;\n\t\t\t\t\telse\n\t\t\t\t\t\tcurrent = air;\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tluminance *= material.color;\t\t\t\t\n\t\t\tfrom = position + 5.0 * epsilon * normal;\n\t\t\tdirection = reflect(direction, normal);\n\t\t}\n\t}\n\n\tvec4 original = texture2D(texture, uv * 0.5 + 0.5);\n\t\n\tif (clicked) \n\t\toriginal *= 0.5;\n\n\toriginal *= " + options.memory.toFixed(10) + "; \n\t\t\n\tgl_FragColor = original + vec4(total, iterations);\n\n}" + buildScene(scene, options);
     return code;
 }
 exports.build = build;
@@ -7008,7 +7018,7 @@ function options(values) {
     return Object.assign({
         width: 256,
         height: 256,
-        epsilon: 1e-5,
+        epsilon: 1e-4,
         steps: 100,
         bounces: 8,
         iterations: 1,
