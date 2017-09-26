@@ -194,6 +194,8 @@ example("cornell", scene({
 	width: 512,
 	height: 512,
 	bounces: 15,
+	steps: 40,
+	epsilon: 0.0001
 }));
 
 example("simple", scene({
@@ -257,7 +259,9 @@ example("skulls", scene({
 		})
 	]
 }), options({
-	stepFactor: 0.6
+	stepFactor: 0.6,
+	steps: 50,
+	bounces: 5
 }));
 
 example("modulation", scene({
